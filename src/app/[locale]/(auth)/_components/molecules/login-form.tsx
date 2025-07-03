@@ -1,12 +1,10 @@
 import type { Session } from 'next-auth'
 import { useTranslation } from 'react-i18next'
-import { Fieldset } from 'rsc-daisyui'
 import { Atoms } from '@/app/[locale]/(auth)/_components'
-import { useLocalePath, useLoginForm } from '@/hooks'
+import { useLoginForm } from '@/hooks'
 import { APP_ROUTES, INPUT_PROPS } from '@/lib/constants'
 
 export function LoginForm({ session }: LoginFormProps) {
-  const localePath = useLocalePath('login')
   const { t } = useTranslation('auth')
 
   const { handleSubmitWithAction, form } = useLoginForm()
@@ -15,14 +13,10 @@ export function LoginForm({ session }: LoginFormProps) {
   const { email, password } = errors
   const { EMAIL, PASSWORD_SIGNIN } = INPUT_PROPS
 
-  const className = 'mt-2.5 text-center font-semibold italic'
-
   return (
-    <Fieldset as='form' noValidate onSubmit={handleSubmitWithAction}>
+    <Atoms.FormWrapper onSubmit={handleSubmitWithAction}>
       <Atoms.FormLegend />
-
-      <span className={className}>{session?.user.name ?? 'not authenticated'}</span>
-      <span className={className}>{localePath}</span>
+      <span className='mt-2.5 text-center font-semibold italic'>{session?.user.name ?? 'not authenticated'}</span>
 
       <Atoms.FormInput
         {...register('email')}
@@ -45,7 +39,7 @@ export function LoginForm({ session }: LoginFormProps) {
 
       <Atoms.FormButton isDisabled={isSubmitting} text={t('login.button')} />
       <Atoms.FormLink isDisabled={isSubmitting} route={APP_ROUTES.REGISTER} text={t('login.link')} />
-    </Fieldset>
+    </Atoms.FormWrapper>
   )
 }
 

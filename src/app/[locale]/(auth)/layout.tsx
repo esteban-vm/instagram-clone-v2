@@ -10,10 +10,10 @@ interface AuthLayoutProps extends Props.WithChildren, Props.WithParams {}
 export default async function AuthLayout({ children, params }: AuthLayoutProps) {
   const namespace: Namespace = 'auth'
   const { locale } = await params
-  const { resources } = await initTranslations(locale, namespace)
+  const { resource } = await initTranslations(locale, namespace)
 
   return (
-    <TranslationProvider locale={locale} namespace={namespace} resource={resources}>
+    <TranslationProvider locale={locale} namespace={namespace} resource={resource}>
       <Hero className='min-h-screen bg-base-200'>
         <Hero.Content className='container flex-col gap-0 overflow-hidden lg:flex-row lg:gap-1'>
           <div className='-mx-16 -my-32 lg:-my-28'>

@@ -36,6 +36,6 @@ export default async function initTranslations(
   return {
     t: i18nInstance.t,
     i18n: i18nInstance,
-    resources: i18nInstance.services.resourceStore.data,
+    resource: i18nInstance.services.resourceStore.data,
   }
 }

@@ -8,7 +8,7 @@ export default async function HomePage({ params }: Props.WithParams) {
 
   const { locale } = await params
   const namespace: Namespace = 'home'
-  const { t, resources } = await initTranslations(locale, namespace)
+  const { t, resource: resources } = await initTranslations(locale, namespace)
 
   return (
     <TranslationProvider locale={locale} namespace={namespace} resource={resources}>

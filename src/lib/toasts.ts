@@ -5,9 +5,9 @@ export const Toasts = class {
   static #toastId: Id
   static #audio = typeof Audio !== 'undefined' ? new Audio('/audios/chasquido.mp3') : undefined
 
-  static handleExecute() {
+  static handleExecute(message: string) {
     toast.dismiss(this.#toastId)
-    this.#toastId = toast.loading('Please wait…')
+    this.#toastId = toast.loading(message)
     this.#audio?.load()
   }
 

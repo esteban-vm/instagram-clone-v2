@@ -6,8 +6,10 @@ import { Toasts } from '@/lib/toasts'
 import { LoginSchema, mapErrors } from '@/lib/validations'
 
 export const useLoginForm = () => {
-  const { t } = useTranslation('auth', { keyPrefix: 'errors.validation' })
-  mapErrors(t)
+  const { t: tToasts } = useTranslation('auth', { keyPrefix: 'feedbacks.toasts' })
+  const { t: tValidations } = useTranslation('auth', { keyPrefix: 'feedbacks.validations' })
+
+  mapErrors(tValidations)
 
   const methods = useHookFormAction(AuthActions.login, zodResolver(LoginSchema), {
     formProps: {
@@ -24,10 +26,10 @@ export const useLoginForm = () => {
         methods.resetFormAndAction()
       },
       onExecute() {
-        Toasts.handleExecute()
+        Toasts.handleExecute(tToasts('loading'))
       },
       onSuccess() {
-        Toasts.handleSuccess("Welcome back. You've successfully logged in!")
+        Toasts.handleSuccess(tToasts('login_success'))
       },
       onError(args) {
         Toasts.handleError(args.error.serverError!)

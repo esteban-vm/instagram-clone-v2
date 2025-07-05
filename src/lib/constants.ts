@@ -13,6 +13,12 @@ export const APP_ROUTES = <const>{
   REGISTER: '/register',
 }
 
+export const AUTH_ERRORS = <const>{
+  1: 'Email already taken',
+  2: 'Email not existing',
+  3: 'Invalid password',
+}
+
 export const INPUT_PROPS = (<const>{
   EMAIL: {
     type: 'email',

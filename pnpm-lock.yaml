@@ -132,9 +132,6 @@ importers:
       eslint-plugin-sort-exports:
         specifier: ^0.9.1
         version: 0.9.1(eslint@9.26.0(jiti@2.4.2))
-      nextjs-paths:
-        specifier: ^1.0.8
-        version: 1.0.8(next@15.3.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
@@ -1348,10 +1345,6 @@ packages:
     resolution: {integrity: sha512-1rXeuUUiGGrykh+CeBdu5Ie7OJwinCgQY0bc7GCRxy5xVHy+moaqkpL/jqQq0MtQOeYcrqEz4abc5f0KtU7W4A==}
     engines: {node: '>=12.5.0'}
 
-  commander@11.1.0:
-    resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
-    engines: {node: '>=16'}
-
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
@@ -2302,15 +2295,6 @@ packages:
         optional: true
       sass:
         optional: true
-
-  nextjs-paths@1.0.8:
-    resolution: {integrity: sha512-G/JFtHaTfeZON3wmaTcGkL337e7Q7zokobhpcDks3B/G7Zpx63IjvWymr4wKpF2FvsmBl7GSNorxZhYVzBazdA==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
-    peerDependencies:
-      next: '>=14.0.0'
-      react: '>=18.2.0'
-      react-dom: '>=18.2.0'
 
   node-fetch@2.7.0:
     resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
@@ -4240,8 +4224,6 @@ snapshots:
       color-convert: 2.0.1
       color-string: 1.9.1
 
-  commander@11.1.0: {}
-
   concat-map@0.0.1: {}
 
   content-disposition@1.0.0:
@@ -5309,14 +5291,6 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
-
-  nextjs-paths@1.0.8(next@15.3.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
-    dependencies:
-      commander: 11.1.0
-      next: 15.3.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-      typescript: 5.8.3
 
   node-fetch@2.7.0:
     dependencies:

@@ -3,7 +3,7 @@ import initTranslations from '@/app/init-translations'
 import { TranslationProvider } from '@/components'
 import { verifySession } from '@/lib/auth-utils'
 
-export default async function HomePage({ params }: Props.WithParams) {
+export default async function HomePage({ params }: Props.PageProps) {
   await verifySession()
 
   const namespace: Namespace = 'home'

@@ -5,9 +5,7 @@ import initTranslations from '@/app/init-translations'
 import { TranslationProvider } from '@/components'
 import influencer from '@/images/influencer.webp'
 
-interface AuthLayoutProps extends Props.WithChildren, Props.WithParams {}
-
-export default async function AuthLayout({ children, params }: AuthLayoutProps) {
+export default async function AuthLayout({ children, params }: Props.LayoutProps) {
   const namespace: Namespace = 'auth'
   const { locale } = await params
   const { resource } = await initTranslations(locale, namespace)

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { dir } from 'i18next'
 import { notFound } from 'next/navigation'
 import { ToastContainer } from 'react-toastify'
+import { AppNavigation } from '@/components'
 import i18nConfig from '@/i18n.config'
 import { APP_DATA } from '@/lib/constants'
 import { montserrat, playwrite } from '@/lib/fonts'
@@ -23,15 +24,14 @@ export const metadata: Metadata = {
   referrer: 'origin-when-cross-origin',
 }
 
-interface RootLayoutProps extends Props.WithChildren, Props.WithParams {}
-
-export default async function RootLayout({ children, params }: RootLayoutProps) {
+export default async function RootLayout({ children, params }: Props.LayoutProps) {
   const { locale } = await params
   if (!i18nConfig.locales.includes(locale)) notFound()
 
   return (
     <html data-theme='synthwave' dir={dir(locale)} lang={locale}>
       <body className={`${montserrat.variable} ${playwrite.variable} antialiased`}>
+        <AppNavigation />
         {children}
         <ToastContainer position='bottom-center' theme='colored' />
       </body>

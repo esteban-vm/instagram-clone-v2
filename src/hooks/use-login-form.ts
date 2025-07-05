@@ -36,12 +36,12 @@ export const useLoginForm = () => {
         const error = args.error.serverError!
 
         switch (error) {
-          case CUSTOM_AUTH_ERRORS[1]: {
+          case CUSTOM_AUTH_ERRORS.USER_DOES_NOT_EXIST: {
             Toasts.handleError(tToasts('login_error_email'))
             break
           }
 
-          case CUSTOM_AUTH_ERRORS[2]: {
+          case CUSTOM_AUTH_ERRORS.INVALID_PASSWORD: {
             Toasts.handleError(tToasts('login_error_password'))
             break
           }

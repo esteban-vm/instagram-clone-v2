@@ -13,14 +13,12 @@ export const APP_ROUTES = <const>{
   REGISTER: '/register',
 }
 
-export const CUSTOM_AUTH_ERRORS = <const>[
-  'Email already taken',
-  'Email not existing',
-  'Invalid password',
-  'User not logged in',
-]
-
-export type CUSTOM_AUTH_ERROR_TYPE = (typeof CUSTOM_AUTH_ERRORS)[number]
+export const CUSTOM_AUTH_ERRORS = <const>{
+  USER_ALREADY_EXISTS: 'User already exists',
+  USER_DOES_NOT_EXIST: 'User does not exist',
+  INVALID_PASSWORD: 'Invalid password',
+  USER_NOT_LOGGED_IN: 'User not logged in',
+}
 
 export const INPUT_PROPS = (<const>{
   EMAIL: {

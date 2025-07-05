@@ -1,7 +1,6 @@
 import { CredentialsSignin } from 'next-auth'
 import { DEFAULT_SERVER_ERROR_MESSAGE, createSafeActionClient } from 'next-safe-action'
 import { auth } from '@/auth'
-import { CUSTOM_AUTH_ERRORS } from '@/lib/constants'
 import { CustomAuthError } from '@/lib/errors'
 
 export const actionClient = createSafeActionClient({
@@ -16,6 +15,6 @@ export const actionClient = createSafeActionClient({
 
 export const authClient = actionClient.use(async ({ next }) => {
   const session = await auth()
-  if (!session?.user) throw new CustomAuthError(CUSTOM_AUTH_ERRORS[3])
+  if (!session?.user) throw new CustomAuthError('USER_NOT_LOGGED_IN')
   return next({ ctx: { user: session.user } })
 })

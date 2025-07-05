@@ -37,7 +37,7 @@ export const useRegisterForm = () => {
         const error = args.error.serverError!
 
         switch (error) {
-          case CUSTOM_AUTH_ERRORS[0]: {
+          case CUSTOM_AUTH_ERRORS.USER_ALREADY_EXISTS: {
             Toasts.handleError(tToasts('register_error'))
             break
           }

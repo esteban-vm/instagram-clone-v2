@@ -3,7 +3,7 @@
 import { hash } from 'bcryptjs'
 import { redirect } from 'next/navigation'
 import { signIn } from '@/auth'
-import { APP_ROUTES, AUTH_ERRORS } from '@/lib/constants'
+import { APP_ROUTES, CUSTOM_AUTH_ERRORS } from '@/lib/constants'
 import { CustomAuthError } from '@/lib/errors'
 import { actionClient } from '@/lib/safe-action'
 import { LoginSchema, RegisterSchema } from '@/lib/validations'
@@ -21,7 +21,7 @@ export const register = actionClient.schema(RegisterSchema).action(async ({ pars
   const { email, name, password } = parsedInput
 
   const userFromDB = await prisma.user.findUnique({ where: { email } })
-  if (userFromDB) throw new CustomAuthError(AUTH_ERRORS[1])
+  if (userFromDB) throw new CustomAuthError(CUSTOM_AUTH_ERRORS[0])
 
   const hashedPassword = await hash(password, 10)
   await prisma.user.create({ data: { email, name, password: hashedPassword } })

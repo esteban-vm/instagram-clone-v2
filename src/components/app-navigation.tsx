@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { Button, Navbar } from 'rsc-daisyui'
 import { useScrollPosition } from '@/hooks'

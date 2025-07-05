@@ -3,7 +3,7 @@
 import { hash } from 'bcryptjs'
 import { redirect } from 'next/navigation'
 import { signIn } from '@/auth'
-import { APP_ROUTES } from '@/lib/constants'
+import { APP_ROUTES, AUTH_ERRORS } from '@/lib/constants'
 import { CustomAuthError } from '@/lib/errors'
 import { actionClient } from '@/lib/safe-action'
 import { LoginSchema, RegisterSchema } from '@/lib/validations'
@@ -19,11 +19,9 @@ export const login = actionClient.schema(LoginSchema).action(async ({ parsedInpu
 export const register = actionClient.schema(RegisterSchema).action(async ({ parsedInput }) => {
   await delay()
   const { email, name, password } = parsedInput
-  const userFromDB = await prisma.user.findUnique({ where: { email } })
 
-  if (userFromDB) {
-    throw new CustomAuthError(`The email ${email} is already registered.`)
-  }
+  const userFromDB = await prisma.user.findUnique({ where: { email } })
+  if (userFromDB) throw new CustomAuthError(AUTH_ERRORS[1])
 
   const hashedPassword = await hash(password, 10)
   await prisma.user.create({ data: { email, name, password: hashedPassword } })

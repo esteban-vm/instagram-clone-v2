@@ -6,12 +6,12 @@ import { verifySession } from '@/lib/auth-utils'
 export default async function HomePage({ params }: Props.WithParams) {
   await verifySession()
 
-  const { locale } = await params
   const namespace: Namespace = 'home'
-  const { t, resource: resources } = await initTranslations(locale, namespace)
+  const { locale } = await params
+  const { t, resource } = await initTranslations(locale, namespace)
 
   return (
-    <TranslationProvider locale={locale} namespace={namespace} resource={resources}>
+    <TranslationProvider locale={locale} namespace={namespace} resource={resource}>
       <div>Home Page</div>
       <span>{t('title')} </span>
     </TranslationProvider>

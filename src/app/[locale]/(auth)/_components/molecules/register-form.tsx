@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Atoms } from '@/app/[locale]/(auth)/_components'
 import { useRegisterForm } from '@/hooks'
-import { APP_ROUTES, INPUT_PROPS } from '@/lib/constants'
+import { INPUT_PROPS } from '@/lib/constants'
 
 export function RegisterForm() {
   const { t } = useTranslation('auth')
@@ -55,7 +55,7 @@ export function RegisterForm() {
       />
 
       <Atoms.FormButton isDisabled={isSubmitting} text={t('register.button')} />
-      <Atoms.FormLink isDisabled={isSubmitting} route={APP_ROUTES.LOGIN} text={t('register.link')} />
+      <Atoms.FormLink isDisabled={isSubmitting} route='/login' text={t('register.link')} />
     </Atoms.FormWrapper>
   )
 }

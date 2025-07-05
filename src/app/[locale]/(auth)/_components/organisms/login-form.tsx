@@ -1,6 +1,6 @@
 import type { Session } from 'next-auth'
 import { useTranslation } from 'react-i18next'
-import { Atoms } from '@/app/[locale]/(auth)/_components'
+import { Atoms, Molecules } from '@/app/[locale]/(auth)/_components'
 import { useLoginForm } from '@/hooks'
 import { INPUT_PROPS } from '@/lib/constants'
 
@@ -18,7 +18,7 @@ export function LoginForm({ session }: LoginFormProps) {
       <Atoms.FormLegend />
       <span className='mt-2.5 text-center font-semibold italic'>{session?.user.name ?? 'not authenticated'}</span>
 
-      <Atoms.FormInput
+      <Molecules.FormInput
         {...register('email')}
         {...EMAIL}
         aria-label={t('aria_labels.email')}
@@ -28,7 +28,7 @@ export function LoginForm({ session }: LoginFormProps) {
         placeholder={t('placeholders.email')}
       />
 
-      <Atoms.FormInput
+      <Molecules.FormInput
         {...register('password')}
         {...PASSWORD_SIGNIN}
         aria-label={t('aria_labels.password')}

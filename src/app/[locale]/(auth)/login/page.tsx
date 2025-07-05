@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Molecules } from '@/app/[locale]/(auth)/_components'
+import { Organisms } from '@/app/[locale]/(auth)/_components'
 import { auth } from '@/auth'
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export default async function LoginPage() {
 
   return (
     <>
-      <Molecules.LoginForm session={session} />
+      <Organisms.LoginForm session={session} />
     </>
   )
 }

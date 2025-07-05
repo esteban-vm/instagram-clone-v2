@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
 import { useTranslation } from 'react-i18next'
 import { AuthActions } from '@/actions'
+import { AUTH_ERRORS } from '@/lib/constants'
 import { Toasts } from '@/lib/toasts'
 import { RegisterSchema, mapErrors } from '@/lib/validations'
 
@@ -33,7 +34,18 @@ export const useRegisterForm = () => {
         Toasts.handleSuccess(tToasts('register_success'))
       },
       onError(args) {
-        Toasts.handleError(args.error.serverError!)
+        const error = args.error.serverError!
+
+        switch (error) {
+          case AUTH_ERRORS[1]: {
+            Toasts.handleError(tToasts('register_error'))
+            break
+          }
+
+          default: {
+            Toasts.handleError(error)
+          }
+        }
       },
     },
   })

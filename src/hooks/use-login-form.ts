@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
 import { useTranslation } from 'react-i18next'
 import { AuthActions } from '@/actions'
+import { AUTH_ERRORS } from '@/lib/constants'
 import { Toasts } from '@/lib/toasts'
 import { LoginSchema, mapErrors } from '@/lib/validations'
 
@@ -32,7 +33,23 @@ export const useLoginForm = () => {
         Toasts.handleSuccess(tToasts('login_success'))
       },
       onError(args) {
-        Toasts.handleError(args.error.serverError!)
+        const error = args.error.serverError!
+
+        switch (error) {
+          case AUTH_ERRORS[2]: {
+            Toasts.handleError(tToasts('login_error_email'))
+            break
+          }
+
+          case AUTH_ERRORS[3]: {
+            Toasts.handleError(tToasts('login_error_password'))
+            break
+          }
+
+          default: {
+            Toasts.handleError(error)
+          }
+        }
       },
     },
   })

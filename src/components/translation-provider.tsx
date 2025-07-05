@@ -6,10 +6,10 @@ import { I18nextProvider } from 'react-i18next'
 import initTranslations from '@/app/init-translations'
 
 export function TranslationProvider({ children, locale, namespace, resource }: TranslationProviderProps) {
-  const i18n = createInstance()
-  initTranslations(locale, namespace, i18n, resource)
+  const i18nInstance = createInstance()
+  initTranslations(locale, namespace, i18nInstance, resource)
 
-  return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
+  return <I18nextProvider i18n={i18nInstance}>{children}</I18nextProvider>
 }
 
 export interface TranslationProviderProps extends Props.WithChildren {

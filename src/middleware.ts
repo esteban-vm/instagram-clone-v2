@@ -5,9 +5,7 @@ import i18nConfig from '@/i18n.config'
 
 const { auth } = NextAuth(authConfig)
 
-export default auth((request) => {
-  return i18nRouter(request, i18nConfig)
-})
+export default auth((request) => i18nRouter(request, i18nConfig))
 
 export const config = {
   matcher: '/((?!api|static|.*\\..*|_next).*)',

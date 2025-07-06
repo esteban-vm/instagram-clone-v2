@@ -1,8 +1,10 @@
+import type { Namespace } from 'i18next'
 import type { Metadata } from 'next'
 import { dir } from 'i18next'
 import { notFound } from 'next/navigation'
 import { ToastContainer } from 'react-toastify'
-import { AppNavigation } from '@/components'
+import initTranslations from '@/app/init-translations'
+import { Navigation, TranslationProvider } from '@/components'
 import i18nConfig from '@/i18n.config'
 import { APP_DATA } from '@/lib/constants'
 import { montserrat, playwrite } from '@/lib/fonts'
@@ -28,11 +30,16 @@ export default async function RootLayout({ children, params }: Props.LayoutProps
   const { locale } = await params
   if (!i18nConfig.locales.includes(locale)) notFound()
 
+  const namespace: Namespace = 'home'
+  const { resource } = await initTranslations(locale, namespace)
+
   return (
-    <html data-theme='synthwave' dir={dir(locale)} lang={locale}>
+    <html dir={dir(locale)} lang={locale}>
       <body className={`${montserrat.variable} ${playwrite.variable} antialiased`}>
-        <AppNavigation />
-        {children}
+        <TranslationProvider locale={locale} namespace={namespace} resource={resource}>
+          <Navigation />
+          {children}
+        </TranslationProvider>
         <ToastContainer position='bottom-center' theme='colored' />
       </body>
     </html>

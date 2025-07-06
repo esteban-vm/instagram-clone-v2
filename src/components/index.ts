@@ -1,4 +1,4 @@
 'use client'
 
-export * from './app-navigation'
-export * from './translation-provider'
+export * from './navigation'
+export * from './providers'

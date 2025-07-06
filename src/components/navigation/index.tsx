@@ -1,11 +1,18 @@
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { Button, Navbar } from 'rsc-daisyui'
+import { LanguageChanger, ThemeChanger } from '@/components/navigation/widgets'
 import { useScrollPosition } from '@/hooks'
 import { APP_ROUTES } from '@/lib/constants'
 import { cn } from '@/lib/tw-utils'
 
-export function AppNavigation() {
+export function Navigation() {
+  const [isClient, setIsClient] = useState(false)
   const { scrollPosition } = useScrollPosition()
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   return (
     <Navbar
@@ -17,9 +24,12 @@ export function AppNavigation() {
         </Button>
       </Navbar.Start>
       <Navbar.End>
-        <Button as={Link} href={APP_ROUTES.HOME}>
-          Button
-        </Button>
+        {isClient ? (
+          <>
+            <ThemeChanger />
+            <LanguageChanger />
+          </>
+        ) : null}
       </Navbar.End>
     </Navbar>
   )

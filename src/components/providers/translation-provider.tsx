@@ -1,7 +1,7 @@
 import type { Namespace, Resource } from 'i18next'
 import { createInstance } from 'i18next'
 import { I18nextProvider } from 'react-i18next'
-import initTranslations from '@/app/init-translations'
+import { initTranslations } from '@/app/init-translations'
 
 export function TranslationProvider({ children, locale, namespace, resource }: TranslationProviderProps) {
   const i18nInstance = createInstance()

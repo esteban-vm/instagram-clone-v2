@@ -1,7 +1,7 @@
 import type { Namespace } from 'i18next'
 import Image from 'next/image'
 import { Card, Hero, PhoneMockup } from 'rsc-daisyui'
-import initTranslations from '@/app/init-translations'
+import { initTranslations } from '@/app/init-translations'
 import { TranslationProvider } from '@/components'
 import influencer from '@/images/influencer.webp'
 

@@ -1,7 +1,9 @@
 @import 'tailwindcss';
 
 @plugin "daisyui" {
-  themes: all;
+  themes:
+    corporate --default,
+    night --prefersdark;
 }
 
 @source "../../node_modules/rsc-daisyui/dist";
@@ -9,7 +11,6 @@
 @theme inline {
   --font-montserrat: var(--font-montserrat);
   --font-playwrite: var(--font-playwrite);
-
   --color-royal-purple: #833ab4;
   --color-torch-red: #fd1d1d;
   --color-yellow-orange: #fcb045;
@@ -17,12 +18,10 @@
 
 :root {
   --toastify-font-family: var(--font-montserrat);
-
   --toastify-color-info: var(--color-info);
   --toastify-color-success: var(--color-success);
   --toastify-color-warning: var(--color-warning);
   --toastify-color-error: var(--color-error);
-
   --toastify-text-color-info: var(--color-info-content);
   --toastify-text-color-success: var(--color-success-content);
   --toastify-text-color-warning: var(--color-warning-content);
@@ -44,14 +43,21 @@
 }
 
 @layer components {
-  .instagram-gradient-overlay {
-    @apply bg-gradient-to-r from-royal-purple via-torch-red to-yellow-orange bg-size-[100%] bg-clip-text;
-
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
-  }
-
   .Toastify__toast-container {
     @apply text-sm font-semibold;
+  }
+}
+
+.Instagram__overlay {
+  @apply bg-gradient-to-r from-royal-purple via-torch-red to-yellow-orange bg-size-[100%] bg-clip-text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+
+.Navigation__changer {
+  @apply flex cursor-pointer items-center justify-center gap-1;
+
+  .Navigation__toggle {
+    @apply border-primary bg-primary/50 text-primary-content checked:border-primary checked:bg-primary/50;
   }
 }

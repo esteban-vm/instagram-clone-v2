@@ -29,8 +29,8 @@ export default async function initTranslations(
     fallbackNS: namespace,
     supportedLngs: i18nConfig.locales,
     fallbackLng: i18nConfig.defaultLocale,
-    debug: process.env.NODE_ENV === 'development',
     preload: resource ? [] : i18nConfig.locales,
+    // debug: process.env.NODE_ENV === 'development',
   })
 
   return {

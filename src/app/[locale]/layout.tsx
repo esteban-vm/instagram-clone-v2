@@ -1,6 +1,7 @@
 import type { Namespace } from 'i18next'
 import type { Metadata } from 'next'
 import { dir } from 'i18next'
+import { ThemeProvider } from 'next-themes'
 import { notFound } from 'next/navigation'
 import { ToastContainer } from 'react-toastify'
 import { initTranslations } from '@/app/init-translations'
@@ -34,11 +35,13 @@ export default async function RootLayout({ children, params }: Props.LayoutProps
   const { resource } = await initTranslations(locale, namespace)
 
   return (
-    <html dir={dir(locale)} lang={locale}>
+    <html dir={dir(locale)} lang={locale} suppressHydrationWarning>
       <body className={`${montserrat.variable} ${playwrite.variable} antialiased`}>
         <TranslationProvider locale={locale} namespace={namespace} resource={resource}>
-          <Navigation />
-          {children}
+          <ThemeProvider value={{ light: 'corporate', dark: 'night' }} disableTransitionOnChange>
+            <Navigation />
+            {children}
+          </ThemeProvider>
         </TranslationProvider>
         <ToastContainer position='bottom-center' theme='colored' />
       </body>

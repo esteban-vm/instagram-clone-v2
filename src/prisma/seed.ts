@@ -31,12 +31,35 @@ async function insertInitialData() {
 async function insertAdditionalData() {
   const user1 = await prisma.user.findUniqueOrThrow({ where: { email: users[0].email } })
   const user2 = await prisma.user.findUniqueOrThrow({ where: { email: users[1].email } })
+  const user3 = await prisma.user.findUniqueOrThrow({ where: { email: users[2].email } })
 
   // await prisma.follows.create({ data: { followerId: user1.id, followingId: user2.id } })
 
   await prisma.user.update({
     where: { id: user1.id },
-    data: { followers: { create: { followingId: user2.id } } },
+    data: {
+      followers: {
+        createMany: { data: [{ followingId: user2.id }, { followingId: user3.id }] },
+      },
+    },
+  })
+
+  const [photo1, photo2, photo3] = await prisma.photo.createManyAndReturn({
+    data: [
+      { image: '/images/1.jpg', caption: 'Test caption 1', ownerId: user1.id },
+      { image: '/images/2.jpg', caption: 'Test caption 2', ownerId: user1.id },
+      { image: '/images/3.jpg', caption: 'Test caption 3', ownerId: user1.id },
+      { image: '/images/4.jpg', caption: 'Test caption 4', ownerId: user2.id },
+      { image: '/images/5.jpg', caption: 'Test caption 5', ownerId: user2.id },
+    ],
+  })
+
+  await prisma.comment.createMany({
+    data: [
+      { authorId: user2.id, photoId: photo1.id, content: 'Test comment 1' },
+      { authorId: user2.id, photoId: photo2.id, content: 'Test comment 2' },
+      { authorId: user3.id, photoId: photo3.id, content: 'Test comment 3' },
+    ],
   })
 }
 

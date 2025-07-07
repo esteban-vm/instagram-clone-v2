@@ -12,9 +12,9 @@ export function ThemeChanger() {
 
   return (
     <label className='Navigation__changer'>
-      <FaRegMoon className='size-6 fill-primary' />
+      <FaRegMoon className='size-6 fill-violet-500' />
       <Toggle className='Navigation__toggle' defaultChecked={theme === 'light'} onChange={changeTheme} />
-      <FaRegSun className='size-6 fill-primary' />
+      <FaRegSun className='size-6 fill-amber-500' />
     </label>
   )
 }

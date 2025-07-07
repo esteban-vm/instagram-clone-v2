@@ -1,0 +1,9 @@
+{
+  "theme_changer": {
+    "title_light": "Switch to light theme",
+    "title_dark": "Switch to dark theme"
+  },
+  "language_changer": {
+    "title_es": "Switch to Spanish version"
+  }
+}

@@ -1,13 +1,15 @@
 import 'i18next'
 import type auth from '@/locales/en/auth.json'
 import type home from '@/locales/en/home.json'
+import type navigation from '@/locales/en/navigation.json'
 
 declare module 'i18next' {
   interface CustomTypeOptions {
     defaultNS: 'home'
     resources: {
-      home: typeof home
       auth: typeof auth
+      home: typeof home
+      navigation: typeof navigation
     }
   }
 }

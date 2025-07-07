@@ -4,7 +4,12 @@ import resourcesToBackend from 'i18next-resources-to-backend'
 import { initReactI18next } from 'react-i18next/initReactI18next'
 import { i18nConfig } from '@/i18n.config'
 
-export async function initTranslations(locale: string, namespace: Namespace, i18nInstance?: i18n, resource?: Resource) {
+export async function initTranslations(
+  locale: string,
+  namespaces: Namespace[],
+  i18nInstance?: i18n,
+  resource?: Resource
+) {
   i18nInstance = i18nInstance ?? createInstance()
   i18nInstance.use(initReactI18next)
 
@@ -18,10 +23,10 @@ export async function initTranslations(locale: string, namespace: Namespace, i18
 
   await i18nInstance.init({
     lng: locale,
-    ns: namespace,
+    ns: namespaces as string[],
     resources: resource,
-    defaultNS: namespace,
-    fallbackNS: namespace,
+    defaultNS: namespaces[0],
+    fallbackNS: namespaces[0],
     supportedLngs: i18nConfig.locales,
     fallbackLng: i18nConfig.defaultLocale,
     preload: resource ? [] : i18nConfig.locales,

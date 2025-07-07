@@ -6,12 +6,12 @@ import { TranslationProvider } from '@/components'
 import influencer from '@/images/influencer.webp'
 
 export default async function AuthLayout({ children, params }: Props.LayoutProps) {
-  const namespace: Namespace = 'auth'
+  const namespaces: Namespace[] = ['auth']
   const { locale } = await params
-  const { resource } = await initTranslations(locale, namespace)
+  const { resource } = await initTranslations(locale, namespaces)
 
   return (
-    <TranslationProvider locale={locale} namespace={namespace} resource={resource}>
+    <TranslationProvider locale={locale} namespaces={namespaces} resource={resource}>
       <Hero className='min-h-screen bg-base-200'>
         <Hero.Content className='container flex-col gap-0 overflow-hidden lg:flex-row lg:gap-1'>
           <div className='-mx-16 -my-32 lg:-my-28'>

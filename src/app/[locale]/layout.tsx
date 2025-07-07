@@ -30,13 +30,13 @@ export default async function RootLayout({ children, params }: Props.LayoutProps
   const { locale } = await params
   if (!i18nConfig.locales.includes(locale)) notFound()
 
-  const namespace: Namespace = 'home'
-  const { resource } = await initTranslations(locale, namespace)
+  const namespaces: Namespace[] = ['home', 'navigation']
+  const { resource } = await initTranslations(locale, namespaces)
 
   return (
     <html dir={dir(locale)} lang={locale} suppressHydrationWarning>
       <body className={`${montserrat.variable} ${playwrite.variable} antialiased`}>
-        <TranslationProvider locale={locale} namespace={namespace} resource={resource}>
+        <TranslationProvider locale={locale} namespaces={namespaces} resource={resource}>
           <ThemeProvider value={{ light: 'corporate', dark: 'night' }} disableTransitionOnChange>
             <Navigation />
             {children}

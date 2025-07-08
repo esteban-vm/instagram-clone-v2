@@ -37,13 +37,13 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   return (
     <html dir={dir(locale)} lang={locale} suppressHydrationWarning>
       <body className={`${montserrat.variable} ${playwrite.variable} antialiased`}>
-        <TranslationProvider locale={locale} resources={resources}>
-          <ThemeProvider value={{ light: 'corporate', dark: 'night' }} disableTransitionOnChange>
+        <ThemeProvider value={{ light: 'corporate', dark: 'night' }} disableTransitionOnChange>
+          <TranslationProvider locale={locale} resources={resources}>
             <Navigation />
             {children}
-          </ThemeProvider>
-        </TranslationProvider>
-        <ToastContainer position='bottom-center' theme='colored' />
+            <ToastContainer position='bottom-center' theme='colored' />
+          </TranslationProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

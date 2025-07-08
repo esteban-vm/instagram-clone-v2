@@ -37,7 +37,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   return (
     <html dir={dir(locale)} lang={locale} suppressHydrationWarning>
       <body className={`${montserrat.variable} ${playwrite.variable} antialiased`}>
-        <ThemeProvider value={{ light: 'corporate', dark: 'night' }} disableTransitionOnChange>
+        <ThemeProvider value={{ light: 'corporate', dark: 'synthwave' }} disableTransitionOnChange>
           <TranslationProvider locale={locale} resources={resources}>
             <Navigation />
             {children}

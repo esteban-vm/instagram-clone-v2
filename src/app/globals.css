@@ -3,7 +3,7 @@
 @plugin "daisyui" {
   themes:
     corporate --default,
-    night --prefersdark;
+    synthwave --prefersdark;
 }
 
 @source "../../node_modules/rsc-daisyui/dist";

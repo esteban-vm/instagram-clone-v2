@@ -44,7 +44,7 @@
 
 @layer components {
   .Toastify__toast-container {
-    @apply text-sm font-semibold;
+    @apply text-xs font-semibold;
   }
 }
 

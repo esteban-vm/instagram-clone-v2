@@ -1,4 +1,3 @@
-import type { Namespace } from 'i18next'
 import type { Metadata } from 'next'
 import { dir } from 'i18next'
 import { notFound } from 'next/navigation'
@@ -28,15 +27,17 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children, params }: Props.LayoutProps) {
   const { locale } = await params
-  if (!i18nConfig.locales.includes(locale)) notFound()
 
-  const namespaces: Namespace[] = ['home', 'navigation']
-  const { resource } = await initTranslations(locale, namespaces)
+  if (!i18nConfig.locales.includes(locale)) {
+    notFound()
+  }
+
+  const { resources } = await initTranslations(locale)
 
   return (
     <html dir={dir(locale)} lang={locale} suppressHydrationWarning>
       <body className={`${montserrat.variable} ${playwrite.variable} antialiased`}>
-        <TranslationProvider locale={locale} namespaces={namespaces} resource={resource}>
+        <TranslationProvider locale={locale} resources={resources}>
           <ThemeProvider value={{ light: 'corporate', dark: 'night' }} disableTransitionOnChange>
             <Navigation />
             {children}

@@ -1,17 +1,18 @@
-import type { Namespace, Resource } from 'i18next'
+import type { Resource } from 'i18next'
+import type { Locale } from '@/i18n.config'
 import { createInstance } from 'i18next'
-import { I18nextProvider } from 'react-i18next'
+import { I18nextProvider, initReactI18next } from 'react-i18next'
 import { initTranslations } from '@/app/init-translations'
 
-export function TranslationProvider({ children, locale, namespaces, resource }: TranslationProviderProps) {
+export function TranslationProvider({ children, locale, resources }: TranslationProviderProps) {
   const i18nInstance = createInstance()
-  initTranslations(locale, namespaces, i18nInstance, resource)
+  i18nInstance.use(initReactI18next)
+  initTranslations(locale, i18nInstance, resources)
 
   return <I18nextProvider i18n={i18nInstance}>{children}</I18nextProvider>
 }
 
 export interface TranslationProviderProps extends Props.WithChildren {
-  locale: string
-  namespaces: Namespace[]
-  resource: Resource
+  locale: Locale
+  resources: Resource
 }

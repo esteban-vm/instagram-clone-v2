@@ -1,17 +1,15 @@
-import type { Namespace } from 'i18next'
 import Image from 'next/image'
 import { Card, Hero, PhoneMockup } from 'rsc-daisyui'
 import { initTranslations } from '@/app/init-translations'
-import { TranslationProvider } from '@/components'
 import influencer from '@/images/influencer.webp'
 
 export default async function AuthLayout({ children, params }: Props.LayoutProps) {
-  const namespaces: Namespace[] = ['auth']
   const { locale } = await params
-  const { resource } = await initTranslations(locale, namespaces)
+  const { t } = await initTranslations(locale)
 
   return (
-    <TranslationProvider locale={locale} namespaces={namespaces} resource={resource}>
+    <>
+      <span>{t('home:title')}</span>
       <Hero className='min-h-screen bg-base-200'>
         <Hero.Content className='container flex-col gap-0 overflow-hidden lg:flex-row lg:gap-1'>
           <div className='-mx-16 -my-32 lg:-my-28'>
@@ -33,6 +31,6 @@ export default async function AuthLayout({ children, params }: Props.LayoutProps
           </Card>
         </Hero.Content>
       </Hero>
-    </TranslationProvider>
+    </>
   )
 }

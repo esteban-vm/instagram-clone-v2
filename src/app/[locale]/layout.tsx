@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   referrer: 'origin-when-cross-origin',
 }
 
-export default async function RootLayout({ children, params }: Props.LayoutProps) {
+export default async function RootLayout({ children, params }: RootLayoutProps) {
   const { locale } = await params
 
   if (!i18nConfig.locales.includes(locale)) {
@@ -48,3 +48,5 @@ export default async function RootLayout({ children, params }: Props.LayoutProps
     </html>
   )
 }
+
+interface RootLayoutProps extends Props.WithParams, Props.WithChildren {}

@@ -19,11 +19,9 @@ declare global {
       children: ReactNode
     }
 
-    interface PageProps {
+    interface WithParams {
       params: Promise<{ locale: Locale }>
     }
-
-    interface LayoutProps extends PageProps, WithChildren {}
   }
 }
 

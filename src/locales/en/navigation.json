@@ -5,5 +5,8 @@
   },
   "language_changer": {
     "title": "Switch to Spanish version"
+  },
+  "buttons": {
+    "logout": "Logout"
   }
 }

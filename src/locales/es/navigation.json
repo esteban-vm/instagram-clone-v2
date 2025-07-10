@@ -5,5 +5,8 @@
   },
   "language_changer": {
     "title": "Cambiar a versión en inglés"
+  },
+  "buttons": {
+    "logout": "Cerrar sesión"
   }
 }

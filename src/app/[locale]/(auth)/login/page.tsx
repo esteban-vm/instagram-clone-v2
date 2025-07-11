@@ -1,17 +1,14 @@
 import type { Metadata } from 'next'
 import { Organisms } from '@/app/[locale]/(auth)/_components'
-import { auth } from '@/auth'
 
 export const metadata: Metadata = {
   title: 'Login',
 }
 
-export default async function LoginPage() {
-  const session = await auth()
-
+export default function LoginPage() {
   return (
     <>
-      <Organisms.LoginForm session={session} />
+      <Organisms.LoginForm />
     </>
   )
 }

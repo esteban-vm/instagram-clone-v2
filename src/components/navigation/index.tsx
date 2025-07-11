@@ -26,7 +26,7 @@ export function Navigation({ session }: NavigationProps) {
   }, [session, setCurrentSession])
 
   const onLogout = () => {
-    const willLogout = isClient ? confirm('Are you sure?') : undefined
+    const willLogout = isClient && confirm('Are you sure?')
     if (willLogout) execute()
   }
 

@@ -12,14 +12,12 @@ import { prisma } from '@/prisma'
 export const login = actionClient.schema(LoginSchema).action(async ({ parsedInput }) => {
   await delay()
   const { email, password } = parsedInput
-  await signIn('credentials', { email, password, redirect: false })
-  redirect(APP_ROUTES.LOGIN)
+  await signIn('credentials', { email, password, redirectTo: APP_ROUTES.LOGIN })
 })
 
 export const logout = authClient.action(async () => {
   await delay()
-  await signOut({ redirect: false })
-  redirect(APP_ROUTES.LOGIN)
+  await signOut({ redirectTo: APP_ROUTES.LOGIN })
 })
 
 export const register = actionClient.schema(RegisterSchema).action(async ({ parsedInput }) => {

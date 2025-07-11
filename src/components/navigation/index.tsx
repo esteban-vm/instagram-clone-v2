@@ -11,11 +11,11 @@ import { APP_ROUTES } from '@/lib/constants'
 import { cn } from '@/lib/tw-utils'
 
 export function Navigation({ session }: NavigationProps) {
-  const { execute, isExecuting } = useAction(AuthActions.logout)
   const { t } = useTranslation('navigation')
   const { scrollPosition } = useScrollPosition()
   const [isClient, setIsClient] = useState(false)
   const { setCurrentSession } = useCurrentSession()
+  const { execute, isExecuting } = useAction(AuthActions.logout)
 
   useEffect(() => {
     setIsClient(true)
@@ -25,12 +25,17 @@ export function Navigation({ session }: NavigationProps) {
     setCurrentSession(session)
   }, [session, setCurrentSession])
 
+  const onLogout = () => {
+    const willLogout = isClient ? confirm('Are you sure?') : undefined
+    if (willLogout) execute()
+  }
+
   return (
     <Navbar
       className={cn('fixed top-0 z-10 text-neutral-content', scrollPosition > 40 ? 'bg-neutral' : 'bg-transparent')}
     >
       <Navbar.Start>
-        <Button as={Link} href={APP_ROUTES.SCENE} ghost>
+        <Button as={Link} disabled={isExecuting} href={APP_ROUTES.SCENE} ghost>
           daisyUI
         </Button>
       </Navbar.Start>
@@ -42,7 +47,7 @@ export function Navigation({ session }: NavigationProps) {
           </>
         )}
         {session && (
-          <Button className='ml-2' color='accent' disabled={isExecuting} size='sm' onClick={() => execute()}>
+          <Button className='ml-2' color='accent' disabled={isExecuting} size='sm' onClick={onLogout}>
             {t('buttons.logout')}
           </Button>
         )}

@@ -3,6 +3,7 @@ import { dir } from 'i18next'
 import { notFound } from 'next/navigation'
 import { ToastContainer } from 'react-toastify'
 import { initTranslations } from '@/app/init-translations'
+import { auth } from '@/auth'
 import { Navigation, ThemeProvider, TranslationProvider } from '@/components'
 import { i18nConfig } from '@/i18n.config'
 import { APP_DATA } from '@/lib/constants'
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children, params }: RootLayoutProps) {
   const { locale } = await params
   if (!i18nConfig.locales.includes(locale)) notFound()
+  const session = await auth()
   const { resources } = await initTranslations(locale)
 
   return (
@@ -35,7 +37,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
       <body className={`${montserrat.variable} ${playwrite.variable} antialiased`}>
         <ThemeProvider value={{ light: 'corporate', dark: 'synthwave' }} disableTransitionOnChange>
           <TranslationProvider locale={locale} resources={resources}>
-            <Navigation />
+            <Navigation session={session} />
             {children}
             <ToastContainer position='bottom-center' theme='colored' />
           </TranslationProvider>

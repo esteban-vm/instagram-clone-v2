@@ -1,18 +1,29 @@
+import type { Session } from 'next-auth'
+import { useAction } from 'next-safe-action/hooks'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button, Navbar } from 'rsc-daisyui'
+import { AuthActions } from '@/actions'
 import { LanguageChanger, ThemeChanger } from '@/components/navigation/widgets'
-import { useScrollPosition } from '@/hooks'
+import { useCurrentSession, useScrollPosition } from '@/hooks'
 import { APP_ROUTES } from '@/lib/constants'
 import { cn } from '@/lib/tw-utils'
 
-export function Navigation() {
-  const [isClient, setIsClient] = useState(false)
+export function Navigation({ session }: NavigationProps) {
+  const { execute, isExecuting } = useAction(AuthActions.logout)
+  const { t } = useTranslation('navigation')
   const { scrollPosition } = useScrollPosition()
+  const [isClient, setIsClient] = useState(false)
+  const { setCurrentSession } = useCurrentSession()
 
   useEffect(() => {
     setIsClient(true)
   }, [])
+
+  useEffect(() => {
+    setCurrentSession(session)
+  }, [session, setCurrentSession])
 
   return (
     <Navbar
@@ -24,13 +35,22 @@ export function Navigation() {
         </Button>
       </Navbar.Start>
       <Navbar.End>
-        {isClient ? (
+        {isClient && (
           <>
             <ThemeChanger />
             <LanguageChanger />
           </>
-        ) : null}
+        )}
+        {session && (
+          <Button className='ml-2' color='accent' disabled={isExecuting} size='sm' onClick={() => execute()}>
+            {t('buttons.logout')}
+          </Button>
+        )}
       </Navbar.End>
     </Navbar>
   )
+}
+
+export interface NavigationProps {
+  session: Session | null
 }

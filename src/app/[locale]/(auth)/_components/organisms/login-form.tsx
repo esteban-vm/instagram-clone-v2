@@ -1,11 +1,11 @@
-import type { Session } from 'next-auth'
 import { useTranslation } from 'react-i18next'
 import { Atoms, Molecules } from '@/app/[locale]/(auth)/_components'
-import { useLoginForm } from '@/hooks'
+import { useCurrentSession, useLoginForm } from '@/hooks'
 import { INPUT_PROPS } from '@/lib/constants'
 
-export function LoginForm({ session }: LoginFormProps) {
+export function LoginForm() {
   const { t } = useTranslation('auth')
+  const { currentSession } = useCurrentSession()
 
   const { handleSubmitWithAction, form } = useLoginForm()
   const { register, formState } = form
@@ -16,7 +16,9 @@ export function LoginForm({ session }: LoginFormProps) {
   return (
     <Atoms.FormWrapper onSubmit={handleSubmitWithAction}>
       <Atoms.FormLegend />
-      <span className='mt-2.5 text-center font-semibold italic'>{session?.user.name ?? 'not authenticated'}</span>
+      <span className='mt-2.5 text-center font-semibold italic'>
+        {currentSession?.user.name ?? 'not authenticated'}
+      </span>
 
       <Molecules.FormInput
         {...register('email')}
@@ -41,8 +43,4 @@ export function LoginForm({ session }: LoginFormProps) {
       <Atoms.FormLink isDisabled={isSubmitting} route='/register' text={t('login.link')} />
     </Atoms.FormWrapper>
   )
-}
-
-export interface LoginFormProps {
-  session: Session | null
 }

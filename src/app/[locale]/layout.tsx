@@ -3,11 +3,12 @@ import { dir } from 'i18next'
 import { notFound } from 'next/navigation'
 import { ToastContainer } from 'react-toastify'
 import { initTranslations } from '@/app/init-translations'
+import { Navigation } from '@/app/navigation'
 import { auth } from '@/auth'
-import { Navigation, ThemeProvider, TranslationProvider } from '@/components'
 import { i18nConfig } from '@/i18n.config'
 import { APP_DATA } from '@/lib/constants'
 import { montserrat, playwrite } from '@/lib/fonts'
+import { ThemeProvider, TranslationProvider } from '@/providers'
 import '@/app/globals.css'
 
 export function generateStaticParams() {

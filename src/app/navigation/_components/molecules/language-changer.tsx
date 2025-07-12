@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Toggle } from 'rsc-daisyui'
-import { SpainFlag, UKFlag } from '@/components/navigation/icons'
+import { Atoms } from '@/app/navigation/_components'
 import { useLanguageChanger } from '@/hooks'
 
 export function LanguageChanger() {
@@ -10,9 +10,9 @@ export function LanguageChanger() {
 
   return (
     <label className='Navigation__changer ml-2' title={t('title')}>
-      <SpainFlag />
+      <Atoms.SpainFlag />
       <Toggle className='Navigation__toggle' defaultChecked={isChecked} onChange={changeLanguage} />
-      <UKFlag />
+      <Atoms.UKFlag />
     </label>
   )
 }

@@ -9,6 +9,8 @@ datasource db {
 
 model User {
   id        String    @id @default(cuid())
+  active    Boolean   @default(true)
+  role      Role      @default(USER)
   email     String    @unique
   name      String
   password  String
@@ -57,4 +59,11 @@ model Comment {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("comments")
+}
+
+enum Role {
+  ADMIN
+  USER
+
+  @@map("user_role")
 }

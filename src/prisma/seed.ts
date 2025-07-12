@@ -29,9 +29,9 @@ async function insertInitialData() {
 }
 
 async function insertAdditionalData() {
-  const user1 = await prisma.user.findUniqueOrThrow({ where: { email: users[0].email } })
-  const user2 = await prisma.user.findUniqueOrThrow({ where: { email: users[1].email } })
-  const user3 = await prisma.user.findUniqueOrThrow({ where: { email: users[2].email } })
+  const user1 = await prisma.user.findUniqueOrThrow({ where: { email: users[0].email, active: true } })
+  const user2 = await prisma.user.findUniqueOrThrow({ where: { email: users[1].email, active: true } })
+  const user3 = await prisma.user.findUniqueOrThrow({ where: { email: users[2].email, active: true } })
 
   // await prisma.follows.create({ data: { followerId: user1.id, followingId: user2.id } })
 

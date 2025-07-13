@@ -24,7 +24,7 @@ export const register = actionClient.schema(RegisterSchema).action(async ({ pars
   await delay()
   const { email, name, password } = parsedInput
 
-  const userFromDB = await prisma.user.findUnique({ where: { email } })
+  const userFromDB = await prisma.user.findUnique({ where: { email, active: true } })
   if (userFromDB) throw new CustomAuthError('USER_ALREADY_EXISTS')
 
   const hashedPassword = await hash(password, 10)

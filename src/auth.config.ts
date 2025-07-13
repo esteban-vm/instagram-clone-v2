@@ -24,7 +24,7 @@ export default {
       async authorize(credentials): Promise<Models.User> {
         const { email, password } = credentials as Schemas.Login
 
-        const userFromDB = await prisma.user.findUnique({ where: { email } })
+        const userFromDB = await prisma.user.findUnique({ where: { email, active: true } })
         if (!userFromDB) throw new CustomAuthError('USER_DOES_NOT_EXIST')
 
         const isLoggedIn = await compare(password, userFromDB.password)

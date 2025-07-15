@@ -6,7 +6,7 @@ import type { LoginSchema, RegisterSchema } from '@/lib/validations'
 
 declare global {
   namespace Models {
-    type User = Omit<UserDB, 'password'>
+    type User = Omit<UserDB, 'password' | 'active' | 'createdAt' | 'updatedAt'>
   }
 
   namespace Schemas {

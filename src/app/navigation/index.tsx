@@ -15,7 +15,7 @@ export function Navigation({ session }: NavigationProps) {
   const { scrollPosition } = useScrollPosition()
   const [isClient, setIsClient] = useState(false)
   const { setCurrentSession } = useCurrentSession()
-  const { execute, isExecuting } = useAction(AuthActions.logout)
+  const { execute, isExecuting, hasSucceeded } = useAction(AuthActions.logout)
 
   useEffect(() => {
     setIsClient(true)
@@ -49,7 +49,7 @@ export function Navigation({ session }: NavigationProps) {
             </>
           )}
           {session && (
-            <Button className='ml-2' color='accent' disabled={isExecuting} size='sm' onClick={onLogout}>
+            <Button className='ml-2' color='accent' disabled={isExecuting || hasSucceeded} size='sm' onClick={onLogout}>
               {t('buttons.logout')}
             </Button>
           )}

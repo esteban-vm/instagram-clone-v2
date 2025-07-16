@@ -1,5 +1,5 @@
 import type { User as UserDB } from '@prisma/client'
-import type { ReactNode } from 'react'
+import type { JSX, ReactNode } from 'react'
 import type { z } from 'zod'
 import type { Locale } from '@/i18n.config'
 import type { LoginSchema, RegisterSchema } from '@/lib/validations'
@@ -22,6 +22,8 @@ declare global {
     interface WithParams {
       params: Promise<{ locale: Locale }>
     }
+
+    type SVGIconProps = JSX.IntrinsicElements['svg']
   }
 }
 

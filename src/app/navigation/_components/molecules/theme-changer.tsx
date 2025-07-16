@@ -1,7 +1,7 @@
 import { useTheme } from 'next-themes'
 import { useTranslation } from 'react-i18next'
-import { FaRegMoon, FaRegSun } from 'react-icons/fa6'
 import { Toggle } from 'rsc-daisyui'
+import { Atoms } from '@/app/navigation/_components'
 
 export function ThemeChanger() {
   const { t } = useTranslation('navigation', { keyPrefix: 'theme_changer' })
@@ -15,9 +15,9 @@ export function ThemeChanger() {
 
   return (
     <label className='Navigation__changer' title={isLight ? t('title_dark') : t('title_light')}>
-      <FaRegMoon className='size-6 fill-violet-500' />
+      <Atoms.MoonIcon className='size-6' />
       <Toggle className='Navigation__toggle' defaultChecked={isLight} onChange={changeTheme} />
-      <FaRegSun className='size-6 fill-amber-500' />
+      <Atoms.SunIcon className='size-6' />
     </label>
   )
 }

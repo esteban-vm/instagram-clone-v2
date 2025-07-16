@@ -1,6 +1,6 @@
-export function SpainFlag() {
+export function SpainFlag(props: Props.SVGIconProps) {
   return (
-    <svg className='size-8' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'>
+    <svg className='size-8' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg' {...props}>
       <path d='M1 10H31V22H1z' fill='#f1c142'></path>
       <path d='M5,4H27c2.208,0,4,1.792,4,4v3H1v-3c0-2.208,1.792-4,4-4Z' fill='#a0251e'></path>
       <path

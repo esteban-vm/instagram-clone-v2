@@ -1,6 +1,6 @@
-export function UKFlag() {
+export function UKFlag(props: Props.SVGIconProps) {
   return (
-    <svg className='size-8' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'>
+    <svg className='size-8' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg' {...props}>
       <rect fill='#071b65' height='24' rx='4' ry='4' width='30' x='1' y='4'></rect>
       <path
         d='M5.101,4h-.101c-1.981,0-3.615,1.444-3.933,3.334L26.899,28h.101c1.981,0,3.615-1.444,3.933-3.334L5.101,4Z'

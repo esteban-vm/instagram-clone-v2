@@ -1,3 +1,4 @@
-export * from './app-logo'
+export * from './home-link'
 export * from './language-changer'
+export * from './logout-button'
 export * from './theme-changer'

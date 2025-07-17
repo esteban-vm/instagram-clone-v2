@@ -1,21 +1,17 @@
 'use client'
 
 import type { Session } from 'next-auth'
-import { useAction } from 'next-safe-action/hooks'
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Button, Navbar } from 'rsc-daisyui'
-import { AuthActions } from '@/actions'
+import { HiMenuAlt1 } from 'react-icons/hi'
+import { Dropdown, Menu, Navbar } from 'rsc-daisyui'
 import { Molecules } from '@/app/navigation/_components'
 import { useCurrentSession, useScrollPosition } from '@/hooks'
 import { cn } from '@/lib/tw-utils'
 
 export function Navigation({ session }: NavigationProps) {
-  const { t } = useTranslation('navigation')
   const { scrollPosition } = useScrollPosition()
   const [isClient, setIsClient] = useState(false)
   const { setCurrentSession } = useCurrentSession()
-  const { execute, isExecuting, hasSucceeded } = useAction(AuthActions.logout)
 
   useEffect(() => {
     setIsClient(true)
@@ -25,36 +21,40 @@ export function Navigation({ session }: NavigationProps) {
     setCurrentSession(session)
   }, [session, setCurrentSession])
 
-  const onLogout = () => {
-    const willLogout = isClient && confirm('Are you sure?')
-    if (willLogout) execute()
-  }
-
   return (
     <Navbar
       className={cn(
-        'fixed top-0 z-10 rounded-b-xl text-neutral-content',
+        'fixed top-0 left-1/2 z-10 max-w-[96rem] -translate-x-1/2 rounded-b-xl p-1 text-neutral-content',
         scrollPosition > 40 ? 'bg-neutral' : 'bg-transparent'
       )}
     >
-      <div className='container mx-auto flex w-full items-center'>
-        <Navbar.Start>
-          <Molecules.AppLogo />
-        </Navbar.Start>
-        <Navbar.End>
+      <Navbar.Start>
+        <Dropdown className='dropdown lg:hidden'>
+          <Dropdown.Button className='ml-2' color='accent' shape='square' outline>
+            <HiMenuAlt1 className='size-3/4' />
+          </Dropdown.Button>
+          <Dropdown.Menu className='z-1 mt-3 gap-2 bg-base-100 p-1 shadow' size='sm'>
+            {isClient && (
+              <>
+                <Molecules.ThemeChanger />
+                <Molecules.LanguageChanger />
+              </>
+            )}
+          </Dropdown.Menu>
+        </Dropdown>
+        <Molecules.HomeLink />
+      </Navbar.Start>
+      <Navbar.End>
+        <Menu className='mr-1 hidden bg-base-100 p-1 lg:flex' horizontal>
           {isClient && (
             <>
               <Molecules.ThemeChanger />
               <Molecules.LanguageChanger />
             </>
           )}
-          {session && (
-            <Button className='ml-2' color='accent' disabled={isExecuting || hasSucceeded} size='sm' onClick={onLogout}>
-              {t('buttons.logout')}
-            </Button>
-          )}
-        </Navbar.End>
-      </div>
+        </Menu>
+        {session && isClient && <Molecules.LogoutButton />}
+      </Navbar.End>
     </Navbar>
   )
 }

@@ -1,12 +1,9 @@
 {
   "theme_changer": {
-    "title_light": "Cambiar a tema claro",
-    "title_dark": "Cambiar a tema oscuro"
+    "light": "Cambiar a tema claro",
+    "dark": "Cambiar a tema oscuro"
   },
-  "language_changer": {
-    "title": "Cambiar a versión en inglés"
-  },
-  "buttons": {
-    "logout": "Cerrar sesión"
-  }
+  "language_changer": "Cambiar a versión en inglés",
+  "logout_button": "Cerrar sesión",
+  "home_link": "Inicio"
 }

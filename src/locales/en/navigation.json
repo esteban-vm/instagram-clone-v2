@@ -1,12 +1,9 @@
 {
   "theme_changer": {
-    "title_light": "Switch to light theme",
-    "title_dark": "Switch to dark theme"
+    "light": "Switch to light theme",
+    "dark": "Switch to dark theme"
   },
-  "language_changer": {
-    "title": "Switch to Spanish version"
-  },
-  "buttons": {
-    "logout": "Logout"
-  }
+  "language_changer": "Switch to Spanish version",
+  "logout_button": "Logout",
+  "home_link": "Home"
 }

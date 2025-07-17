@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
+import type { Locale } from '@/i18n.config'
 import { dir } from 'i18next'
 import { notFound } from 'next/navigation'
 import { ToastContainer } from 'react-toastify'
@@ -27,6 +29,11 @@ export const metadata: Metadata = {
   referrer: 'origin-when-cross-origin',
 }
 
+interface RootLayoutProps {
+  children: ReactNode
+  params: Promise<{ locale: Locale }>
+}
+
 export default async function RootLayout({ children, params }: RootLayoutProps) {
   const { locale } = await params
   if (!i18nConfig.locales.includes(locale)) notFound()
@@ -47,5 +54,3 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
     </html>
   )
 }
-
-interface RootLayoutProps extends Props.WithParams, Props.WithChildren {}

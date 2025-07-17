@@ -1,8 +1,13 @@
+import type { ReactNode } from 'react'
 import Image from 'next/image'
 import { Card, Hero, PhoneMockup } from 'rsc-daisyui'
 import influencer from '@/images/influencer.webp'
 
-export default function AuthLayout({ children }: Props.WithChildren) {
+interface AuthLayoutProps {
+  children: ReactNode
+}
+
+export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <Hero className='min-h-screen bg-base-200'>
       <Hero.Content className='container flex-col gap-0 overflow-hidden lg:flex-row lg:gap-1'>

@@ -2,9 +2,8 @@
 
 import type { Session } from 'next-auth'
 import { useEffect, useState } from 'react'
-import { HiMenuAlt1 } from 'react-icons/hi'
-import { Dropdown, Menu, Navbar } from 'rsc-daisyui'
-import { Molecules } from '@/app/navigation/_components'
+import { Navbar } from 'rsc-daisyui'
+import { Molecules, Organisms } from '@/app/navigation/_components'
 import { useCurrentSession, useScrollPosition } from '@/hooks'
 import { cn } from '@/lib/tw-utils'
 
@@ -29,31 +28,12 @@ export function Navigation({ session }: NavigationProps) {
       )}
     >
       <Navbar.Start>
-        <Dropdown className='dropdown lg:hidden'>
-          <Dropdown.Button className='ml-2' color='accent' shape='square' outline>
-            <HiMenuAlt1 className='size-3/4' />
-          </Dropdown.Button>
-          <Dropdown.Menu className='z-1 mt-3 gap-2 bg-base-100 p-1 shadow' size='sm'>
-            {isClient && (
-              <>
-                <Molecules.ThemeChanger />
-                <Molecules.LanguageChanger />
-              </>
-            )}
-          </Dropdown.Menu>
-        </Dropdown>
+        {isClient && <Organisms.MobileMenu />}
         <Molecules.HomeLink />
       </Navbar.Start>
       <Navbar.End>
-        <Menu className='mr-1 hidden bg-base-100 p-1 lg:flex' horizontal>
-          {isClient && (
-            <>
-              <Molecules.ThemeChanger />
-              <Molecules.LanguageChanger />
-            </>
-          )}
-        </Menu>
-        {session && isClient && <Molecules.LogoutButton />}
+        {isClient && <Organisms.DesktopMenu />}
+        {isClient && session && <Molecules.LogoutButton />}
       </Navbar.End>
     </Navbar>
   )

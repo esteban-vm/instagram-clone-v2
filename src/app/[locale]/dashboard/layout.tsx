@@ -14,13 +14,12 @@ interface DashboardLayoutProps {
   timeline: ReactNode
 }
 
-export default async function DashboardLayout({ children, sidebar, timeline }: DashboardLayoutProps) {
+export default async function DashboardLayout({ children: _, sidebar, timeline }: DashboardLayoutProps) {
   const session = await auth()
   if (!session?.user) redirect(APP_ROUTES.LOGIN)
 
   return (
-    <div className='mt-16'>
-      {children}
+    <div className='mx-auto mt-16 grid max-w-screen-2xl grid-cols-3 gap-4'>
       {timeline}
       {sidebar}
     </div>

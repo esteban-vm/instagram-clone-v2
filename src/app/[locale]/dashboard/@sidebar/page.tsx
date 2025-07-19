@@ -1,6 +1,6 @@
 export default function SidebarPage() {
   return (
-    <section>
+    <section className='border border-primary'>
       <span>Sidebar Page</span>
     </section>
   )

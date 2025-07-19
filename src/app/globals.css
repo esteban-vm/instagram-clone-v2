@@ -54,10 +54,14 @@
   -moz-text-fill-color: transparent;
 }
 
-.Navigation__changer {
-  @apply flex cursor-pointer items-center justify-center gap-1;
+.Navigation {
+  @apply fixed top-0 left-1/2 z-10 max-w-[96rem] -translate-x-1/2 rounded-b-xl p-1 text-neutral-content;
 
-  .Navigation__toggle {
-    @apply border-primary bg-primary/50 text-primary-content checked:border-primary checked:bg-primary/50;
+  .Navigation__changer {
+    @apply flex cursor-pointer items-center justify-center gap-1;
+
+    .Navigation__toggle {
+      @apply border-primary bg-primary/50 text-primary-content checked:border-primary checked:bg-primary/50;
+    }
   }
 }

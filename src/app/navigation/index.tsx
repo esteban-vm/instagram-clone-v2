@@ -21,19 +21,22 @@ export function Navigation({ session }: NavigationProps) {
   }, [session, setCurrentSession])
 
   return (
-    <Navbar
-      className={cn(
-        'fixed top-0 left-1/2 z-10 max-w-[96rem] -translate-x-1/2 rounded-b-xl p-1 text-neutral-content',
-        scrollPosition > 40 ? 'bg-neutral' : 'bg-transparent'
-      )}
-    >
+    <Navbar className={cn('Navigation', scrollPosition > 40 ? 'bg-neutral' : 'bg-transparent')}>
       <Navbar.Start>
-        {isClient && <Organisms.MobileMenu />}
-        <Molecules.HomeLink />
+        {isClient ? (
+          <>
+            <Organisms.MobileMenu />
+            <Molecules.HomeLink />
+          </>
+        ) : null}
       </Navbar.Start>
       <Navbar.End>
-        {isClient && <Organisms.DesktopMenu />}
-        {isClient && session && <Molecules.LogoutButton />}
+        {isClient ? (
+          <>
+            <Organisms.DesktopMenu />
+            {session && <Molecules.LogoutButton />}
+          </>
+        ) : null}
       </Navbar.End>
     </Navbar>
   )

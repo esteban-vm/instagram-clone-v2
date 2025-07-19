@@ -1,7 +1,7 @@
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Menu, Toggle } from 'rsc-daisyui'
+import { Menu, Toggle, Tooltip } from 'rsc-daisyui'
 import { Atoms } from '@/app/navigation/_components'
 
 export function ThemeChanger() {
@@ -19,12 +19,14 @@ export function ThemeChanger() {
   }
 
   return (
-    <Menu.Item>
-      <label className='Navigation__changer' title={isChecked ? t('dark') : t('light')}>
-        <Atoms.MoonIcon className='size-8 rounded-sm bg-indigo-200 p-0.5' />
-        <Toggle checked={isChecked} className='Navigation__toggle' onChange={changeTheme} />
-        <Atoms.SunIcon className='size-8 rounded-sm bg-sky-200 p-0.5' />
-      </label>
-    </Menu.Item>
+    <Tooltip position='bottom' tip={isChecked ? t('dark') : t('light')}>
+      <Menu.Item>
+        <label className='Navigation__changer'>
+          <Atoms.MoonIcon className='size-8 rounded-sm bg-indigo-200 p-0.5' />
+          <Toggle checked={isChecked} className='Navigation__toggle' role='switch' onChange={changeTheme} />
+          <Atoms.SunIcon className='size-8 rounded-sm bg-sky-200 p-0.5' />
+        </label>
+      </Menu.Item>
+    </Tooltip>
   )
 }

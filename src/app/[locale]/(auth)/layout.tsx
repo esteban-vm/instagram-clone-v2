@@ -17,7 +17,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
             <PhoneMockup.Display className='relative'>
               <Image
                 alt='background'
-                className='object-cover object-center contrast-125'
+                className='object-cover object-center saturate-[120%]'
                 src={influencer}
                 fill
                 priority

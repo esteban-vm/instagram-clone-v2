@@ -55,7 +55,7 @@
 }
 
 .Navigation {
-  @apply fixed top-0 left-1/2 z-10 max-w-[96rem] -translate-x-1/2 rounded-b-xl p-1 text-neutral-content;
+  @apply fixed top-0 left-1/2 z-10 max-w-screen-2xl -translate-x-1/2 rounded-b-xl p-1 text-neutral-content;
 
   .Navigation__changer {
     @apply flex cursor-pointer items-center justify-center gap-1;

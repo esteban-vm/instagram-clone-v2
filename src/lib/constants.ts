@@ -11,6 +11,7 @@ export const APP_ROUTES = <const>{
   SCENE: `/scene`,
   LOGIN: '/login',
   REGISTER: '/register',
+  DASHBOARD: '/dashboard',
 }
 
 export const CUSTOM_AUTH_ERRORS = <const>{

@@ -11,10 +11,10 @@ export function Earth() {
   })
 
   const [texture, normalTexture, specularTexture] = useTexture([
-    '/images/earth.jpg',
-    '/images/earth-normal.jpg',
-    '/images/earth-specular.jpg',
-    // '/images/earth-displacement.jpg',
+    '/images/models/earth.jpg',
+    '/images/models/earth-normal.jpg',
+    '/images/models/earth-specular.jpg',
+    // '/images/models/earth-displacement.jpg',
   ])
 
   return (

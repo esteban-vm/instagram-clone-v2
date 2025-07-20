@@ -13,7 +13,7 @@ export function Moon() {
     moonRef.current.rotation.y += 0.002
   })
 
-  const [texture] = useTexture(['/images/moon.jpg'])
+  const [texture] = useTexture(['/images/models/moon.jpg'])
 
   return (
     <mesh ref={moonRef} dispose={null} position={[xAxis, 0, 0]} castShadow>

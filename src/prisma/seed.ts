@@ -46,11 +46,11 @@ async function insertAdditionalData() {
 
   const [photo1, photo2, photo3] = await prisma.photo.createManyAndReturn({
     data: [
-      { image: '/images/1.jpg', caption: 'Test caption 1', ownerId: user1.id },
-      { image: '/images/2.jpg', caption: 'Test caption 2', ownerId: user1.id },
-      { image: '/images/3.jpg', caption: 'Test caption 3', ownerId: user1.id },
-      { image: '/images/4.jpg', caption: 'Test caption 4', ownerId: user2.id },
-      { image: '/images/5.jpg', caption: 'Test caption 5', ownerId: user2.id },
+      { image: '/images/photos/1.jpg', caption: 'Test caption 1', ownerId: user1.id },
+      { image: '/images/photos/2.jpg', caption: 'Test caption 2', ownerId: user1.id },
+      { image: '/images/photos/3.jpg', caption: 'Test caption 3', ownerId: user1.id },
+      { image: '/images/photos/4.jpg', caption: 'Test caption 4', ownerId: user2.id },
+      { image: '/images/photos/5.jpg', caption: 'Test caption 5', ownerId: user2.id },
     ],
   })
 

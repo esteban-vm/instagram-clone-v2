@@ -1,6 +1,10 @@
 export const Texts = class {
+  static truncate(word: string) {
+    return word.charAt(0).toUpperCase()
+  }
+
   static capitalize(word: string) {
-    return word.charAt(0).toUpperCase().concat(word.slice(1).toLowerCase())
+    return this.truncate(word).concat(word.slice(1).toLowerCase())
   }
 
   static separate(text: string) {

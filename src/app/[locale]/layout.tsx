@@ -37,6 +37,7 @@ interface RootLayoutProps {
 export default async function RootLayout({ children, params }: RootLayoutProps) {
   const { locale } = await params
   if (!i18nConfig.locales.includes(locale)) notFound()
+
   const session = await auth()
   const { resources } = await initTranslations(locale)
 

@@ -10,7 +10,7 @@ export const getSuggestedUsers = authClient.action(async ({ ctx }): Promise<Mode
     take: 10,
     orderBy: { name: 'asc' },
     omit: { active: true, createdAt: true, updatedAt: true, password: true },
-    where: { active: true, id: { not: userId }, following: { none: { followerId: userId } } },
+    where: { active: true, id: { not: userId }, followers: { none: { followingId: userId } } },
   })
 
   return suggestedUsers

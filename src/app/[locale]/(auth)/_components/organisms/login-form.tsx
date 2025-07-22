@@ -1,11 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import { Atoms, Molecules } from '@/app/[locale]/(auth)/_components'
-import { useCurrentSession, useLoginForm } from '@/hooks'
+import { useLoginForm } from '@/hooks'
 import { INPUT_PROPS } from '@/lib/constants'
 
 export function LoginForm() {
   const { t } = useTranslation('auth')
-  const { currentSession } = useCurrentSession()
 
   const { handleSubmitWithAction, form } = useLoginForm()
   const { register, formState } = form
@@ -16,9 +15,6 @@ export function LoginForm() {
   return (
     <Atoms.FormWrapper onSubmit={handleSubmitWithAction}>
       <Atoms.FormLegend />
-      <span className='mt-2.5 text-center font-semibold italic'>
-        {currentSession?.user.name ?? 'not authenticated'}
-      </span>
 
       <Molecules.FormInput
         {...register('email')}

@@ -1,3 +1,5 @@
+'use client'
+
 import type { Points } from 'three'
 import { Stars } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'

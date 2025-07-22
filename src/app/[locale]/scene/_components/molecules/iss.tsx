@@ -1,3 +1,5 @@
+'use client'
+
 import type { Mesh } from 'three'
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'

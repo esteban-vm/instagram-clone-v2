@@ -1,6 +1,6 @@
 export default function TimelinePage() {
   return (
-    <section className='col-span-2 border border-primary'>
+    <section className='col-span-2'>
       <span>Timeline Page</span>
     </section>
   )

@@ -1,3 +1,5 @@
+'use client'
+
 import { useTranslation } from 'react-i18next'
 import { Atoms, Molecules } from '@/app/[locale]/(auth)/_components'
 import { useRegisterForm } from '@/hooks'
@@ -17,8 +19,8 @@ export function RegisterForm() {
       <Atoms.FormLegend />
 
       <Molecules.FormInput
-        {...register('email')}
         {...EMAIL}
+        {...register('email')}
         aria-label={t('aria_labels.email')}
         disabled={isSubmitting}
         error={email?.message}
@@ -27,8 +29,8 @@ export function RegisterForm() {
       />
 
       <Molecules.FormInput
-        {...register('name')}
         {...NAME}
+        {...register('name')}
         aria-label={t('aria_labels.name')}
         disabled={isSubmitting}
         error={name?.message}
@@ -37,8 +39,8 @@ export function RegisterForm() {
       />
 
       <Molecules.FormInput
-        {...register('password')}
         {...PASSWORD_SIGNUP}
+        {...register('password')}
         aria-label={t('aria_labels.password')}
         disabled={isSubmitting}
         error={password?.message}
@@ -46,8 +48,8 @@ export function RegisterForm() {
       />
 
       <Molecules.FormInput
-        {...register('confirmPassword')}
         {...PASSWORD_SIGNUP}
+        {...register('confirmPassword')}
         aria-label={t('aria_labels.password_confirmation')}
         disabled={isSubmitting}
         error={confirmPassword?.message}

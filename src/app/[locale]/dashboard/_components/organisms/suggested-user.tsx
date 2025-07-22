@@ -4,10 +4,10 @@ import { Button, List } from 'rsc-daisyui'
 import { Atoms, Molecules } from '@/app/[locale]/dashboard/_components'
 
 export function SuggestedUser({ user }: SuggestedUserProps) {
-  const { id, name, email, avatar } = user
+  const { name, email, avatar } = user
 
   return (
-    <List.Row key={id} className='flex items-center justify-between'>
+    <List.Row className='flex items-center justify-between'>
       <div className='relative size-12 overflow-hidden rounded-md'>
         {avatar ? (
           <Image alt='' className='object-cover contrast-125' src={avatar} fill />

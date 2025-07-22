@@ -1,3 +1,5 @@
+'use client'
+
 import { Avatar } from 'rsc-daisyui'
 import { Molecules } from '@/app/[locale]/dashboard/_components'
 import { useCurrentSession } from '@/hooks'

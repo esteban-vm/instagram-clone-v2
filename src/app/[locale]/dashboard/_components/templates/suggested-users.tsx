@@ -1,8 +1,10 @@
+'use client'
+
 import { useAction } from 'next-safe-action/hooks'
 import { useEffect } from 'react'
 import { List } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
-import { Organisms } from '@/app/[locale]/dashboard/_components'
+import { Atoms, Organisms } from '@/app/[locale]/dashboard/_components'
 
 export function SuggestedUsers() {
   const { execute, result } = useAction(UserActions.getSuggestedUsers)
@@ -12,7 +14,7 @@ export function SuggestedUsers() {
   return (
     <section className='text-start'>
       <List>
-        <li className='p-4 pb-2 text-xs font-semibold tracking-wide italic'>Suggestions for you</li>
+        <Atoms.SuggestedUsersTitle />
         {result.data?.map((user) => <Organisms.SuggestedUser key={user.id} user={user} />)}
       </List>
     </section>

@@ -4,7 +4,7 @@ import { createInstance } from 'i18next'
 import resourcesToBackend from 'i18next-resources-to-backend'
 import { i18nConfig } from '@/i18n.config'
 
-const namespaces = ['home', 'auth', 'navigation'] as const satisfies Namespace[]
+const namespaces = ['home', 'auth', 'dashboard', 'navigation'] as const satisfies Namespace[]
 
 export async function initTranslations(locale: Locale, i18nInstance?: i18n, resources?: Resource) {
   i18nInstance = i18nInstance ?? createInstance()

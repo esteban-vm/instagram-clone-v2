@@ -1,9 +1,12 @@
 'use server'
 
+import { mockDelay } from '@/lib/auth-utils'
 import { authClient } from '@/lib/safe-action'
 import { prisma } from '@/prisma'
 
 export const getSuggestedUsers = authClient.action(async ({ ctx }): Promise<Models.User[]> => {
+  await mockDelay()
+
   const userId = ctx.user.id
 
   const suggestedUsers = await prisma.user.findMany({

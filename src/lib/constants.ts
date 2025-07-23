@@ -1,4 +1,4 @@
-import type { FormInputProps } from '@/app/[locale]/(auth)/_components/atoms'
+import type { Molecules } from '@/app/[locale]/(auth)/_components'
 import { FaEnvelope, FaLock, FaUnlock, FaUser } from 'react-icons/fa6'
 
 export const APP_DATA = <const>{
@@ -48,4 +48,4 @@ export const INPUT_PROPS = (<const>{
     placeholder: '•••••••••••••',
     autoComplete: 'new-password webauthn',
   },
-}) satisfies Record<string, Partial<FormInputProps>>
+}) satisfies Record<string, Partial<Molecules.FormInputProps>>

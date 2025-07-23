@@ -1,6 +1,6 @@
 export default function TimelinePage() {
   return (
-    <section className='col-span-2'>
+    <section className='text-center lg:col-span-2'>
       <span>Timeline Page</span>
     </section>
   )

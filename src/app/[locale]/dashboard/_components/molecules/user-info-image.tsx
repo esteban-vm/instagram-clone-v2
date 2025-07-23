@@ -3,7 +3,7 @@ import { Mask } from 'rsc-daisyui'
 
 export function UserInfoImage({ avatar }: UserInfoImageProps) {
   return (
-    <Mask as='div' className='relative w-24' shape='circle'>
+    <Mask as='div' className='relative w-20' shape='circle'>
       <Image alt='avatar' className='object-cover contrast-125' src={avatar} fill />
     </Mask>
   )

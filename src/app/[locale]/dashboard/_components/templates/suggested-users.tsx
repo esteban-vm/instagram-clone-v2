@@ -12,7 +12,7 @@ export function SuggestedUsers() {
   useEffect(execute, [execute])
 
   return (
-    <section className='text-start'>
+    <section>
       <List>
         <Atoms.SuggestedUsersTitle />
         {result.data?.map((user) => <Organisms.SuggestedUser key={user.id} user={user} />)}

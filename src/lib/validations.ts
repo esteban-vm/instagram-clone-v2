@@ -62,6 +62,8 @@ export const RegisterSchema = EmailSchema.extend({
   params: { i18n: 'password_confirmation_invalid' },
 })
 
+export const SchemaWithId = z.object({ id: z.string() })
+
 export const mapErrors = (t: TFunction<'auth'>) => {
   const ns: Namespace = 'auth'
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

@@ -6,10 +6,10 @@ import { Button } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
 
 export function FollowUserButton({ id }: FollowUserButtonProps) {
-  const { execute, isExecuting } = useAction(UserActions.followUser)
+  const { execute, isExecuting, hasSucceeded } = useAction(UserActions.followUser)
 
   return (
-    <Button disabled={isExecuting} id={id} shape='square' ghost onClick={() => execute({ id })}>
+    <Button disabled={isExecuting || hasSucceeded} id={id} shape='square' ghost onClick={() => execute({ id })}>
       <RiUserFollowLine className='size-3/5' />
     </Button>
   )

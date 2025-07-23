@@ -2,8 +2,8 @@ import Image from 'next/image'
 import { List } from 'rsc-daisyui'
 import { Atoms, Molecules } from '@/app/[locale]/dashboard/_components'
 
-export function SuggestedUser({ user }: SuggestedUserProps) {
-  const { id, name, email, avatar } = user
+export function SuggestedUser({ user, users }: SuggestedUserProps) {
+  const { name, email, avatar } = user
 
   return (
     <List.Row className='flex items-center justify-between'>
@@ -15,11 +15,9 @@ export function SuggestedUser({ user }: SuggestedUserProps) {
         )}
       </div>
       <Molecules.SuggestedUserData email={email} name={name} />
-      <Molecules.FollowUserButton id={id} />
+      <Molecules.FollowUserButton user={user} users={users} />
     </List.Row>
   )
 }
 
-export interface SuggestedUserProps {
-  user: Models.User
-}
+export type SuggestedUserProps = Molecules.FollowUserButtonProps

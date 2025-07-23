@@ -7,7 +7,7 @@ export function SuggestedUsers({ users = [] }: SuggestedUsersProps) {
       <List>
         <Atoms.SuggestedUsersTitle />
         {users.map((user) => {
-          return <Organisms.SuggestedUser key={user.id} user={user} />
+          return <Organisms.SuggestedUser key={user.id} user={user} users={users} />
         })}
       </List>
     </section>

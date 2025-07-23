@@ -1,3 +1,5 @@
+'use client'
+
 import { useClickOutside } from '@react-hooks-hub/use-click-outside'
 import { useRef } from 'react'
 import { HiMenuAlt1 } from 'react-icons/hi'

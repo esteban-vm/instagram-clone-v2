@@ -1,3 +1,5 @@
+'use client'
+
 import { useAction } from 'next-safe-action/hooks'
 import { useTranslation } from 'react-i18next'
 import { FaRightFromBracket } from 'react-icons/fa6'

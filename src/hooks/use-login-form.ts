@@ -3,14 +3,15 @@ import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hoo
 import { useTranslation } from 'react-i18next'
 import { AuthActions } from '@/actions'
 import { CUSTOM_AUTH_ERRORS } from '@/lib/constants'
+import { mapAuthErrors } from '@/lib/errors'
 import { Toasts } from '@/lib/toasts'
-import { LoginSchema, mapErrors } from '@/lib/validations'
+import { LoginSchema } from '@/lib/validations'
 
 export const useLoginForm = () => {
   const { t: tToasts } = useTranslation('auth', { keyPrefix: 'feedbacks.toasts' })
   const { t: tValidations } = useTranslation('auth', { keyPrefix: 'feedbacks.validations' })
 
-  mapErrors(tValidations)
+  mapAuthErrors(tValidations)
 
   const methods = useHookFormAction(AuthActions.login, zodResolver(LoginSchema), {
     formProps: {

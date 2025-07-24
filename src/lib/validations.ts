@@ -1,6 +1,4 @@
-import type { Namespace, TFunction } from 'i18next'
 import { z } from 'zod'
-import { makeZodI18nMap } from 'zod-i18n-map'
 import { Texts } from '@/lib/texts'
 
 const EmailSchema = z.object({
@@ -22,7 +20,6 @@ const password = z
   .refine(Texts.Validations.isNotEmpty, { params: { i18n: 'password_empty' } })
 
 export const LoginSchema = EmailSchema.extend({ password })
-
 export type LoginSchemaType = z.infer<typeof LoginSchema>
 
 export const RegisterSchema = EmailSchema.extend({
@@ -55,11 +52,4 @@ export const RegisterSchema = EmailSchema.extend({
 export type RegisterSchemaType = z.infer<typeof RegisterSchema>
 
 export const SchemaWithId = z.object({ id: z.string() })
-
-export const mapErrors = (t: TFunction<'auth'>) => {
-  const ns: Namespace = 'auth'
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const errorMap = makeZodI18nMap({ t, ns })
-  z.setErrorMap(errorMap)
-}
+export type SchemaWithIdType = z.infer<typeof SchemaWithId>

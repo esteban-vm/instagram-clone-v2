@@ -40,17 +40,17 @@ export default async function SidebarPage() {
             const { id, name, email, avatar } = user
             return (
               <List.Row key={id} className='flex items-center justify-between'>
-                <Sidebar.BottomLeft>
+                <Sidebar.RowLeft>
                   {avatar ? (
                     <Sidebar.StyledImage alt='avatar' src={avatar} fill />
                   ) : (
-                    <Sidebar.BottomPlaceholder>{Texts.truncate(name)}</Sidebar.BottomPlaceholder>
+                    <Sidebar.RowPlaceholder>{Texts.truncate(name)}</Sidebar.RowPlaceholder>
                   )}
-                </Sidebar.BottomLeft>
-                <Sidebar.BottomCenter>
-                  <Sidebar.BottomName>{name}</Sidebar.BottomName>
-                  <Sidebar.BottomEmail>{email}</Sidebar.BottomEmail>
-                </Sidebar.BottomCenter>
+                </Sidebar.RowLeft>
+                <Sidebar.RowCenter>
+                  <Sidebar.RowName>{name}</Sidebar.RowName>
+                  <Sidebar.RowEmail>{email}</Sidebar.RowEmail>
+                </Sidebar.RowCenter>
                 <FollowButton user={user} users={users} />
               </List.Row>
             )

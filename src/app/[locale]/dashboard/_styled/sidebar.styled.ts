@@ -1,29 +1,29 @@
 import Image from 'next/image'
 import tw from 'tailwind-styled-components'
 
-export const BottomCenter = tw.div`
+export const RowCenter = tw.div`
   grow
 `
 
-export const BottomEmail = tw.span`
+export const RowEmail = tw.span`
   text-xs
   font-semibold
   uppercase
   opacity-60
 `
 
-export const BottomLeft = tw.div`
+export const RowLeft = tw.div`
   relative
   size-12
   overflow-hidden
   rounded-md
 `
 
-export const BottomName = tw.div`
+export const RowName = tw.div`
   font-bold
 `
 
-export const BottomPlaceholder = tw.div`
+export const RowPlaceholder = tw.div`
   absolute
   inset-0
   flex

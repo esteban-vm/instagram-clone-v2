@@ -1,5 +1,9 @@
-import Image from 'next/image'
 import tw from 'tailwind-styled-components'
+
+export const PageContainer = tw.aside`
+  [&_img]:object-cover
+  [&_img]:contrast-125
+`
 
 export const RowCenter = tw.div`
   grow
@@ -34,11 +38,6 @@ export const RowPlaceholder = tw.div`
   font-bold
   text-secondary-content
   select-none
-`
-
-export const StyledImage = tw(Image)`
-  object-cover
-  contrast-125
 `
 
 export const StyledListTitle = tw.span`

@@ -1,4 +1,4 @@
-export function MoonIcon(props: Props.SVGIconProps) {
+export function MoonIcon(props: JSX.IntrinsicElements['svg']) {
   return (
     <svg fill='none' height='800px' viewBox='0 0 24 24' width='800px' xmlns='http://www.w3.org/2000/svg' {...props}>
       <path

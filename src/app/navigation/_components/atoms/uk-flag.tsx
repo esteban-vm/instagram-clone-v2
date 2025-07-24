@@ -1,4 +1,4 @@
-export function UKFlag(props: Props.SVGIconProps) {
+export function UKFlag(props: JSX.IntrinsicElements['svg']) {
   return (
     <svg className='size-8' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg' {...props}>
       <rect fill='#071b65' height='24' rx='4' ry='4' width='30' x='1' y='4'></rect>

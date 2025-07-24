@@ -4,7 +4,7 @@ export const Texts = class {
   }
 
   static capitalize(word: string) {
-    return this.truncate(word).concat(word.slice(1).toLowerCase())
+    return Texts.truncate(word).concat(word.slice(1).toLowerCase())
   }
 
   static separate(text: string) {
@@ -18,7 +18,7 @@ export const Texts = class {
       .split(' ')
       .map((word) => {
         if (/^[A-Z]{2,}$/.test(word)) return word
-        return this.capitalize(word)
+        return Texts.capitalize(word)
       })
       .join(' ')
   }

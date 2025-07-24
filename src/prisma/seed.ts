@@ -2,7 +2,7 @@ import type { Prisma } from '@prisma/client'
 import { hashSync } from 'bcryptjs'
 import { prisma } from '@/prisma'
 
-const users = (<const>[
+const users = [
   { email: 'user1@example.com', name: 'Daniel', password: 'Abcd123*', avatar: '/images/avatars/male1.webp' },
   { email: 'user2@example.com', name: 'Ana', password: 'Abcd123*', avatar: '/images/avatars/female1.webp' },
   { email: 'user3@example.com', name: 'Clara', password: 'Abcd123*', avatar: '/images/avatars/female2.webp' },
@@ -10,7 +10,9 @@ const users = (<const>[
   { email: 'user5@example.com', name: 'Helena', password: 'Abcd123*', avatar: '/images/avatars/female3.webp' },
   { email: 'user6@example.com', name: 'Fernando', password: 'Abcd123*', avatar: '/images/avatars/male3.webp' },
   { email: 'user7@example.com', name: 'Antonio', password: 'Abcd123*' },
-]) satisfies Prisma.UserCreateManyInput[]
+  { email: 'user8@example.com', name: 'Laura', password: 'Abcd123*', avatar: '/images/avatars/female4.webp' },
+  { email: 'user9@example.com', name: 'María', password: 'Abcd123*', avatar: '/images/avatars/female5.webp' },
+] as const satisfies Prisma.UserCreateManyInput[]
 
 async function cleanDataBase() {
   await prisma.comment.deleteMany({})

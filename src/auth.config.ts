@@ -12,16 +12,21 @@ export default {
   },
   callbacks: {
     jwt({ token, user }) {
-      if (user) token.role = user.role
+      if (user) {
+        token.role = user.role
+        token.avatar = user.avatar
+      }
+
       return token
     },
     session({ token, session }) {
-      const { sub, email, name, role } = token
+      const { sub, email, name, role, avatar } = token
 
       if (sub) session.user.id = sub
       if (email) session.user.email = email
       if (name) session.user.name = name
       if (role) session.user.role = role
+      if (avatar) session.user.avatar = avatar
 
       return session
     },

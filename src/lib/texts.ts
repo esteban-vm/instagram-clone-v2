@@ -1,10 +1,19 @@
-export const Texts = class {
+import { isEmail, isEmpty, isLength, isStrongPassword } from 'validator'
+
+const TextValidations = class {
+  static isNotEmpty = (value: string) => !isEmpty(value)
+  static isNotEmail = (value: string) => !isEmail(value)
+  static isNotStrongPassword = (value: string) => !isStrongPassword(value)
+  static isNotLength = (value: string) => !isLength(value, { min: 4, max: 50 })
+}
+
+const TextTransformations = class {
   static truncate(word: string) {
     return word.charAt(0).toUpperCase()
   }
 
   static capitalize(word: string) {
-    return Texts.truncate(word).concat(word.slice(1).toLowerCase())
+    return TextTransformations.truncate(word).concat(word.slice(1).toLowerCase())
   }
 
   static separate(text: string) {
@@ -18,8 +27,13 @@ export const Texts = class {
       .split(' ')
       .map((word) => {
         if (/^[A-Z]{2,}$/.test(word)) return word
-        return Texts.capitalize(word)
+        return TextTransformations.capitalize(word)
       })
       .join(' ')
   }
+}
+
+export const Texts = class {
+  static Validations = TextValidations
+  static Transformations = TextTransformations
 }

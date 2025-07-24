@@ -1,3 +1,4 @@
+import type { User } from '@/types'
 import { useOptimisticAction } from 'next-safe-action/hooks'
 import { useTranslation } from 'react-i18next'
 import { RiUserFollowLine } from 'react-icons/ri'
@@ -25,6 +26,6 @@ export function FollowButton({ user, users }: FollowButtonProps) {
 }
 
 export interface FollowButtonProps {
-  user: Models.User
-  users: Models.User[]
+  user: User
+  users: User[]
 }

@@ -1,4 +1,4 @@
-import type { FormEventHandler } from 'react'
+import type { FormEventHandler, ReactNode } from 'react'
 import { Fieldset } from 'rsc-daisyui'
 
 export function FormWrapper({ children, onSubmit }: FormWrapperProps) {
@@ -9,6 +9,7 @@ export function FormWrapper({ children, onSubmit }: FormWrapperProps) {
   )
 }
 
-export interface FormWrapperProps extends Props.WithChildren {
+export interface FormWrapperProps {
+  children: ReactNode
   onSubmit: FormEventHandler<HTMLFormElement>
 }

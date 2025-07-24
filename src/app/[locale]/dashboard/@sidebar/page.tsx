@@ -25,7 +25,7 @@ export default async function SidebarPage() {
             </Mask>
           ) : (
             <Sidebar.TopPlaceholderContainer>
-              <Sidebar.TopPlaceholderContent>{Texts.truncate(name)}</Sidebar.TopPlaceholderContent>
+              <Sidebar.TopPlaceholderContent>{Texts.Transformations.truncate(name)}</Sidebar.TopPlaceholderContent>
             </Sidebar.TopPlaceholderContainer>
           )}
         </Avatar>
@@ -45,7 +45,7 @@ export default async function SidebarPage() {
                   {avatar ? (
                     <Image alt={`${name}'s avatar`} src={avatar} fill />
                   ) : (
-                    <Sidebar.RowPlaceholder>{Texts.truncate(name)}</Sidebar.RowPlaceholder>
+                    <Sidebar.RowPlaceholder>{Texts.Transformations.truncate(name)}</Sidebar.RowPlaceholder>
                   )}
                 </Sidebar.RowLeft>
                 <Sidebar.RowCenter>

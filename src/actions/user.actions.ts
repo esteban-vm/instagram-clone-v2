@@ -1,12 +1,13 @@
 'use server'
 
+import type { User } from '@/types'
 import { revalidatePath } from 'next/cache'
 import { APP_ROUTES } from '@/lib/constants'
 import { authClient } from '@/lib/safe-action'
 import { SchemaWithId } from '@/lib/validations'
 import { prisma } from '@/prisma'
 
-export const followUser = authClient.schema(SchemaWithId).action(async ({ ctx, parsedInput }): Promise<Models.User> => {
+export const followUser = authClient.schema(SchemaWithId).action(async ({ ctx, parsedInput }): Promise<User> => {
   const loggedInUserId = ctx.user.id
   const userToFollowId = parsedInput.id
 
@@ -20,7 +21,7 @@ export const followUser = authClient.schema(SchemaWithId).action(async ({ ctx, p
   return followedUser
 })
 
-export const getSuggestedUsers = authClient.action(async ({ ctx }): Promise<Models.User[]> => {
+export const getSuggestedUsers = authClient.action(async ({ ctx }): Promise<User[]> => {
   const loggedInUserId = ctx.user.id
 
   const suggestedUsers = await prisma.user.findMany({

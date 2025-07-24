@@ -8,15 +8,16 @@ export const metadata: Metadata = {
 
 interface DashboardLayoutProps {
   children: ReactNode
-  sidebar: ReactNode
   timeline: ReactNode
+  sidebar: ReactNode
 }
 
-export default async function DashboardLayout({ children: _, sidebar, timeline }: DashboardLayoutProps) {
+export default async function DashboardLayout({ children, sidebar, timeline }: DashboardLayoutProps) {
   await verifySession()
 
   return (
-    <div className='mx-auto mt-16 grid max-w-screen-2xl lg:grid-cols-3'>
+    <div className='mx-auto mt-20 grid max-w-screen-2xl lg:grid-cols-3'>
+      {children}
       {timeline}
       {sidebar}
     </div>

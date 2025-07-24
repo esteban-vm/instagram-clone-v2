@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Avatar, List, Mask } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
 import { FollowButton, ListTitle } from '@/app/[locale]/dashboard/_components'
@@ -15,12 +16,12 @@ export default async function SidebarPage() {
   const users = result?.data
 
   return (
-    <aside>
+    <Sidebar.PageContainer>
       <Sidebar.TopContainer>
         <Avatar placeholder={!avatar}>
           {avatar ? (
             <Mask as='div' className='relative w-20' shape='circle'>
-              <Sidebar.StyledImage alt='avatar' src={avatar} fill />
+              <Image alt={`${name}'s avatar`} src={avatar} fill />
             </Mask>
           ) : (
             <Sidebar.TopPlaceholderContainer>
@@ -42,7 +43,7 @@ export default async function SidebarPage() {
               <List.Row key={id} className='flex items-center justify-between'>
                 <Sidebar.RowLeft>
                   {avatar ? (
-                    <Sidebar.StyledImage alt='avatar' src={avatar} fill />
+                    <Image alt={`${name}'s avatar`} src={avatar} fill />
                   ) : (
                     <Sidebar.RowPlaceholder>{Texts.truncate(name)}</Sidebar.RowPlaceholder>
                   )}
@@ -57,6 +58,6 @@ export default async function SidebarPage() {
           })}
         </List>
       </section>
-    </aside>
+    </Sidebar.PageContainer>
   )
 }

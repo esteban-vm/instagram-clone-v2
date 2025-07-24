@@ -1,5 +1,6 @@
 {
   "sidebar": {
-    "suggested_users": "Suggestions for you"
+    "list_title": "Suggestions for you",
+    "follow_button": "Follow user"
   }
 }

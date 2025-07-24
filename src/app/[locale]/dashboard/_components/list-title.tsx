@@ -3,5 +3,5 @@ import { Sidebar } from '@/app/[locale]/dashboard/_styled'
 
 export function ListTitle() {
   const { t } = useTranslation('dashboard', { keyPrefix: 'sidebar' })
-  return <Sidebar.StyledListTitle>{t('suggested_users')}</Sidebar.StyledListTitle>
+  return <Sidebar.StyledListTitle>{t('list_title')}</Sidebar.StyledListTitle>
 }

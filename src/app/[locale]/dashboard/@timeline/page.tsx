@@ -1,7 +1,9 @@
+import { Timeline } from '@/app/[locale]/dashboard/_styled'
+
 export default function TimelinePage() {
   return (
-    <section className='text-center lg:col-span-2'>
+    <Timeline.PageContainer>
       <span>Timeline Page</span>
-    </section>
+    </Timeline.PageContainer>
   )
 }

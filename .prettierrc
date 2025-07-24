@@ -11,10 +11,11 @@
     "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-prisma",
     "prettier-plugin-tailwindcss",
+    "prettier-plugin-tailwind-styled-components",
     "prettier-plugin-classnames",
     "prettier-plugin-merge"
   ],
-  "tailwindFunctions": ["clsx", "cn"],
+  "tailwindFunctions": ["clsx", "cn", "tw"],
   "tailwindStylesheet": "./src/app/globals.css",
   "importOrder": [
     "<TYPES>^(node:)",

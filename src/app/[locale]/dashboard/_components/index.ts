@@ -1,4 +1,4 @@
-export * as Atoms from './atoms'
-export * as Molecules from './molecules'
-export * as Organisms from './organisms'
-export * as Templates from './templates'
+'use client'
+
+export * from './follow-button'
+export * from './list-title'

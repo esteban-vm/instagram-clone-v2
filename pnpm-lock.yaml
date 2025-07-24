@@ -150,6 +150,9 @@ importers:
       prettier-plugin-prisma:
         specifier: ^5.0.0
         version: 5.0.0(prettier@3.5.3)
+      prettier-plugin-tailwind-styled-components:
+        specifier: ^1.0.0
+        version: 1.0.0(prettier-plugin-tailwindcss@0.6.11(@ianvs/prettier-plugin-sort-imports@4.4.1(prettier@3.5.3))(prettier@3.5.3))(prettier@3.5.3)(tailwind-styled-components@2.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       prettier-plugin-tailwindcss:
         specifier: ^0.6.11
         version: 0.6.11(@ianvs/prettier-plugin-sort-imports@4.4.1(prettier@3.5.3))(prettier@3.5.3)
@@ -162,6 +165,9 @@ importers:
       tailwind-merge:
         specifier: ^3.2.0
         version: 3.3.0
+      tailwind-styled-components:
+        specifier: ^2.2.0
+        version: 2.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       tailwindcss:
         specifier: ^4
         version: 4.1.6
@@ -2471,6 +2477,14 @@ packages:
     peerDependencies:
       prettier: '>=2 || >=3'
 
+  prettier-plugin-tailwind-styled-components@1.0.0:
+    resolution: {integrity: sha512-3xc4+scVMDJspHvN3jFwAvteOVDXoGbC/nyll2boopqw+R3tskBBCXSnN4XC5etbkLyGT6y46zq+uC9e21A0/g==}
+    engines: {node: '>=14.21.3'}
+    peerDependencies:
+      prettier: ^3.0
+      prettier-plugin-tailwindcss: '>=0.6.11'
+      tailwind-styled-components: '>=2.2.0'
+
   prettier-plugin-tailwindcss@0.6.11:
     resolution: {integrity: sha512-YxaYSIvZPAqhrrEpRtonnrXdghZg1irNg4qrjboCXrpybLWVs55cW2N3juhspVJiO0JBvYJT8SYsJpc8OQSnsA==}
     engines: {node: '>=14.21.3'}
@@ -2863,8 +2877,17 @@ packages:
     peerDependencies:
       react: '>=17.0'
 
+  tailwind-merge@1.14.0:
+    resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
+
   tailwind-merge@3.3.0:
     resolution: {integrity: sha512-fyW/pEfcQSiigd5SNn0nApUOxx0zB/dm6UDU/rEwc2c3sX2smWUNbapHv+QRqLGVp9GWX3THIa7MUGPo+YkDzQ==}
+
+  tailwind-styled-components@2.2.0:
+    resolution: {integrity: sha512-Ogemwk0p69aU8WE/ooJZHjqstdJgT5R6HGU6TFz2uSnveSEtvW+C6aWOjGCvCr5H/bREv0IbbQ4yODknRrLBRQ==}
+    peerDependencies:
+      react: '>= 16.8.0'
+      react-dom: '>= 16.8.0'
 
   tailwindcss@4.1.6:
     resolution: {integrity: sha512-j0cGLTreM6u4OWzBeLBpycK0WIh8w7kSwcUsQZoGLHZ7xDTdM69lN64AgoIEEwFi0tnhs4wSykUa5YWxAzgFYg==}
@@ -5459,6 +5482,12 @@ snapshots:
       '@prisma/prisma-schema-wasm': 4.17.0-26.6b0aef69b7cdfc787f822ecd7cdc76d5f1991584
       prettier: 3.5.3
 
+  prettier-plugin-tailwind-styled-components@1.0.0(prettier-plugin-tailwindcss@0.6.11(@ianvs/prettier-plugin-sort-imports@4.4.1(prettier@3.5.3))(prettier@3.5.3))(prettier@3.5.3)(tailwind-styled-components@2.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)):
+    dependencies:
+      prettier: 3.5.3
+      prettier-plugin-tailwindcss: 0.6.11(@ianvs/prettier-plugin-sort-imports@4.4.1(prettier@3.5.3))(prettier@3.5.3)
+      tailwind-styled-components: 2.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+
   prettier-plugin-tailwindcss@0.6.11(@ianvs/prettier-plugin-sort-imports@4.4.1(prettier@3.5.3))(prettier@3.5.3):
     dependencies:
       prettier: 3.5.3
@@ -5866,7 +5895,15 @@ snapshots:
     dependencies:
       react: 19.1.0
 
+  tailwind-merge@1.14.0: {}
+
   tailwind-merge@3.3.0: {}
+
+  tailwind-styled-components@2.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      tailwind-merge: 1.14.0
 
   tailwindcss@4.1.6: {}
 

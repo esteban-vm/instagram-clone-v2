@@ -1,10 +1,14 @@
 import type { User as UserDB } from '@prisma/client'
-import type { JSX, ReactNode } from 'react'
 import type { z } from 'zod'
 import type { Locale } from '@/i18n.config'
 import type { LoginSchema, RegisterSchema } from '@/lib/validations'
 
 declare global {
+  namespace JSX {
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+    interface IntrinsicElements extends React.JSX.IntrinsicElements {}
+  }
+
   namespace Models {
     type User = Omit<UserDB, 'password' | 'active' | 'createdAt' | 'updatedAt'>
   }
@@ -16,7 +20,7 @@ declare global {
 
   namespace Props {
     interface WithChildren {
-      children: ReactNode
+      children: React.ReactNode
     }
 
     interface WithParams {

@@ -4,7 +4,7 @@ import { verifySession } from '@/lib/auth-utils'
 export default async function HomePage() {
   await verifySession()
 
-  const result = await PhotoActions.getPhotos()
+  const result = await PhotoActions.getSuggestedPhotos()
   console.log({ photos: result?.data?.map((photo) => photo.image) })
 
   return (

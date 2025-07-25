@@ -11,10 +11,10 @@ export const followUser = authClient.schema(SchemaWithId).action(async ({ ctx, p
   const loggedInUserId = ctx.user.id
   const userToFollowId = parsedInput.id
 
-  const followedUser = await prisma.user.update({
+  const followedUser: User = await prisma.user.update({
+    omit: { password: true },
     where: { id: userToFollowId },
     data: { followers: { create: { followingId: loggedInUserId } } },
-    omit: { active: true, createdAt: true, updatedAt: true, password: true },
   })
 
   revalidatePath(APP_ROUTES.DASHBOARD, 'layout')
@@ -24,11 +24,15 @@ export const followUser = authClient.schema(SchemaWithId).action(async ({ ctx, p
 export const getSuggestedUsers = authClient.action(async ({ ctx }): Promise<User[]> => {
   const loggedInUserId = ctx.user.id
 
-  const suggestedUsers = await prisma.user.findMany({
+  const suggestedUsers: User[] = await prisma.user.findMany({
     take: 10,
     orderBy: { name: 'asc' },
-    omit: { active: true, createdAt: true, updatedAt: true, password: true },
-    where: { active: true, id: { not: loggedInUserId }, followers: { none: { followingId: loggedInUserId } } },
+    omit: { password: true },
+    where: {
+      active: true,
+      id: { not: loggedInUserId },
+      followers: { none: { followingId: loggedInUserId } },
+    },
   })
 
   return suggestedUsers

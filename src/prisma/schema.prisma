@@ -18,19 +18,19 @@ model User {
   photos    Photo[]
   likes     Like[]
   comments  Comment[]
-  followers Follows[] @relation("follower")
-  following Follows[] @relation("following")
+  followers Follow[]  @relation("follower")
+  following Follow[]  @relation("following")
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
 
   @@map("users")
 }
 
-model Follows {
-  followerId  String   @map("follower_id")
+model Follow {
   follower    User     @relation("follower", fields: [followerId], references: [id])
-  followingId String   @map("following_id")
+  followerId  String   @map("follower_id")
   following   User     @relation("following", fields: [followingId], references: [id])
+  followingId String   @map("following_id")
   assignedAt  DateTime @default(now()) @map("assigned_at")
 
   @@id([followerId, followingId])
@@ -41,8 +41,8 @@ model Photo {
   id        String    @id @default(cuid())
   image     String
   caption   String
-  ownerId   String    @map("owner_id")
   owner     User      @relation(fields: [ownerId], references: [id])
+  ownerId   String    @map("owner_id")
   comments  Comment[]
   likes     Like[]
   createdAt DateTime  @default(now()) @map("created_at")
@@ -52,10 +52,11 @@ model Photo {
 }
 
 model Like {
-  photoId String
-  photo   Photo  @relation(fields: [photoId], references: [id])
-  userId  String
-  user    User   @relation(fields: [userId], references: [id])
+  photo      Photo    @relation(fields: [photoId], references: [id])
+  photoId    String   @map("photo_id")
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String   @map("user_id")
+  assignedAt DateTime @default(now()) @map("assigned_at")
 
   @@id([photoId, userId])
   @@map("likes")
@@ -64,10 +65,10 @@ model Like {
 model Comment {
   id        String   @id @default(cuid())
   content   String
-  authorId  String   @map("author_id")
   author    User     @relation(fields: [authorId], references: [id])
-  photoId   String   @map("photo_id")
+  authorId  String   @map("author_id")
   photo     Photo    @relation(fields: [photoId], references: [id])
+  photoId   String   @map("photo_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 

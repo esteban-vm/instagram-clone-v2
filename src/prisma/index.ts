@@ -6,7 +6,8 @@ const globalForPrisma = global as unknown as {
 
 const prismaClient = new PrismaClient({
   omit: {
-    follows: { assignedAt: true },
+    like: { assignedAt: true },
+    follow: { assignedAt: true },
     photo: { createdAt: true, updatedAt: true },
     comment: { createdAt: true, updatedAt: true },
     user: { active: true, createdAt: true, updatedAt: true },

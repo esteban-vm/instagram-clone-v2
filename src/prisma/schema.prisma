@@ -16,6 +16,7 @@ model User {
   password  String
   avatar    String?
   photos    Photo[]
+  likes     Like[]
   comments  Comment[]
   followers Follows[] @relation("follower")
   following Follows[] @relation("following")
@@ -43,10 +44,21 @@ model Photo {
   ownerId   String    @map("owner_id")
   owner     User      @relation(fields: [ownerId], references: [id])
   comments  Comment[]
+  likes     Like[]
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
 
   @@map("photos")
+}
+
+model Like {
+  photoId String
+  photo   Photo  @relation(fields: [photoId], references: [id])
+  userId  String
+  user    User   @relation(fields: [userId], references: [id])
+
+  @@id([photoId, userId])
+  @@map("likes")
 }
 
 model Comment {

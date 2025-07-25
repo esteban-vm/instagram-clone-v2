@@ -65,6 +65,13 @@ async function insertAdditionalData() {
       { authorId: user3.id, photoId: photo3.id, content: 'Test comment 3' },
     ],
   })
+
+  await prisma.like.createMany({
+    data: [
+      { userId: user3.id, photoId: photo2.id },
+      { userId: user2.id, photoId: photo1.id },
+    ],
+  })
 }
 
 void (async function () {

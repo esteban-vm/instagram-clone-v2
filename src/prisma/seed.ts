@@ -12,12 +12,16 @@ const users = [
   { email: 'user7@example.com', name: 'Antonio', password: 'Abcd123*' },
   { email: 'user8@example.com', name: 'Laura', password: 'Abcd123*', avatar: '/images/avatars/female4.webp' },
   { email: 'user9@example.com', name: 'María', password: 'Abcd123*', avatar: '/images/avatars/female5.webp' },
+  { email: 'user10@example.com', name: 'Francisco', password: 'Abcd123*' },
+  { email: 'user11@example.com', name: 'Esteban', password: 'Abcd123*' },
+  { email: 'user12@example.com', name: 'Aldo', password: 'Abcd123*' },
 ] as const satisfies Prisma.UserCreateManyInput[]
 
 async function cleanDataBase() {
   await prisma.comment.deleteMany({})
+  await prisma.like.deleteMany({})
   await prisma.photo.deleteMany({})
-  await prisma.follows.deleteMany({})
+  await prisma.follow.deleteMany({})
   await prisma.user.deleteMany({})
 }
 
@@ -37,7 +41,7 @@ async function insertAdditionalData() {
   const user2 = await prisma.user.findUniqueOrThrow({ where: { email: users[1].email, active: true } })
   const user3 = await prisma.user.findUniqueOrThrow({ where: { email: users[2].email, active: true } })
 
-  // await prisma.follows.create({ data: { followerId: user1.id, followingId: user2.id } })
+  // await prisma.follow.create({ data: { followerId: user1.id, followingId: user2.id } })
 
   await prisma.user.update({
     where: { id: user1.id },

@@ -1,10 +1,15 @@
 'use server'
 
-import type { Photo } from '@/types'
+import type { Comment, Like, Photo } from '@prisma/client'
 import { authClient } from '@/lib/safe-action'
 import { prisma } from '@/prisma'
 
-export const getSuggestedPhotos = authClient.action(async ({ ctx }): Promise<Photo[]> => {
+interface SuggestedPhoto extends Photo {
+  likes: Like[]
+  comments: Comment[]
+}
+
+export const getSuggestedPhotos = authClient.action(async ({ ctx }): Promise<SuggestedPhoto[]> => {
   const loggedInUserId = ctx.user.id
 
   const loggedInUser = await prisma.user.findUnique({
@@ -13,6 +18,13 @@ export const getSuggestedPhotos = authClient.action(async ({ ctx }): Promise<Pho
   })
 
   const followingUsers = loggedInUser?.following.map((f) => f.followerId)
-  const suggestedPhotos: Photo[] = await prisma.photo.findMany({ where: { ownerId: { in: followingUsers } } })
+
+  const suggestedPhotos: SuggestedPhoto[] = await prisma.photo.findMany({
+    take: 3,
+    where: { ownerId: { in: followingUsers } },
+    include: { likes: true, comments: true },
+    orderBy: { updatedAt: 'desc' },
+  })
+
   return suggestedPhotos
 })

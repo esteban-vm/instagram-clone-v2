@@ -12,7 +12,7 @@ export default async function TimelinePage() {
   return (
     <Styled.PageContainer>
       {photos?.map((photo) => {
-        const { id, image, comments, owner, _count } = photo
+        const { id, image, caption, comments, owner, _count } = photo
         const { name, avatar } = owner
 
         return (
@@ -32,27 +32,20 @@ export default async function TimelinePage() {
                     </Styled.CardPlaceholderContainer>
                   )}
                 </Avatar>
-
                 <Styled.CardNameContainer>
                   <Styled.CardNameContent>{name}</Styled.CardNameContent>
                 </Styled.CardNameContainer>
               </Card.Title>
-
               <Card.Actions className='gap-1'>
-                <Button shape='square' size='sm' link>
-                  <FaRegHeart className='size-4/5 text-pink-500' />
-                </Button>
                 <Button shape='square' size='sm' link>
                   <FaRegHeart className='size-4/5 text-pink-500' />
                 </Button>
               </Card.Actions>
               <Styled.CardLikes>{_count.likes} likes</Styled.CardLikes>
-
               {_count.comments > 0 ? (
                 <Styled.CardComments>
                   {comments.map((comment) => {
                     const { id, content, author } = comment
-
                     return (
                       <Styled.CardCommentItem key={id}>
                         <Styled.CardCommentName>{author.name}:</Styled.CardCommentName> {content}
@@ -62,9 +55,8 @@ export default async function TimelinePage() {
                 </Styled.CardComments>
               ) : null}
             </Card.Body>
-
             <Styled.CardImageContainer>
-              <Image alt='' className='object-cover' src={image} fill />
+              <Image alt={caption} className='object-cover' src={image} fill />
             </Styled.CardImageContainer>
           </Card>
         )

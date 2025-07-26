@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { Avatar, List, Mask } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
 import { FollowButton, ListTitle } from '@/app/[locale]/dashboard/_components'
-import { Sidebar } from '@/app/[locale]/dashboard/_styled'
+import { Sidebar as Styled } from '@/app/[locale]/dashboard/_styled'
 import { auth } from '@/auth'
 import { Texts } from '@/lib/texts'
 
@@ -16,24 +16,24 @@ export default async function SidebarPage() {
   const users = result?.data
 
   return (
-    <Sidebar.PageContainer>
-      <Sidebar.TopContainer>
+    <Styled.PageContainer>
+      <Styled.TopContainer>
         <Avatar placeholder={!avatar}>
           {avatar ? (
             <Mask as='div' className='relative w-20' shape='circle'>
               <Image alt={`${name}'s avatar`} src={avatar} fill />
             </Mask>
           ) : (
-            <Sidebar.TopPlaceholderContainer>
-              <Sidebar.TopPlaceholderContent>{Texts.Transformations.truncate(name)}</Sidebar.TopPlaceholderContent>
-            </Sidebar.TopPlaceholderContainer>
+            <Styled.TopPlaceholderContainer>
+              <Styled.TopPlaceholderContent>{Texts.Transformations.truncate(name)}</Styled.TopPlaceholderContent>
+            </Styled.TopPlaceholderContainer>
           )}
         </Avatar>
-        <Sidebar.TopRight>
-          <Sidebar.TopName>{name}</Sidebar.TopName>
-          <Sidebar.TopEmail>{email}</Sidebar.TopEmail>
-        </Sidebar.TopRight>
-      </Sidebar.TopContainer>
+        <Styled.TopRight>
+          <Styled.TopName>{name}</Styled.TopName>
+          <Styled.TopEmail>{email}</Styled.TopEmail>
+        </Styled.TopRight>
+      </Styled.TopContainer>
       <section>
         <List>
           <ListTitle />
@@ -41,23 +41,23 @@ export default async function SidebarPage() {
             const { id, name, email, avatar } = user
             return (
               <List.Row key={id} className='flex items-center justify-between'>
-                <Sidebar.RowLeft>
+                <Styled.RowLeft>
                   {avatar ? (
                     <Image alt={`${name}'s avatar`} src={avatar} fill />
                   ) : (
-                    <Sidebar.RowPlaceholder>{Texts.Transformations.truncate(name)}</Sidebar.RowPlaceholder>
+                    <Styled.RowPlaceholder>{Texts.Transformations.truncate(name)}</Styled.RowPlaceholder>
                   )}
-                </Sidebar.RowLeft>
-                <Sidebar.RowCenter>
-                  <Sidebar.RowName>{name}</Sidebar.RowName>
-                  <Sidebar.RowEmail>{email}</Sidebar.RowEmail>
-                </Sidebar.RowCenter>
+                </Styled.RowLeft>
+                <Styled.RowCenter>
+                  <Styled.RowName>{name}</Styled.RowName>
+                  <Styled.RowEmail>{email}</Styled.RowEmail>
+                </Styled.RowCenter>
                 <FollowButton user={user} users={users} />
               </List.Row>
             )
           })}
         </List>
       </section>
-    </Sidebar.PageContainer>
+    </Styled.PageContainer>
   )
 }

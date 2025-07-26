@@ -1,6 +1,6 @@
 import type { NextAuthConfig } from 'next-auth'
 import type { LoginSchemaType } from '@/lib/validations'
-import type { User } from '@/types'
+import type { UserType } from '@/types'
 import { compare } from 'bcryptjs'
 import Credentials from 'next-auth/providers/credentials'
 import { APP_ROUTES } from '@/lib/constants'
@@ -35,17 +35,17 @@ export default {
   },
   providers: [
     Credentials({
-      async authorize(credentials): Promise<User> {
+      async authorize(credentials): Promise<UserType> {
         const { email, password } = credentials as LoginSchemaType
 
-        const userFromDB = await prisma.user.findUnique({ where: { email, active: true } })
-        if (!userFromDB) throw new CustomAuthError('USER_DOES_NOT_EXIST')
+        const savedUser = await prisma.user.findUnique({ where: { email, active: true } })
+        if (!savedUser) throw new CustomAuthError('USER_DOES_NOT_EXIST')
 
-        const isLoggedIn = await compare(password, userFromDB.password)
+        const isLoggedIn = await compare(password, savedUser.password)
         if (!isLoggedIn) throw new CustomAuthError('INVALID_PASSWORD')
 
-        const { password: _, ...loggedInUser } = userFromDB
-        return loggedInUser satisfies User
+        const { password: _, ...loggedInUser } = savedUser
+        return loggedInUser satisfies UserType
       },
     }),
   ],

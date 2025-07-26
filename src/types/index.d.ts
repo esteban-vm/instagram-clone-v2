@@ -1,3 +1,3 @@
-import type { User as UserDB } from '@prisma/client'
+import type { User } from '@prisma/client'
 
-export type User = Omit<UserDB, 'password' | 'active' | 'createdAt' | 'updatedAt'>
+export type UserType = Omit<User, 'password' | 'active' | 'createdAt' | 'updatedAt'>

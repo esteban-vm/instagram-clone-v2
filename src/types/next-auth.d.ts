@@ -1,5 +1,5 @@
 import type { Role } from '@prisma/client'
-import type { User as UserType } from '@/types'
+import type { UserType } from '@/types'
 import 'next-auth'
 import 'next-auth/jwt'
 

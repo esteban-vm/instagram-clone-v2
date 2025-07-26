@@ -1,17 +1,17 @@
 'use server'
 
-import type { User } from '@/types'
+import type { UserType } from '@/types'
 import { revalidatePath } from 'next/cache'
 import { APP_ROUTES } from '@/lib/constants'
 import { authClient } from '@/lib/safe-action'
 import { SchemaWithId } from '@/lib/validations'
 import { prisma } from '@/prisma'
 
-export const followUser = authClient.schema(SchemaWithId).action(async ({ ctx, parsedInput }): Promise<User> => {
+export const followUser = authClient.schema(SchemaWithId).action(async ({ ctx, parsedInput }): Promise<UserType> => {
   const loggedInUserId = ctx.user.id
   const userToFollowId = parsedInput.id
 
-  const followedUser: User = await prisma.user.update({
+  const followedUser: UserType = await prisma.user.update({
     omit: { password: true },
     where: { id: userToFollowId },
     data: { followers: { create: { followingId: loggedInUserId } } },
@@ -21,10 +21,10 @@ export const followUser = authClient.schema(SchemaWithId).action(async ({ ctx, p
   return followedUser
 })
 
-export const getSuggestedUsers = authClient.action(async ({ ctx }): Promise<User[]> => {
+export const getSuggestedUsers = authClient.action(async ({ ctx }): Promise<UserType[]> => {
   const loggedInUserId = ctx.user.id
 
-  const suggestedUsers: User[] = await prisma.user.findMany({
+  const suggestedUsers: UserType[] = await prisma.user.findMany({
     take: 10,
     orderBy: { name: 'asc' },
     omit: { password: true },

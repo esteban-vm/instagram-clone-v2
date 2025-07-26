@@ -8,8 +8,6 @@ const prismaClient = new PrismaClient({
   omit: {
     like: { assignedAt: true },
     follow: { assignedAt: true },
-    photo: { createdAt: true, updatedAt: true },
-    comment: { createdAt: true, updatedAt: true },
     user: { active: true, createdAt: true, updatedAt: true },
   },
 })

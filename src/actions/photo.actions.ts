@@ -17,11 +17,11 @@ export const getSuggestedPhotos = authClient.action(async ({ ctx }): Promise<Sug
     select: { following: { select: { followerId: true } } },
   })
 
-  const followingUsers = loggedInUser?.following.map((f) => f.followerId)
+  const followingUserIds = loggedInUser?.following.map((f) => f.followerId)
 
   const suggestedPhotos: SuggestedPhoto[] = await prisma.photo.findMany({
-    take: 3,
-    where: { ownerId: { in: followingUsers } },
+    take: 10,
+    where: { ownerId: { in: followingUserIds } },
     include: { likes: true, comments: true },
     orderBy: { updatedAt: 'desc' },
   })

@@ -14,7 +14,6 @@ export default async function TimelinePage() {
       {photos?.map((photo) => {
         const { id, image, caption, comments, owner, _count } = photo
         const { name, avatar } = owner
-
         return (
           <Card key={id} className='shadow-md' border>
             <Card.Body className='items-start gap-1 px-3.5 pt-3.5 pb-1.5'>

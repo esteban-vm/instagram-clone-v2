@@ -1,9 +1,9 @@
 import tw from 'tailwind-styled-components'
 
 export function Card() {}
-export function Name() {}
 export function Page() {}
 export function Placeholder() {}
+export function Right() {}
 
 Card.Comments = tw.ul`
   ml-1.5
@@ -29,18 +29,6 @@ Card.Name = tw.span`
   font-semibold
 `
 
-Name.Container = tw.div`
-  flex
-  flex-col
-  items-start
-  truncate
-`
-
-Name.Content = tw.span`
-  text-sm
-  font-bold
-`
-
 Page.Container = tw.section`
   grid
   grid-rows-2
@@ -60,4 +48,16 @@ Placeholder.Content = tw.span`
   text-xl
   font-bold
   select-none
+`
+
+Right.Container = tw.div`
+  flex
+  flex-col
+  items-start
+  truncate
+`
+
+Right.Content = tw.span`
+  text-sm
+  font-bold
 `

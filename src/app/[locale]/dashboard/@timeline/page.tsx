@@ -30,9 +30,9 @@ export default async function TimelinePage() {
                     </$.Placeholder.Container>
                   )}
                 </Avatar>
-                <$.Name.Container>
-                  <$.Name.Content>{name}</$.Name.Content>
-                </$.Name.Container>
+                <$.Right.Container>
+                  <$.Right.Content>{name}</$.Right.Content>
+                </$.Right.Container>
               </Card.Title>
               <Card.Actions className='gap-1'>
                 <Button shape='square' size='sm' link>

@@ -138,6 +138,9 @@ importers:
       eslint-plugin-sort-exports:
         specifier: ^0.9.1
         version: 0.9.1(eslint@9.26.0(jiti@2.4.2))
+      eslint-plugin-sort-keys:
+        specifier: ^2.3.5
+        version: 2.3.5
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
@@ -1621,6 +1624,9 @@ packages:
     resolution: {integrity: sha512-2w6jHusdF2K60bcGKpa9HEinETwNzVrvplZipVculCfu3ZDd5IW3xL54XVEnVkGIPJnp/LitFCg7owL4DOtuHg==}
     peerDependencies:
       eslint: '>=5.0.0'
+
+  eslint-plugin-sort-keys@2.3.5:
+    resolution: {integrity: sha512-2j/XKQ9sNJwK8kIp/U0EvuF6stS6/8aIc53/NskE4C5NRNh4dt3xzbZyOdrVC11cTH6Zo59/pdzA0Kb+2fQGWg==}
 
   eslint-scope@8.3.0:
     resolution: {integrity: sha512-pUNxi75F8MJ/GdeKtVLSbYg4ZI34J6C0C7sbL4YOp2exGwen7ZsuBqKzUhXd0qMQ362yET3z+uPwKeg/0C2XCQ==}
@@ -4655,6 +4661,10 @@ snapshots:
     dependencies:
       eslint: 9.26.0(jiti@2.4.2)
       minimatch: 9.0.5
+
+  eslint-plugin-sort-keys@2.3.5:
+    dependencies:
+      natural-compare: 1.4.0
 
   eslint-scope@8.3.0:
     dependencies:

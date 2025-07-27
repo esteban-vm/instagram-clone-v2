@@ -1,33 +1,60 @@
 import tw from 'tailwind-styled-components'
 
-export const PageContainer = tw.aside`
+export function Page() {}
+export function Placeholder() {}
+export function Row() {}
+export function Top() {}
+
+Page.Container = tw.aside`
   [&_img]:object-cover
   [&_img]:contrast-125
 `
 
-export const RowCenter = tw.div`
+Page.ListTitle = tw.span`
+  p-4
+  pb-2
+  text-xs
+  font-semibold
+  tracking-wide
+  italic
+`
+
+Placeholder.Container = tw.div`
+  w-20
+  rounded-full
+  bg-primary
+  text-primary-content
+`
+
+Placeholder.Content = tw.span`
+  text-2xl
+  font-bold
+  select-none
+`
+
+Row.Center = tw.div`
   grow
 `
 
-export const RowEmail = tw.span`
+Row.Email = tw.span`
   text-xs
   font-semibold
   uppercase
   opacity-60
 `
 
-export const RowLeft = tw.div`
+Row.Left = tw.div`
   relative
   size-12
   overflow-hidden
   rounded-md
 `
 
-export const RowName = tw.div`
+Row.Name = tw.div`
   font-bold
 `
 
-export const RowPlaceholder = tw.div`
+Row.Placeholder = tw.div`
   absolute
   inset-0
   flex
@@ -40,46 +67,24 @@ export const RowPlaceholder = tw.div`
   select-none
 `
 
-export const StyledListTitle = tw.span`
-  p-4
-  pb-2
-  text-xs
-  font-semibold
-  tracking-wide
-  italic
-`
-
-export const TopContainer = tw.section`
+Top.Container = tw.section`
   flex
   items-center
   gap-1.5
   p-1.5
 `
 
-export const TopEmail = tw.span`
+Top.Email = tw.span`
   text-sm
   font-semibold
   italic
 `
 
-export const TopName = tw.span`
+Top.Name = tw.span`
   font-bold
 `
 
-export const TopPlaceholderContainer = tw.div`
-  w-20
-  rounded-full
-  bg-primary
-  text-primary-content
-`
-
-export const TopPlaceholderContent = tw.span`
-  text-2xl
-  font-bold
-  select-none
-`
-
-export const TopRight = tw.div`
+Top.Right = tw.div`
   flex
   flex-col
   items-start

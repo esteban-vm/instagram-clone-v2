@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { FaRegHeart } from 'react-icons/fa'
 import { Avatar, Button, Card, Mask } from 'rsc-daisyui'
 import { PhotoActions } from '@/actions'
-import { Timeline as Styled } from '@/app/[locale]/dashboard/_styled'
+import { Timeline as $ } from '@/app/[locale]/dashboard/_styled'
 import { Texts } from '@/lib/texts'
 
 export default async function TimelinePage() {
@@ -10,10 +10,11 @@ export default async function TimelinePage() {
   const photos = result?.data
 
   return (
-    <Styled.PageContainer>
+    <$.Page.Container>
       {photos?.map((photo) => {
         const { id, image, caption, comments, owner, _count } = photo
         const { name, avatar } = owner
+
         return (
           <Card key={id} className='shadow-md' border>
             <Card.Body className='items-start gap-1 px-3.5 pt-3.5 pb-1.5'>
@@ -24,42 +25,41 @@ export default async function TimelinePage() {
                       <Image alt={`${name}'s avatar`} src={avatar} fill />
                     </Mask>
                   ) : (
-                    <Styled.CardPlaceholderContainer>
-                      <Styled.CardPlaceholderContent>
-                        {Texts.Transformations.truncate(name)}
-                      </Styled.CardPlaceholderContent>
-                    </Styled.CardPlaceholderContainer>
+                    <$.Placeholder.Container>
+                      <$.Placeholder.Content>{Texts.Transformations.truncate(name)}</$.Placeholder.Content>
+                    </$.Placeholder.Container>
                   )}
                 </Avatar>
-                <Styled.CardNameContainer>
-                  <Styled.CardNameContent>{name}</Styled.CardNameContent>
-                </Styled.CardNameContainer>
+                <$.Name.Container>
+                  <$.Name.Content>{name}</$.Name.Content>
+                </$.Name.Container>
               </Card.Title>
               <Card.Actions className='gap-1'>
                 <Button shape='square' size='sm' link>
                   <FaRegHeart className='size-4/5 text-pink-500' />
                 </Button>
               </Card.Actions>
-              <Styled.CardLikes>{_count.likes} likes</Styled.CardLikes>
+              <$.Card.Likes>{_count.likes} likes</$.Card.Likes>
               {_count.comments > 0 ? (
-                <Styled.CardComments>
+                <$.Card.Comments>
                   {comments.map((comment) => {
                     const { id, content, author } = comment
+
                     return (
-                      <Styled.CardCommentItem key={id}>
-                        <Styled.CardCommentName>{author.name}:</Styled.CardCommentName> {content}
-                      </Styled.CardCommentItem>
+                      <$.Card.Item key={id}>
+                        <$.Card.Name>{author.name}:</$.Card.Name> {content}
+                      </$.Card.Item>
                     )
                   })}
-                </Styled.CardComments>
+                </$.Card.Comments>
               ) : null}
             </Card.Body>
-            <Styled.CardImageContainer>
+            <$.Card.Image>
               <Image alt={caption} className='object-cover' src={image} fill />
-            </Styled.CardImageContainer>
+            </$.Card.Image>
           </Card>
         )
       })}
-    </Styled.PageContainer>
+    </$.Page.Container>
   )
 }

@@ -1,9 +1,32 @@
 import tw from 'tailwind-styled-components'
 
+export function Loading() {}
 export function Page() {}
 export function Placeholder() {}
 export function Row() {}
 export function Top() {}
+
+Loading.Container = tw.div`
+  flex
+  w-full
+  max-w-3xl
+  flex-col
+  self-start
+  justify-self-center
+  p-1.5
+`
+
+Loading.Content = tw.div`
+  flex
+  items-center
+  gap-1.5
+`
+
+Loading.Right = tw.div`
+  flex
+  flex-col
+  gap-4
+`
 
 Page.Container = tw.aside`
   w-full

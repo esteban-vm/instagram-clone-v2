@@ -1,6 +1,7 @@
 import tw from 'tailwind-styled-components'
 
 export function Card() {}
+export function Loading() {}
 export function Page() {}
 export function Placeholder() {}
 export function Right() {}
@@ -27,6 +28,13 @@ Card.Likes = tw.small`
 
 Card.Name = tw.span`
   font-semibold
+`
+
+Loading.Container = tw.div`
+  flex
+  gap-1.5
+  p-1.5
+  lg:col-span-2
 `
 
 Page.Container = tw.section`

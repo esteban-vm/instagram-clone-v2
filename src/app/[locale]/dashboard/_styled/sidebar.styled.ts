@@ -6,7 +6,12 @@ export function Row() {}
 export function Top() {}
 
 Page.Container = tw.aside`
+  w-full
+  max-w-3xl
+  self-start
+  justify-self-center
   [&_img]:object-cover
+  [&_img]:object-center
   [&_img]:contrast-125
 `
 

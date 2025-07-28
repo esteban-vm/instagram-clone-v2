@@ -33,8 +33,9 @@ Page.Container = tw.section`
   grid
   grid-rows-2
   gap-1.5
-  md:col-span-2
+  p-1.5
   md:grid-cols-2
+  lg:col-span-2
 `
 
 Placeholder.Container = tw.div`

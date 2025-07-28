@@ -39,7 +39,6 @@ export default async function SidebarPage() {
           <ListTitle />
           {users?.map((user) => {
             const { id, name, email, avatar } = user
-
             return (
               <List.Row key={id} className='flex items-center justify-between'>
                 <$.Row.Left>

@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import { FaRegHeart } from 'react-icons/fa'
-import { Avatar, Button, Card, Mask } from 'rsc-daisyui'
+import { Avatar, Card, Mask } from 'rsc-daisyui'
 import { PhotoActions } from '@/actions'
+import { LikeButton } from '@/app/[locale]/dashboard/_components'
 import { Timeline as $ } from '@/app/[locale]/dashboard/_styled'
 import { Texts } from '@/lib/texts'
 
@@ -34,9 +34,7 @@ export default async function TimelinePage() {
                 </$.Right.Container>
               </Card.Title>
               <Card.Actions className='gap-1'>
-                <Button shape='square' size='sm' link>
-                  <FaRegHeart className='size-4/5 text-pink-500' />
-                </Button>
+                <LikeButton photoId={id} />
               </Card.Actions>
               <$.Card.Likes>{_count.likes} likes</$.Card.Likes>
               {_count.comments > 0 ? (

@@ -1,6 +1,7 @@
 'use server'
 
 import { authClient } from '@/lib/safe-action'
+import { SchemaWithId } from '@/lib/validations'
 import { prisma } from '@/prisma'
 
 export const getSuggestedPhotos = authClient.action(async ({ ctx }) => {
@@ -33,4 +34,11 @@ export const getSuggestedPhotos = authClient.action(async ({ ctx }) => {
   })
 
   return suggestedPhotos
+})
+
+export const giveLike = authClient.schema(SchemaWithId).action(async ({ ctx, parsedInput }) => {
+  const loggedInUserId = ctx.user.id
+  const photoToLikeId = parsedInput.id
+
+  console.log({ loggedInUserId, photoToLikeId })
 })

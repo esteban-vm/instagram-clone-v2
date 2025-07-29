@@ -52,7 +52,7 @@ export default async function SidebarPage() {
                   <$.Row.Name>{name}</$.Row.Name>
                   <$.Row.Email>{email}</$.Row.Email>
                 </$.Row.Center>
-                <FollowButton user={user} users={users} />
+                <FollowButton userId={id} users={users} />
               </List.Row>
             )
           })}

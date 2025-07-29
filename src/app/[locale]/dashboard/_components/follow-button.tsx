@@ -5,16 +5,16 @@ import { RiUserFollowLine } from 'react-icons/ri'
 import { Button, Tooltip } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
 
-export function FollowButton({ user, users }: FollowButtonProps) {
+export function FollowButton({ userId, users }: FollowButtonProps) {
   const { t } = useTranslation('dashboard', { keyPrefix: 'sidebar' })
 
   const { execute, isExecuting, hasSucceeded } = useOptimisticAction(UserActions.followUser, {
     currentState: users,
-    updateFn: (state) => state.filter((u) => u.id !== user.id),
+    updateFn: (state) => state.filter((user) => user.id !== userId),
   })
 
   const isDisabled = isExecuting || hasSucceeded
-  const handleClick = () => execute({ id: user.id })
+  const handleClick = () => execute({ id: userId })
 
   return (
     <Tooltip color='info' position='left' tip={t('follow_button')}>
@@ -26,6 +26,6 @@ export function FollowButton({ user, users }: FollowButtonProps) {
 }
 
 export interface FollowButtonProps {
-  user: UserType
+  userId: string
   users: UserType[]
 }

@@ -28,7 +28,9 @@ export function Navigation({ session }: NavigationProps) {
             <Organisms.MobileMenu />
             <Molecules.HomeLink />
           </>
-        ) : null}
+        ) : (
+          <Molecules.LoadingStart />
+        )}
       </Navbar.Start>
       <Navbar.End>
         {isClient ? (
@@ -36,7 +38,9 @@ export function Navigation({ session }: NavigationProps) {
             <Organisms.DesktopMenu />
             {session && <Molecules.LogoutButton />}
           </>
-        ) : null}
+        ) : (
+          <Molecules.LoadingEnd />
+        )}
       </Navbar.End>
     </Navbar>
   )

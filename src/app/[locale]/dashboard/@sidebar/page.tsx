@@ -1,19 +1,19 @@
 import Image from 'next/image'
 import { Avatar, List, Mask } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
-import { FollowButton, ListTitle } from '@/app/[locale]/dashboard/_components'
+import { FollowButton, ListTitle, UsersAlert } from '@/app/[locale]/dashboard/_components'
 import { Sidebar as $ } from '@/app/[locale]/dashboard/_styled'
 import { auth } from '@/auth'
 import { Texts } from '@/lib/texts'
 
 export default async function SidebarPage() {
   const session = await auth()
-
   if (!session) return null
   const { avatar, name, email } = session.user
 
   const result = await UserActions.getSuggestedUsers()
-  const users = result?.data
+  const users = result?.data ?? []
+  const hasUsers = users.length > 0
 
   return (
     <$.Page.Container>
@@ -35,28 +35,32 @@ export default async function SidebarPage() {
         </$.Top.Right>
       </$.Top.Container>
       <section>
-        <List>
-          <ListTitle />
-          {users?.map((user) => {
-            const { id, name, email, avatar } = user
-            return (
-              <List.Row key={id} className='flex items-center justify-between'>
-                <$.Row.Left>
-                  {avatar ? (
-                    <Image alt={`${name}'s avatar`} src={avatar} fill />
-                  ) : (
-                    <$.Row.Placeholder>{Texts.Transformations.truncate(name)}</$.Row.Placeholder>
-                  )}
-                </$.Row.Left>
-                <$.Row.Center>
-                  <$.Row.Name>{name}</$.Row.Name>
-                  <$.Row.Email>{email}</$.Row.Email>
-                </$.Row.Center>
-                <FollowButton userId={id} users={users} />
-              </List.Row>
-            )
-          })}
-        </List>
+        {!hasUsers ? (
+          <UsersAlert />
+        ) : (
+          <List>
+            <ListTitle />
+            {users.map((user) => {
+              const { id, name, email, avatar } = user
+              return (
+                <List.Row key={id} className='flex items-center justify-between'>
+                  <$.Row.Left>
+                    {avatar ? (
+                      <Image alt={`${name}'s avatar`} src={avatar} fill />
+                    ) : (
+                      <$.Row.Placeholder>{Texts.Transformations.truncate(name)}</$.Row.Placeholder>
+                    )}
+                  </$.Row.Left>
+                  <$.Row.Center>
+                    <$.Row.Name>{name}</$.Row.Name>
+                    <$.Row.Email>{email}</$.Row.Email>
+                  </$.Row.Center>
+                  <FollowButton userId={id} users={users} />
+                </List.Row>
+              )
+            })}
+          </List>
+        )}
       </section>
     </$.Page.Container>
   )

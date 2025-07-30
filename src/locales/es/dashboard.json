@@ -2,5 +2,8 @@
   "sidebar": {
     "list_title": "Sugerencias para ti",
     "follow_button": "Seguir usuario"
+  },
+  "timeline": {
+    "photos_alert": "Sigue a personas para ver sus fotos"
   }
 }

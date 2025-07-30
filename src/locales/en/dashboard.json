@@ -2,5 +2,8 @@
   "sidebar": {
     "list_title": "Suggestions for you",
     "follow_button": "Follow user"
+  },
+  "timeline": {
+    "photos_alert": "Follow people to see their photos"
   }
 }

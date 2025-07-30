@@ -39,7 +39,6 @@ Loading.Container = tw.div`
 
 Page.Container = tw.section`
   grid
-  grid-rows-2
   gap-1.5
   p-1.5
   md:grid-cols-2

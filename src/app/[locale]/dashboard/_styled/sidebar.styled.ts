@@ -29,10 +29,11 @@ Loading.Right = tw.div`
 `
 
 Page.Container = tw.aside`
+  order-first
   w-full
-  max-w-3xl
-  self-start
+  max-w-2xl
   justify-self-center
+  lg:order-last
   [&_img]:object-cover
   [&_img]:object-center
   [&_img]:contrast-125

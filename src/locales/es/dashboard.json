@@ -1,9 +1,16 @@
 {
   "sidebar": {
     "list_title": "Sugerencias para ti",
-    "follow_button": "Seguir usuario"
+    "follow_button": "Seguir usuario",
+    "users_alert": {
+      "title": "Fin de la lista",
+      "text": "No se encontraron más usuarios"
+    }
   },
   "timeline": {
-    "photos_alert": "Sigue a personas para ver sus fotos"
+    "photos_alert": {
+      "title": "Sin resultados",
+      "text": "Sigue a otros usuarios para ver sus fotos"
+    }
   }
 }

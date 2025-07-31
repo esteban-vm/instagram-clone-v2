@@ -40,25 +40,38 @@ async function insertAdditionalData() {
   const user1 = await prisma.user.findUniqueOrThrow({ where: { email: users[0].email, active: true } })
   const user2 = await prisma.user.findUniqueOrThrow({ where: { email: users[1].email, active: true } })
   const user3 = await prisma.user.findUniqueOrThrow({ where: { email: users[2].email, active: true } })
+  const user4 = await prisma.user.findUniqueOrThrow({ where: { email: users[3].email, active: true } })
+  const user5 = await prisma.user.findUniqueOrThrow({ where: { email: users[4].email, active: true } })
 
-  // await prisma.follow.create({ data: { followerId: user1.id, followingId: user2.id } })
+  // await prisma.user.update({
+  //   where: { id: user1.id },
+  //   data: {
+  //     followers: {
+  //       createMany: { data: [{ followingId: user2.id }, { followingId: user3.id }] },
+  //     },
+  //   },
+  // })
 
-  await prisma.user.update({
-    where: { id: user1.id },
-    data: {
-      followers: {
-        createMany: { data: [{ followingId: user2.id }, { followingId: user3.id }] },
-      },
-    },
+  await prisma.follow.createMany({
+    data: [
+      { followerId: user1.id, followingId: user2.id },
+      { followerId: user1.id, followingId: user3.id },
+      { followerId: user1.id, followingId: user4.id },
+    ],
   })
 
-  const [photo1, photo2, photo3] = await prisma.photo.createManyAndReturn({
+  const [photo1, photo2, photo3, , photo5, , photo7] = await prisma.photo.createManyAndReturn({
     data: [
-      { image: '/images/photos/1.jpg', caption: 'Test caption 1', ownerId: user1.id },
-      { image: '/images/photos/2.jpg', caption: 'Test caption 2', ownerId: user1.id },
-      { image: '/images/photos/3.jpg', caption: 'Test caption 3', ownerId: user1.id },
-      { image: '/images/photos/4.jpg', caption: 'Test caption 4', ownerId: user2.id },
-      { image: '/images/photos/5.jpg', caption: 'Test caption 5', ownerId: user2.id },
+      { image: '/images/photos/photo1.webp', caption: 'Test caption 1', ownerId: user1.id },
+      { image: '/images/photos/photo2.webp', caption: 'Test caption 2', ownerId: user1.id },
+      { image: '/images/photos/photo3.webp', caption: 'Test caption 3', ownerId: user1.id },
+      { image: '/images/photos/photo4.webp', caption: 'Test caption 4', ownerId: user2.id },
+      { image: '/images/photos/photo5.webp', caption: 'Test caption 5', ownerId: user2.id },
+      { image: '/images/photos/photo6.webp', caption: 'Test caption 6', ownerId: user3.id },
+      { image: '/images/photos/photo7.webp', caption: 'Test caption 7', ownerId: user3.id },
+      { image: '/images/photos/photo8.webp', caption: 'Test caption 8', ownerId: user4.id },
+      { image: '/images/photos/photo9.webp', caption: 'Test caption 9', ownerId: user4.id },
+      { image: '/images/photos/photo10.webp', caption: 'Test caption 10', ownerId: user5.id },
     ],
   })
 
@@ -67,13 +80,21 @@ async function insertAdditionalData() {
       { authorId: user2.id, photoId: photo1.id, content: 'Test comment 1' },
       { authorId: user2.id, photoId: photo2.id, content: 'Test comment 2' },
       { authorId: user3.id, photoId: photo3.id, content: 'Test comment 3' },
+      { authorId: user4.id, photoId: photo3.id, content: 'Test comment 4' },
+      { authorId: user5.id, photoId: photo2.id, content: 'Test comment 5' },
+      { authorId: user4.id, photoId: photo5.id, content: 'Test comment 6' },
+      { authorId: user2.id, photoId: photo7.id, content: 'Test comment 7' },
     ],
   })
 
   await prisma.like.createMany({
     data: [
+      { userId: user1.id, photoId: photo3.id },
       { userId: user3.id, photoId: photo2.id },
       { userId: user2.id, photoId: photo1.id },
+      { userId: user5.id, photoId: photo5.id },
+      { userId: user3.id, photoId: photo5.id },
+      { userId: user4.id, photoId: photo7.id },
     ],
   })
 }

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Avatar, Card, Mask } from 'rsc-daisyui'
 import { PhotoActions } from '@/actions'
-import { LikeButton, PhotosAlert } from '@/app/[locale]/dashboard/_components'
+import { LikeButton, PhotoDate, PhotosAlert } from '@/app/[locale]/dashboard/_components'
 import { Timeline as $ } from '@/app/[locale]/dashboard/_styled'
 import { Texts } from '@/lib/texts'
 
@@ -16,7 +16,7 @@ export default async function TimelinePage() {
         <PhotosAlert />
       ) : (
         photos.map((photo) => {
-          const { id, image, caption, comments, likes, owner, _count } = photo
+          const { id, image, caption, comments, likes, owner, createdAt, _count } = photo
           const { name, avatar } = owner
           return (
             <Card key={id} className='mx-auto w-full max-w-2xl shadow-md' border>
@@ -57,6 +57,9 @@ export default async function TimelinePage() {
                     })}
                   </ul>
                 ) : null}
+                <Card.Actions>
+                  <PhotoDate date={createdAt} />
+                </Card.Actions>
               </Card.Body>
             </Card>
           )

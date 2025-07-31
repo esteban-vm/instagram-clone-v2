@@ -25,6 +25,7 @@
     "@react-three/drei": "^10.0.7",
     "@react-three/fiber": "^9.1.2",
     "bcryptjs": "^3.0.2",
+    "date-fns": "^4.1.0",
     "i18next": "^25.2.1",
     "i18next-resources-to-backend": "^1.2.1",
     "next": "15.3.4",

@@ -6,10 +6,6 @@ export function Page() {}
 export function Placeholder() {}
 export function Right() {}
 
-Card.Comments = tw.ul`
-  ml-1.5
-`
-
 Card.Image = tw.figure`
   relative
   aspect-square
@@ -18,12 +14,6 @@ Card.Image = tw.figure`
 
 Card.Item = tw.li`
   text-sm
-`
-
-Card.Likes = tw.small`
-  ml-1.5
-  text-xs
-  font-semibold
 `
 
 Card.Name = tw.span`
@@ -39,6 +29,7 @@ Loading.Container = tw.div`
 
 Page.Container = tw.section`
   grid
+  h-fit
   gap-1.5
   p-1.5
   md:grid-cols-2
@@ -46,7 +37,7 @@ Page.Container = tw.section`
 `
 
 Placeholder.Container = tw.div`
-  w-14
+  w-16
   rounded-full
   bg-primary
   text-primary-content

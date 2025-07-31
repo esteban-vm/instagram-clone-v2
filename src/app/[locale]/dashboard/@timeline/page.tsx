@@ -20,11 +20,11 @@ export default async function TimelinePage() {
           const { name, avatar } = owner
           return (
             <Card key={id} className='mx-auto w-full max-w-2xl shadow-md' border>
-              <Card.Body className='items-start gap-1 px-3.5 pt-3.5 pb-1.5'>
+              <Card.Body className='items-start'>
                 <Card.Title>
                   <Avatar placeholder={!avatar}>
                     {avatar ? (
-                      <Mask as='div' className='relative w-14' shape='circle'>
+                      <Mask as='div' className='relative w-16' shape='circle'>
                         <Image alt={`${name}'s avatar`} src={avatar} fill />
                       </Mask>
                     ) : (
@@ -37,12 +37,16 @@ export default async function TimelinePage() {
                     <$.Right.Content>{name}</$.Right.Content>
                   </$.Right.Container>
                 </Card.Title>
-                <Card.Actions className='gap-1'>
-                  <LikeButton likes={likes} photoId={id} />
+              </Card.Body>
+              <$.Card.Image>
+                <Image alt={caption} className='object-cover contrast-125' src={image} fill />
+              </$.Card.Image>
+              <Card.Body className='h-full items-start'>
+                <Card.Actions>
+                  <LikeButton likes={likes} likesCount={_count.likes} photoId={id} />
                 </Card.Actions>
-                <$.Card.Likes>{_count.likes} likes</$.Card.Likes>
                 {_count.comments > 0 ? (
-                  <$.Card.Comments>
+                  <ul>
                     {comments.map((comment) => {
                       const { id, content, author } = comment
                       return (
@@ -51,12 +55,9 @@ export default async function TimelinePage() {
                         </$.Card.Item>
                       )
                     })}
-                  </$.Card.Comments>
+                  </ul>
                 ) : null}
               </Card.Body>
-              <$.Card.Image>
-                <Image alt={caption} className='object-cover' src={image} fill />
-              </$.Card.Image>
             </Card>
           )
         })

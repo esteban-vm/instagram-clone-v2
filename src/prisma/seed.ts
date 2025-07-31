@@ -1,5 +1,6 @@
 import type { Prisma } from '@prisma/client'
 import { hashSync } from 'bcryptjs'
+import { subDays, subHours, subMinutes } from 'date-fns'
 import { prisma } from '@/prisma'
 
 const users = [
@@ -43,15 +44,6 @@ async function insertAdditionalData() {
   const user4 = await prisma.user.findUniqueOrThrow({ where: { email: users[3].email, active: true } })
   const user5 = await prisma.user.findUniqueOrThrow({ where: { email: users[4].email, active: true } })
 
-  // await prisma.user.update({
-  //   where: { id: user1.id },
-  //   data: {
-  //     followers: {
-  //       createMany: { data: [{ followingId: user2.id }, { followingId: user3.id }] },
-  //     },
-  //   },
-  // })
-
   await prisma.follow.createMany({
     data: [
       { followerId: user1.id, followingId: user2.id },
@@ -62,16 +54,61 @@ async function insertAdditionalData() {
 
   const [photo1, photo2, photo3, , photo5, , photo7] = await prisma.photo.createManyAndReturn({
     data: [
-      { image: '/images/photos/photo1.webp', caption: 'Test caption 1', ownerId: user1.id },
-      { image: '/images/photos/photo2.webp', caption: 'Test caption 2', ownerId: user1.id },
-      { image: '/images/photos/photo3.webp', caption: 'Test caption 3', ownerId: user1.id },
-      { image: '/images/photos/photo4.webp', caption: 'Test caption 4', ownerId: user2.id },
-      { image: '/images/photos/photo5.webp', caption: 'Test caption 5', ownerId: user2.id },
-      { image: '/images/photos/photo6.webp', caption: 'Test caption 6', ownerId: user3.id },
-      { image: '/images/photos/photo7.webp', caption: 'Test caption 7', ownerId: user3.id },
-      { image: '/images/photos/photo8.webp', caption: 'Test caption 8', ownerId: user4.id },
-      { image: '/images/photos/photo9.webp', caption: 'Test caption 9', ownerId: user4.id },
-      { image: '/images/photos/photo10.webp', caption: 'Test caption 10', ownerId: user5.id },
+      {
+        image: '/images/photos/photo1.webp',
+        caption: 'Test caption 1',
+        ownerId: user1.id,
+        createdAt: subHours(new Date(), 2),
+      },
+      {
+        image: '/images/photos/photo2.webp',
+        caption: 'Test caption 2',
+        ownerId: user1.id,
+        createdAt: subHours(new Date(), 3),
+      },
+      {
+        image: '/images/photos/photo3.webp',
+        caption: 'Test caption 3',
+        ownerId: user1.id,
+        createdAt: subDays(new Date(), 2),
+      },
+      {
+        image: '/images/photos/photo4.webp',
+        caption: 'Test caption 4',
+        ownerId: user2.id,
+      },
+      {
+        image: '/images/photos/photo5.webp',
+        caption: 'Test caption 5',
+        ownerId: user2.id,
+      },
+      {
+        image: '/images/photos/photo6.webp',
+        caption: 'Test caption 6',
+        ownerId: user3.id,
+        createdAt: subDays(new Date(), 1),
+      },
+      {
+        image: '/images/photos/photo7.webp',
+        caption: 'Test caption 7',
+        ownerId: user3.id,
+      },
+      {
+        image: '/images/photos/photo8.webp',
+        caption: 'Test caption 8',
+        ownerId: user4.id,
+      },
+      {
+        image: '/images/photos/photo9.webp',
+        caption: 'Test caption 9',
+        ownerId: user4.id,
+        createdAt: subMinutes(new Date(), 50),
+      },
+      {
+        image: '/images/photos/photo10.webp',
+        caption: 'Test caption 10',
+        ownerId: user5.id,
+      },
     ],
   })
 

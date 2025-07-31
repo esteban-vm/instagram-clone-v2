@@ -39,15 +39,6 @@ Page.Container = tw.aside`
   [&_img]:contrast-125
 `
 
-Page.ListTitle = tw.span`
-  p-4
-  pb-2
-  text-xs
-  font-semibold
-  tracking-wide
-  italic
-`
-
 Placeholder.Container = tw.div`
   w-20
   rounded-full

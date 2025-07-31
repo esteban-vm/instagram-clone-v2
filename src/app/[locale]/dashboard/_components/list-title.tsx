@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { Sidebar as $ } from '@/app/[locale]/dashboard/_styled'
 
 export function ListTitle() {
   const { t } = useTranslation('dashboard', { keyPrefix: 'sidebar' })
-  return <$.Page.ListTitle>{t('list_title')}</$.Page.ListTitle>
+  return <span className='p-4 pb-2 text-xs font-semibold tracking-wide italic'>{t('list_title')}</span>
 }

@@ -1,6 +1,6 @@
 import type { Like } from '@prisma/client'
 import { useAction } from 'next-safe-action/hooks'
-import { FaRegHeart } from 'react-icons/fa'
+import { FaHeart } from 'react-icons/fa'
 import { Button } from 'rsc-daisyui'
 import { PhotoActions } from '@/actions'
 import { useCurrentSession } from '@/hooks'
@@ -15,7 +15,7 @@ export function LikeButton({ photoId, likes }: LikeButtonProps) {
 
   return (
     <Button disabled={isExecuting} shape='square' size='sm' link onClick={handleClick}>
-      <FaRegHeart className={cn('size-4/5', isLiked ? 'text-pink-500' : 'text-neutral-500')} />
+      <FaHeart className={cn('size-4/5', isLiked ? 'text-pink-500' : 'text-neutral-500')} />
     </Button>
   )
 }

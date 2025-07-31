@@ -1,22 +1,7 @@
-import type { Prisma } from '@prisma/client'
 import { hashSync } from 'bcryptjs'
 import { subDays, subHours, subMinutes } from 'date-fns'
+import { MOCK_USERS } from '@/lib/constants'
 import { prisma } from '@/prisma'
-
-const users = [
-  { email: 'user1@example.com', name: 'Daniel', password: 'Abcd123*', avatar: '/images/avatars/male1.webp' },
-  { email: 'user2@example.com', name: 'Ana', password: 'Abcd123*', avatar: '/images/avatars/female1.webp' },
-  { email: 'user3@example.com', name: 'Clara', password: 'Abcd123*', avatar: '/images/avatars/female2.webp' },
-  { email: 'user4@example.com', name: 'Sergio', password: 'Abcd123*', avatar: '/images/avatars/male2.webp' },
-  { email: 'user5@example.com', name: 'Helena', password: 'Abcd123*', avatar: '/images/avatars/female3.webp' },
-  { email: 'user6@example.com', name: 'Fernando', password: 'Abcd123*', avatar: '/images/avatars/male3.webp' },
-  { email: 'user7@example.com', name: 'Antonio', password: 'Abcd123*' },
-  { email: 'user8@example.com', name: 'Laura', password: 'Abcd123*', avatar: '/images/avatars/female4.webp' },
-  { email: 'user9@example.com', name: 'María', password: 'Abcd123*', avatar: '/images/avatars/female5.webp' },
-  { email: 'user10@example.com', name: 'Francisco', password: 'Abcd123*' },
-  { email: 'user11@example.com', name: 'Esteban', password: 'Abcd123*' },
-  { email: 'user12@example.com', name: 'Aldo', password: 'Abcd123*' },
-] as const satisfies Prisma.UserCreateManyInput[]
 
 async function cleanDataBase() {
   await prisma.comment.deleteMany({})
@@ -28,7 +13,7 @@ async function cleanDataBase() {
 
 async function insertInitialData() {
   await prisma.user.createMany({
-    data: users.map((user) => {
+    data: MOCK_USERS.map((user) => {
       return {
         ...user,
         password: hashSync(user.password),
@@ -38,11 +23,11 @@ async function insertInitialData() {
 }
 
 async function insertAdditionalData() {
-  const user1 = await prisma.user.findUniqueOrThrow({ where: { email: users[0].email, active: true } })
-  const user2 = await prisma.user.findUniqueOrThrow({ where: { email: users[1].email, active: true } })
-  const user3 = await prisma.user.findUniqueOrThrow({ where: { email: users[2].email, active: true } })
-  const user4 = await prisma.user.findUniqueOrThrow({ where: { email: users[3].email, active: true } })
-  const user5 = await prisma.user.findUniqueOrThrow({ where: { email: users[4].email, active: true } })
+  const user1 = await prisma.user.findUniqueOrThrow({ where: { email: MOCK_USERS[0].email, active: true } })
+  const user2 = await prisma.user.findUniqueOrThrow({ where: { email: MOCK_USERS[1].email, active: true } })
+  const user3 = await prisma.user.findUniqueOrThrow({ where: { email: MOCK_USERS[2].email, active: true } })
+  const user4 = await prisma.user.findUniqueOrThrow({ where: { email: MOCK_USERS[3].email, active: true } })
+  const user5 = await prisma.user.findUniqueOrThrow({ where: { email: MOCK_USERS[4].email, active: true } })
 
   await prisma.follow.createMany({
     data: [

@@ -2,25 +2,25 @@ import type { Prisma } from '@prisma/client'
 import type { Molecules } from '@/app/[locale]/(auth)/_components'
 import { FaEnvelope, FaLock, FaUnlock, FaUser } from 'react-icons/fa6'
 
-export const APP_DATA = <const>{
+export const APP_DATA = {
   APP_NAME: 'Instagram Clone',
   AUTHOR_NAME: 'Esteban V.M.',
-}
+} as const satisfies Record<Uppercase<string>, string>
 
-export const APP_ROUTES = <const>{
+export const APP_ROUTES = {
   HOME: '/',
   SCENE: `/scene`,
   LOGIN: '/login',
   REGISTER: '/register',
   DASHBOARD: '/dashboard',
-}
+} as const satisfies Record<Uppercase<string>, `/${string}`>
 
-export const CUSTOM_AUTH_ERRORS = <const>{
+export const CUSTOM_AUTH_ERRORS = {
   USER_ALREADY_EXISTS: 'User already exists',
   USER_DOES_NOT_EXIST: 'User does not exist',
   INVALID_PASSWORD: 'Invalid password',
   USER_NOT_LOGGED_IN: 'User not logged in',
-}
+} as const satisfies Record<Uppercase<string>, string>
 
 export const INPUT_PROPS = {
   EMAIL: {

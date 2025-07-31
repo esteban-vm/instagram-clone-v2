@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Avatar, Card, Mask } from 'rsc-daisyui'
 import { PhotoActions } from '@/actions'
-import { LikeButton, PhotoDate, PhotosAlert } from '@/app/[locale]/dashboard/_components'
+import { CommentButton, LikeButton, PhotoDate, PhotosAlert } from '@/app/[locale]/dashboard/_components'
 import { Timeline as $ } from '@/app/[locale]/dashboard/_styled'
 import { Texts } from '@/lib/texts'
 
@@ -41,9 +41,10 @@ export default async function TimelinePage() {
               <$.Card.Image>
                 <Image alt={caption} className='object-cover contrast-125' src={image} fill />
               </$.Card.Image>
-              <Card.Body className='h-full items-start'>
-                <Card.Actions>
+              <Card.Body className='h-full items-start justify-around'>
+                <Card.Actions className='gap-3.5'>
                   <LikeButton likes={likes} likesCount={_count.likes} photoId={id} />
+                  <CommentButton commentsCount={_count.comments} />
                 </Card.Actions>
                 {_count.comments > 0 ? (
                   <ul>
@@ -56,7 +57,9 @@ export default async function TimelinePage() {
                       )
                     })}
                   </ul>
-                ) : null}
+                ) : (
+                  <span>no comments yet</span>
+                )}
                 <Card.Actions>
                   <PhotoDate date={createdAt} />
                 </Card.Actions>

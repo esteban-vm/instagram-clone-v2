@@ -49,9 +49,9 @@ export const giveOrRemoveLike = authClient.schema(SchemaWithId).action(async ({ 
   })
 
   if (updatedPhoto) {
-    const alreadyLiked = updatedPhoto.likes.some(({ userId }) => userId === loggedInUserId)
+    const isLiked = updatedPhoto.likes.some((like) => like.userId === loggedInUserId)
 
-    if (!alreadyLiked) {
+    if (!isLiked) {
       await prisma.like.create({
         data: {
           photoId,

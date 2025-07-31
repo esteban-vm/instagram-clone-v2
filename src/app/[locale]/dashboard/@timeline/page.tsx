@@ -16,7 +16,7 @@ export default async function TimelinePage() {
         <PhotosAlert />
       ) : (
         photos.map((photo) => {
-          const { id, image, caption, comments, owner, _count } = photo
+          const { id, image, caption, comments, likes, owner, _count } = photo
           const { name, avatar } = owner
           return (
             <Card key={id} className='mx-auto w-full max-w-2xl shadow-md' border>
@@ -38,7 +38,7 @@ export default async function TimelinePage() {
                   </$.Right.Container>
                 </Card.Title>
                 <Card.Actions className='gap-1'>
-                  <LikeButton photoId={id} />
+                  <LikeButton likes={likes} photoId={id} />
                 </Card.Actions>
                 <$.Card.Likes>{_count.likes} likes</$.Card.Likes>
                 {_count.comments > 0 ? (

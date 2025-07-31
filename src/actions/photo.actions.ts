@@ -1,5 +1,7 @@
 'use server'
 
+import { revalidatePath } from 'next/cache'
+import { APP_ROUTES } from '@/lib/constants'
 import { authClient } from '@/lib/safe-action'
 import { SchemaWithId } from '@/lib/validations'
 import { prisma } from '@/prisma'
@@ -21,6 +23,7 @@ export const getSuggestedPhotos = authClient.action(async ({ ctx }) => {
     include: {
       _count: { select: { likes: true, comments: true } },
       owner: { omit: { password: true } },
+      likes: true,
       comments: {
         take: 3,
         orderBy: { createdAt: 'desc' },
@@ -36,9 +39,37 @@ export const getSuggestedPhotos = authClient.action(async ({ ctx }) => {
   return suggestedPhotos
 })
 
-export const giveLike = authClient.schema(SchemaWithId).action(async ({ ctx, parsedInput }) => {
+export const giveOrRemoveLike = authClient.schema(SchemaWithId).action(async ({ ctx, parsedInput }) => {
   const loggedInUserId = ctx.user.id
-  const photoToLikeId = parsedInput.id
+  const photoId = parsedInput.id
 
-  console.log({ loggedInUserId, photoToLikeId })
+  const updatedPhoto = await prisma.photo.findUnique({
+    where: { id: photoId },
+    include: { likes: true },
+  })
+
+  if (updatedPhoto) {
+    const alreadyLiked = updatedPhoto.likes.some(({ userId }) => userId === loggedInUserId)
+
+    if (!alreadyLiked) {
+      await prisma.like.create({
+        data: {
+          photoId,
+          userId: loggedInUserId,
+        },
+      })
+    } else {
+      await prisma.like.delete({
+        where: {
+          photoId_userId: {
+            photoId,
+            userId: loggedInUserId,
+          },
+        },
+      })
+    }
+  }
+
+  revalidatePath(APP_ROUTES.DASHBOARD, 'layout')
+  return updatedPhoto
 })

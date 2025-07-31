@@ -13,7 +13,7 @@ export const APP_ROUTES = {
   LOGIN: '/login',
   REGISTER: '/register',
   DASHBOARD: '/dashboard',
-} as const satisfies Record<Uppercase<string>, `/${string}`>
+} as const satisfies Record<Uppercase<string>, `/${Lowercase<string>}`>
 
 export const CUSTOM_AUTH_ERRORS = {
   USER_ALREADY_EXISTS: 'User already exists',

@@ -13,7 +13,13 @@ Card.Image = tw.figure`
 `
 
 Card.Item = tw.li`
+  w-full
+  truncate
   text-sm
+`
+
+Card.List = tw.ul`
+  w-full
 `
 
 Card.Name = tw.span`

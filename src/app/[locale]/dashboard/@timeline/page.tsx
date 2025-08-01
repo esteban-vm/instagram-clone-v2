@@ -51,8 +51,7 @@ export default async function TimelinePage() {
                     const { id, content, author } = comment
                     return (
                       <$.Card.Item key={id}>
-                        <$.Card.Name>{author.name}:</$.Card.Name> {content} Lorem ipsum dolor, sit amet consectetur
-                        adipisicing elit. Aliquid, adipisci.
+                        <$.Card.Name>{author.name}:</$.Card.Name> {content}
                       </$.Card.Item>
                     )
                   })}

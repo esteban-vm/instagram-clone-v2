@@ -5,6 +5,14 @@ import type { IconType } from 'react-icons/lib'
 import { useId } from 'react'
 import { Fieldset, Input, Validator } from 'rsc-daisyui'
 
+export type FormInputBaseProps = Omit<JSX.IntrinsicElements['input'], 'id' | 'children'>
+
+export interface FormInputProps extends FormInputBaseProps {
+  icon: IconType
+  label: string
+  error?: string
+}
+
 export function FormInput({ icon: Icon, label, error, name, ...rest }: FormInputProps) {
   const id = useId()
 
@@ -22,12 +30,4 @@ export function FormInput({ icon: Icon, label, error, name, ...rest }: FormInput
       </Validator.Hint>
     </>
   )
-}
-
-export type FormInputBaseProps = Omit<JSX.IntrinsicElements['input'], 'id' | 'children'>
-
-export interface FormInputProps extends FormInputBaseProps {
-  icon: IconType
-  label: string
-  error?: string
 }

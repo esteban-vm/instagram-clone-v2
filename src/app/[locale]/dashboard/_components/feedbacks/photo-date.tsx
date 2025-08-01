@@ -4,6 +4,10 @@ import { useTranslation } from 'react-i18next'
 import { FaRegClock } from 'react-icons/fa'
 import { i18nConfig } from '@/i18n.config'
 
+export interface PhotoDateProps {
+  date: Date
+}
+
 export function PhotoDate({ date }: PhotoDateProps) {
   const { i18n } = useTranslation()
   const currentLocale = i18n.language
@@ -19,8 +23,4 @@ export function PhotoDate({ date }: PhotoDateProps) {
       })}
     </small>
   )
-}
-
-export interface PhotoDateProps {
-  date: Date
 }

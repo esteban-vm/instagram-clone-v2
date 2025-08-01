@@ -19,8 +19,11 @@ const password = z
   .trim()
   .refine(Texts.Validations.isNotEmpty, { params: { i18n: 'password_empty' } })
 
-export const LoginSchema = EmailSchema.extend({ password })
 export type LoginSchemaType = z.infer<typeof LoginSchema>
+export type RegisterSchemaType = z.infer<typeof RegisterSchema>
+export type SchemaWithIdType = z.infer<typeof SchemaWithId>
+
+export const LoginSchema = EmailSchema.extend({ password })
 
 export const RegisterSchema = EmailSchema.extend({
   name: z
@@ -48,8 +51,4 @@ export const RegisterSchema = EmailSchema.extend({
   path: ['confirmPassword'],
   params: { i18n: 'password_confirmation_invalid' },
 })
-
-export type RegisterSchemaType = z.infer<typeof RegisterSchema>
-
 export const SchemaWithId = z.object({ id: z.string() })
-export type SchemaWithIdType = z.infer<typeof SchemaWithId>

@@ -5,6 +5,11 @@ import { RiUserFollowLine } from 'react-icons/ri'
 import { Button, Tooltip } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
 
+export interface FollowButtonProps {
+  userId: string
+  users: UserType[]
+}
+
 export function FollowButton({ userId, users }: FollowButtonProps) {
   const { t } = useTranslation('dashboard', { keyPrefix: 'sidebar' })
 
@@ -23,9 +28,4 @@ export function FollowButton({ userId, users }: FollowButtonProps) {
       </Button>
     </Tooltip>
   )
-}
-
-export interface FollowButtonProps {
-  userId: string
-  users: UserType[]
 }

@@ -6,6 +6,12 @@ import { PhotoActions } from '@/actions'
 import { useCurrentSession } from '@/hooks'
 import { cn } from '@/lib/tw-utils'
 
+export interface LikeButtonProps {
+  photoId: string
+  likes: Like[]
+  likesCount: number
+}
+
 export function LikeButton({ photoId, likes, likesCount }: LikeButtonProps) {
   const { currentSession } = useCurrentSession()
   const isLiked = likes.some((like) => like.userId === currentSession?.user.id)
@@ -23,10 +29,4 @@ export function LikeButton({ photoId, likes, likesCount }: LikeButtonProps) {
       </Button>
     </Indicator>
   )
-}
-
-export interface LikeButtonProps {
-  photoId: string
-  likes: Like[]
-  likesCount: number
 }

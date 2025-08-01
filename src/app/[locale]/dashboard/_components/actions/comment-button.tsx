@@ -1,6 +1,10 @@
 import { FaCommentAlt } from 'react-icons/fa'
 import { Button, Indicator } from 'rsc-daisyui'
 
+export interface CommentButtonProps {
+  commentsCount: number
+}
+
 export function CommentButton({ commentsCount }: CommentButtonProps) {
   return (
     <Indicator>
@@ -12,8 +16,4 @@ export function CommentButton({ commentsCount }: CommentButtonProps) {
       </Button>
     </Indicator>
   )
-}
-
-export interface CommentButtonProps {
-  commentsCount: number
 }

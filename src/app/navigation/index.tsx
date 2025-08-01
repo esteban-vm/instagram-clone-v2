@@ -7,6 +7,10 @@ import { Molecules, Organisms } from '@/app/navigation/_components'
 import { useCurrentSession, useScrollPosition } from '@/hooks'
 import { cn } from '@/lib/tw-utils'
 
+export interface NavigationProps {
+  session: Session | null
+}
+
 export function Navigation({ session }: NavigationProps) {
   const { scrollPosition } = useScrollPosition()
   const [isClient, setIsClient] = useState(false)
@@ -44,8 +48,4 @@ export function Navigation({ session }: NavigationProps) {
       </Navbar.End>
     </Navbar>
   )
-}
-
-export interface NavigationProps {
-  session: Session | null
 }

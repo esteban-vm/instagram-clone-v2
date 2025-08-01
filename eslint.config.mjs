@@ -70,7 +70,13 @@ const eslintConfig = [
           unnamedComponents: 'arrow-function',
         },
       ],
-      'sort-exports/sort-exports': ['warn', { sortDir: 'asc' }],
+      'sort-exports/sort-exports': [
+        'warn',
+        {
+          sortDir: 'asc',
+          sortExportKindFirst: 'type',
+        },
+      ],
     },
   }),
 ]

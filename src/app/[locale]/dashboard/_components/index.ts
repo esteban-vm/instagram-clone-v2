@@ -1,9 +1,3 @@
-'use client'
-
-export * from './comment-button'
-export * from './follow-button'
-export * from './like-button'
-export * from './list-title'
-export * from './photo-date'
-export * from './photos-alert'
-export * from './users-alert'
+export * as Actions from './actions'
+export * as Feedbacks from './feedbacks'
+export * as Inputs from './inputs'

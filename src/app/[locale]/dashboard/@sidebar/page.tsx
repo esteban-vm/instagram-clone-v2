@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Avatar, List, Mask } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
-import { FollowButton, ListTitle, UsersAlert } from '@/app/[locale]/dashboard/_components'
+import { Actions, Feedbacks } from '@/app/[locale]/dashboard/_components'
 import { Sidebar as $ } from '@/app/[locale]/dashboard/_styled'
 import { auth } from '@/auth'
 import { Texts } from '@/lib/texts'
@@ -36,10 +36,10 @@ export default async function SidebarPage() {
       </$.Top.Container>
       <section>
         {!hasUsers ? (
-          <UsersAlert />
+          <Feedbacks.UsersAlert />
         ) : (
           <List>
-            <ListTitle />
+            <Feedbacks.ListTitle />
             {users.map((user) => {
               const { id, name, email, avatar } = user
               return (
@@ -55,7 +55,7 @@ export default async function SidebarPage() {
                     <$.Row.Name>{name}</$.Row.Name>
                     <$.Row.Email>{email}</$.Row.Email>
                   </$.Row.Center>
-                  <FollowButton userId={id} users={users} />
+                  <Actions.FollowButton userId={id} users={users} />
                 </List.Row>
               )
             })}

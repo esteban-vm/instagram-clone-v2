@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Alert } from 'rsc-daisyui'
-import { Common as $ } from '@/app/[locale]/dashboard/_styled'
+import { Components as $ } from '@/app/[locale]/dashboard/_styled'
 
 export function PhotosAlert() {
   const { t } = useTranslation('dashboard', { keyPrefix: 'timeline.photos_alert' })

@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { Avatar, Card, Mask } from 'rsc-daisyui'
 import { PhotoActions } from '@/actions'
-import { CommentButton, LikeButton, PhotoDate, PhotosAlert } from '@/app/[locale]/dashboard/_components'
-import { Timeline as $ } from '@/app/[locale]/dashboard/_styled'
+import { Actions, Feedbacks, Inputs } from '@/app/[locale]/dashboard/_components'
+import { Timeline as Styled } from '@/app/[locale]/dashboard/_styled'
 import { Texts } from '@/lib/texts'
 
 export default async function TimelinePage() {
@@ -11,9 +11,9 @@ export default async function TimelinePage() {
   const hasPhotos = photos.length > 0
 
   return (
-    <$.Page.Container>
+    <Styled.Page.Container>
       {!hasPhotos ? (
-        <PhotosAlert />
+        <Feedbacks.PhotosAlert />
       ) : (
         photos.map((photo) => {
           const { id, image, caption, comments, likes, owner, createdAt, _count } = photo
@@ -28,31 +28,31 @@ export default async function TimelinePage() {
                         <Image alt={`${name}'s avatar`} src={avatar} fill />
                       </Mask>
                     ) : (
-                      <$.Placeholder.Container>
-                        <$.Placeholder.Content>{Texts.Transformations.truncate(name)}</$.Placeholder.Content>
-                      </$.Placeholder.Container>
+                      <Styled.Placeholder.Container>
+                        <Styled.Placeholder.Content>{Texts.Transformations.truncate(name)}</Styled.Placeholder.Content>
+                      </Styled.Placeholder.Container>
                     )}
                   </Avatar>
-                  <$.Right.Container>
-                    <$.Right.Content>{name}</$.Right.Content>
-                  </$.Right.Container>
+                  <Styled.Right.Container>
+                    <Styled.Right.Content>{name}</Styled.Right.Content>
+                  </Styled.Right.Container>
                 </Card.Title>
               </Card.Body>
-              <$.Card.Image>
+              <Styled.Card.Image>
                 <Image alt={caption} className='object-cover contrast-125' src={image} fill />
-              </$.Card.Image>
+              </Styled.Card.Image>
               <Card.Body className='h-full items-start justify-around'>
                 <Card.Actions className='gap-3.5'>
-                  <LikeButton likes={likes} likesCount={_count.likes} photoId={id} />
-                  <CommentButton commentsCount={_count.comments} />
+                  <Actions.LikeButton likes={likes} likesCount={_count.likes} photoId={id} />
+                  <Actions.CommentButton commentsCount={_count.comments} />
                 </Card.Actions>
-                <$.Card.List>
+                <Styled.Card.List>
                   {comments.map((comment) => {
                     const { id, content, author } = comment
                     return (
-                      <$.Card.Item key={id}>
-                        <$.Card.Name>{author.name}:</$.Card.Name> {content}
-                      </$.Card.Item>
+                      <Styled.Card.Item key={id}>
+                        <Styled.Card.Name>{author.name}:</Styled.Card.Name> {content}
+                      </Styled.Card.Item>
                     )
                   })}
                   {Array(3 - _count.comments)
@@ -60,15 +60,16 @@ export default async function TimelinePage() {
                     .map(() => (
                       <br key={crypto.randomUUID()} />
                     ))}
-                </$.Card.List>
+                </Styled.Card.List>
                 <Card.Actions>
-                  <PhotoDate date={createdAt} />
+                  <Feedbacks.PhotoDate date={createdAt} />
                 </Card.Actions>
+                <Inputs.CommentField />
               </Card.Body>
             </Card>
           )
         })
       )}
-    </$.Page.Container>
+    </Styled.Page.Container>
   )
 }

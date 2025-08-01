@@ -4,7 +4,7 @@ const TextValidations = class {
   static isNotEmpty = (value: string) => !isEmpty(value)
   static isNotEmail = (value: string) => !isEmail(value)
   static isNotStrongPassword = (value: string) => !isStrongPassword(value)
-  static isNotLength = (value: string) => !isLength(value, { min: 4, max: 50 })
+  static isNotCorrectLength = (value: string) => !isLength(value, { min: 4, max: 50 })
 }
 
 const TextTransformations = class {

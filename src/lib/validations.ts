@@ -28,7 +28,7 @@ export const RegisterSchema = EmailSchema.extend({
     .trim()
     .refine(Texts.Validations.isNotEmpty, { params: { i18n: 'name_empty' } })
     .superRefine((value, ctx) => {
-      if (Texts.Validations.isNotLength(value)) {
+      if (Texts.Validations.isNotCorrectLength(value)) {
         ctx.addIssue({ code: z.ZodIssueCode.custom, params: { i18n: 'name_invalid' } })
       }
     })

@@ -106,6 +106,8 @@ async function insertAdditionalData() {
       { authorId: user5.id, photoId: photo2.id, content: 'Test comment 5' },
       { authorId: user4.id, photoId: photo5.id, content: 'Test comment 6' },
       { authorId: user2.id, photoId: photo7.id, content: 'Test comment 7' },
+      { authorId: user3.id, photoId: photo7.id, content: 'Test comment 8' },
+      { authorId: user5.id, photoId: photo7.id, content: 'Test comment 9' },
     ],
   })
 

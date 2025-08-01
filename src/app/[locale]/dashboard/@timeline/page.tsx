@@ -46,20 +46,21 @@ export default async function TimelinePage() {
                   <LikeButton likes={likes} likesCount={_count.likes} photoId={id} />
                   <CommentButton commentsCount={_count.comments} />
                 </Card.Actions>
-                {_count.comments > 0 ? (
-                  <ul>
-                    {comments.map((comment) => {
-                      const { id, content, author } = comment
-                      return (
-                        <$.Card.Item key={id}>
-                          <$.Card.Name>{author.name}:</$.Card.Name> {content}
-                        </$.Card.Item>
-                      )
-                    })}
-                  </ul>
-                ) : (
-                  <span>no comments yet</span>
-                )}
+                <ul>
+                  {comments.map((comment) => {
+                    const { id, content, author } = comment
+                    return (
+                      <$.Card.Item key={id}>
+                        <$.Card.Name>{author.name}:</$.Card.Name> {content}
+                      </$.Card.Item>
+                    )
+                  })}
+                  {Array(3 - _count.comments)
+                    .fill(null)
+                    .map(() => (
+                      <br key={crypto.randomUUID()} />
+                    ))}
+                </ul>
                 <Card.Actions>
                   <PhotoDate date={createdAt} />
                 </Card.Actions>

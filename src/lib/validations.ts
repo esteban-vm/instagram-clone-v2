@@ -24,6 +24,8 @@ export const EmailSchema = z.object({
           params: { i18n: 'email_invalid' },
         })
       }
+
+      return z.NEVER
     }),
 })
 
@@ -50,6 +52,8 @@ export const RegisterSchema = EmailSchema.extend({
           params: { i18n: 'name_invalid' },
         })
       }
+
+      return z.NEVER
     })
     .transform(Texts.Transformations.capitalize),
 
@@ -66,6 +70,8 @@ export const RegisterSchema = EmailSchema.extend({
           params: { i18n: 'password_invalid' },
         })
       }
+
+      return z.NEVER
     }),
 
   confirmPassword: z

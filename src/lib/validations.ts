@@ -16,7 +16,9 @@ export const EmailSchema = z.object({
     .string()
     .trim()
     .toLowerCase()
-    .refine(Texts.Validations.isNotEmpty, { params: { i18n: 'email_empty' } })
+    .refine(Texts.Validations.isNotEmpty, {
+      params: { i18n: 'email_empty' },
+    })
     .superRefine((value, ctx) => {
       if (Texts.Validations.isNotEmail(value)) {
         ctx.addIssue({

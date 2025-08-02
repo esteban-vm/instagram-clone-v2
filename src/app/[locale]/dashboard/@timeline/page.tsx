@@ -19,8 +19,8 @@ export default async function TimelinePage() {
           const { id, image, caption, comments, likes, owner, createdAt, _count } = photo
           const { name, avatar } = owner
           return (
-            <Card key={id} className='mx-auto w-full max-w-2xl shadow-md' border>
-              <Card.Body className='items-start'>
+            <Card key={id} className='mx-auto w-full max-w-2xl pt-2.5 shadow-md' border>
+              <Card.Body className='items-start p-2.5'>
                 <Card.Title>
                   <Avatar placeholder={!avatar}>
                     {avatar ? (
@@ -41,7 +41,7 @@ export default async function TimelinePage() {
               <$.Card.Image>
                 <Image alt={caption} className='object-cover contrast-125' src={image} fill />
               </$.Card.Image>
-              <Card.Body className='h-full items-start justify-around'>
+              <Card.Body className='h-full items-start justify-around gap-0.5 p-2.5 pb-0'>
                 <Card.Actions className='gap-3.5'>
                   <Actions.LikeButton likes={likes} likesCount={_count.likes} photoId={id} />
                   <Actions.CommentButton commentsCount={_count.comments} />
@@ -61,9 +61,7 @@ export default async function TimelinePage() {
                       <br key={crypto.randomUUID()} />
                     ))}
                 </$.Card.List>
-                <Card.Actions>
-                  <Feedbacks.PhotoDate date={createdAt} />
-                </Card.Actions>
+                <Feedbacks.PhotoDate date={createdAt} />
                 <Inputs.CommentField />
               </Card.Body>
             </Card>

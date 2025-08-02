@@ -15,7 +15,7 @@ Card.Image = tw.figure`
 Card.Item = tw.li`
   w-full
   truncate
-  text-sm
+  text-xs
 `
 
 Card.List = tw.ul`

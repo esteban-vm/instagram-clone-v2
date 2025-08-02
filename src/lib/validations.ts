@@ -2,6 +2,7 @@ import { z } from 'zod'
 import { Texts } from '@/lib/texts'
 
 export type CommentSchemaType = z.infer<typeof CommentSchema>
+export type EmailSchemaType = z.infer<typeof EmailSchema>
 export type LoginSchemaType = z.infer<typeof LoginSchema>
 export type RegisterSchemaType = z.infer<typeof RegisterSchema>
 export type SchemaWithIdType = z.infer<typeof SchemaWithId>

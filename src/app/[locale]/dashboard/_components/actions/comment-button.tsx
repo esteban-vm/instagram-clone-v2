@@ -11,7 +11,7 @@ export function CommentButton({ commentsCount }: CommentButtonProps) {
       <Indicator.Badge color='neutral' size='xs'>
         {commentsCount}
       </Indicator.Badge>
-      <Button shape='square' size='sm' link>
+      <Button shape='square' size='sm' disabled link>
         <FaCommentAlt className='size-full text-info' />
       </Button>
     </Indicator>

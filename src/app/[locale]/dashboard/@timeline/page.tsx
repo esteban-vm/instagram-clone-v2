@@ -43,8 +43,8 @@ export default async function TimelinePage() {
               </$.Card.Image>
               <Card.Body className='h-full items-start justify-around gap-0.5 p-2.5 pb-0'>
                 <Card.Actions className='gap-3.5'>
-                  <Actions.LikeButton likes={likes} likesCount={_count.likes} photoId={id} />
-                  <Actions.CommentButton commentsCount={_count.comments} />
+                  <Actions.LikeButton count={_count.likes} likes={likes} photoId={id} />
+                  <Actions.CommentButton count={_count.comments} />
                 </Card.Actions>
                 <$.Card.List>
                   {comments.map((comment) => {

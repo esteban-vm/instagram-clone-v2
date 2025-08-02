@@ -2,14 +2,14 @@ import { FaCommentAlt } from 'react-icons/fa'
 import { Button, Indicator } from 'rsc-daisyui'
 
 export interface CommentButtonProps {
-  commentsCount: number
+  count: number
 }
 
-export function CommentButton({ commentsCount }: CommentButtonProps) {
+export function CommentButton({ count }: CommentButtonProps) {
   return (
     <Indicator>
       <Indicator.Badge color='neutral' size='xs'>
-        {commentsCount}
+        {count}
       </Indicator.Badge>
       <Button shape='square' size='sm' disabled link>
         <FaCommentAlt className='size-full text-info' />

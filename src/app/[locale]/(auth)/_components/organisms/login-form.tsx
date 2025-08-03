@@ -1,5 +1,3 @@
-'use client'
-
 import { useTranslation } from 'react-i18next'
 import { Atoms, Molecules } from '@/app/[locale]/(auth)/_components'
 import { useLoginForm } from '@/hooks'

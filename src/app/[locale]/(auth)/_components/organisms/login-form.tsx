@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Atoms, Molecules } from '@/app/[locale]/(auth)/_components'
 import { useLoginForm } from '@/hooks'
-import { INPUT_PROPS } from '@/lib/constants'
+import { AUTH_INPUT_PROPS } from '@/lib/constants'
 
 export function LoginForm() {
   const { t } = useTranslation('auth')
@@ -10,7 +10,7 @@ export function LoginForm() {
   const { register, formState } = form
   const { isSubmitting, errors } = formState
   const { email, password } = errors
-  const { EMAIL, PASSWORD_SIGNIN } = INPUT_PROPS
+  const { EMAIL, PASSWORD_SIGNIN } = AUTH_INPUT_PROPS
 
   return (
     <Atoms.FormWrapper onSubmit={handleSubmitWithAction}>

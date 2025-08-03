@@ -15,14 +15,7 @@ export const APP_ROUTES = {
   DASHBOARD: '/dashboard',
 } as const satisfies Record<Uppercase<string>, `/${Lowercase<string>}`>
 
-export const CUSTOM_AUTH_ERRORS = {
-  USER_ALREADY_EXISTS: 'User already exists',
-  USER_DOES_NOT_EXIST: 'User does not exist',
-  INVALID_PASSWORD: 'Invalid password',
-  USER_NOT_LOGGED_IN: 'User not logged in',
-} as const satisfies Record<Uppercase<string>, string>
-
-export const INPUT_PROPS = {
+export const AUTH_INPUT_PROPS = {
   EMAIL: {
     type: 'email',
     icon: FaEnvelope,
@@ -50,6 +43,13 @@ export const INPUT_PROPS = {
     autoComplete: 'new-password webauthn',
   },
 } as const satisfies Record<Uppercase<string>, Partial<Molecules.FormInputProps>>
+
+export const CUSTOM_AUTH_ERRORS = {
+  USER_ALREADY_EXISTS: 'User already exists',
+  USER_DOES_NOT_EXIST: 'User does not exist',
+  INVALID_PASSWORD: 'Invalid password',
+  USER_NOT_LOGGED_IN: 'User not logged in',
+} as const satisfies Record<Uppercase<string>, string>
 
 export const MOCK_USERS = [
   {

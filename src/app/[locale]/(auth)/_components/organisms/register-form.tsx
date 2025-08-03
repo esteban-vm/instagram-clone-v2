@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Atoms, Molecules } from '@/app/[locale]/(auth)/_components'
 import { useRegisterForm } from '@/hooks'
-import { INPUT_PROPS } from '@/lib/constants'
+import { AUTH_INPUT_PROPS } from '@/lib/constants'
 
 export function RegisterForm() {
   const { t } = useTranslation('auth')
@@ -10,7 +10,7 @@ export function RegisterForm() {
   const { register, formState } = form
   const { isSubmitting, errors } = formState
   const { email, name, password, confirmPassword } = errors
-  const { EMAIL, NAME, PASSWORD_SIGNUP } = INPUT_PROPS
+  const { EMAIL, NAME, PASSWORD_SIGNUP } = AUTH_INPUT_PROPS
 
   return (
     <Atoms.FormWrapper onSubmit={handleSubmitWithAction}>

@@ -7,7 +7,9 @@
     "password_empty_with_path": "Password must not be empty",
     "password_invalid_with_path": "Password should have at least 8 characters, one lowercase letter, one uppercase letter, one number and one symbol",
     "password_confirmation_empty_with_path": "Password confirmation must not be empty",
-    "password_confirmation_invalid_with_path": "Passwords should match"
+    "password_confirmation_invalid_with_path": "Passwords should match",
+    "comment_empty_with_path": "Comment must not be empty",
+    "comment_invalid_with_path": "Comment must have at least 4 characters and 50 characters at most"
   },
   "toasts": {
     "loading": "Please wait…",

@@ -8,7 +8,23 @@ export type RegisterSchemaType = z.infer<typeof RegisterSchema>
 export type SchemaWithIdType = z.infer<typeof SchemaWithId>
 
 export const CommentSchema = z.object({
-  content: z.string().trim().refine(Texts.Validations.isNotEmpty),
+  photoId: z.string().cuid(),
+  content: z
+    .string()
+    .trim()
+    .refine(Texts.Validations.isNotEmpty, {
+      params: { i18n: 'comment_empty' },
+    })
+    .superRefine((value, ctx) => {
+      if (Texts.Validations.isNotCorrectLength(value)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          params: { i18n: 'comment_invalid' },
+        })
+      }
+
+      return z.NEVER
+    }),
 })
 
 export const EmailSchema = z.object({
@@ -87,4 +103,4 @@ export const RegisterSchema = EmailSchema.extend({
   params: { i18n: 'password_confirmation_invalid' },
 })
 
-export const SchemaWithId = z.object({ id: z.string() })
+export const SchemaWithId = z.object({ id: z.string().cuid() })

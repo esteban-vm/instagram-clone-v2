@@ -7,7 +7,9 @@
     "password_empty_with_path": "La contraseña no puede quedar vacía",
     "password_invalid_with_path": "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un símbolo",
     "password_confirmation_empty_with_path": "La confirmación de la contraseña no puede quedar vacía",
-    "password_confirmation_invalid_with_path": "Las contraseñas deben coincidir"
+    "password_confirmation_invalid_with_path": "Las contraseñas deben coincidir",
+    "comment_empty_with_path": "El comentario no puede quedar vacío",
+    "comment_invalid_with_path": "El comentario debe tener 4 caracteres como mínimo y 50 caracteres como máximo"
   },
   "toasts": {
     "loading": "Por favor, espera…",

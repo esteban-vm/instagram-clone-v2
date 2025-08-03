@@ -1,3 +1,4 @@
+export * from './use-comment-form'
 export * from './use-current-session'
 export * from './use-language-changer'
 export * from './use-login-form'

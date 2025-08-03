@@ -16,8 +16,8 @@ export const CustomAuthError = class extends CredentialsSignin {
   }
 }
 
-export const mapAuthErrors = (t: TFunction<'auth'>) => {
-  const ns: Namespace = 'auth'
+export const mapAuthErrors = (t: TFunction<'common'>) => {
+  const ns: Namespace = 'common'
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const errorMap = makeZodI18nMap({ t, ns })

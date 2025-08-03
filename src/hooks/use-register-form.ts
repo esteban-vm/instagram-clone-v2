@@ -8,8 +8,8 @@ import { Toasts } from '@/lib/toasts'
 import { RegisterSchema } from '@/lib/validations'
 
 export const useRegisterForm = () => {
-  const { t: tToasts } = useTranslation('auth', { keyPrefix: 'feedbacks.toasts' })
-  const { t: tValidations } = useTranslation('auth', { keyPrefix: 'feedbacks.validations' })
+  const { t: tToasts } = useTranslation('common', { keyPrefix: 'toasts' })
+  const { t: tValidations } = useTranslation('common', { keyPrefix: 'validations' })
 
   mapAuthErrors(tValidations)
 

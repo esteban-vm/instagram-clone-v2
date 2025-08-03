@@ -4,10 +4,10 @@ import { FaPaperPlane, FaPen } from 'react-icons/fa6'
 import { Join, Validator } from 'rsc-daisyui'
 import { useCommentForm } from '@/hooks'
 
-export function CommentForm({ photoId, comments }: CommentFormProps) {
+export function CommentForm(props: CommentFormProps) {
   const { t } = useTranslation('dashboard', { keyPrefix: 'timeline.comment_form' })
 
-  const { handleSubmitWithAction, form } = useCommentForm({ photoId, comments })
+  const { handleSubmitWithAction, form } = useCommentForm(props)
   const { register, formState } = form
   const { isSubmitting, errors } = formState
   const error = errors.content?.message

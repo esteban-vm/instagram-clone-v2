@@ -62,7 +62,7 @@ export default async function TimelinePage() {
                     ))}
                 </$.Card.List>
                 <Feedbacks.PhotoDate date={createdAt} />
-                <Forms.CommentForm comments={comments} photoId={id} />
+                <Forms.CommentForm photoId={id} />
               </Card.Body>
             </Card>
           )

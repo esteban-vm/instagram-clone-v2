@@ -1,16 +1,26 @@
-import type { UseCommentFormProps as CommentFormProps } from '@/hooks'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaPaperPlane, FaPen } from 'react-icons/fa6'
 import { Join, Validator } from 'rsc-daisyui'
 import { useCommentForm } from '@/hooks'
 
-export function CommentForm(props: CommentFormProps) {
+export interface CommentFormProps {
+  photoId: string
+}
+
+export function CommentForm({ photoId }: CommentFormProps) {
+  const [isDisabled, setIsDisabled] = useState(true)
   const { t } = useTranslation('dashboard', { keyPrefix: 'timeline.comment_form' })
 
-  const { handleSubmitWithAction, form } = useCommentForm(props)
+  const { handleSubmitWithAction, form } = useCommentForm(photoId)
   const { register, formState } = form
-  const { isSubmitting, errors } = formState
+  const { isSubmitting, isValid, errors } = formState
   const error = errors.content?.message
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsDisabled(false), 1_500)
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <Join as='form' className='flex w-full max-w-2xl gap-1.5' noValidate onSubmit={handleSubmitWithAction}>
@@ -21,16 +31,18 @@ export function CommentForm(props: CommentFormProps) {
             {...register('content')}
             aria-invalid={error ? 'true' : 'false'}
             aria-label={t('aria_label')}
-            disabled={isSubmitting}
+            autoComplete='off'
+            disabled={isDisabled || isSubmitting}
             maxLength={50}
             minLength={4}
             placeholder={t('placeholder')}
+            spellCheck='false'
             type='text'
           />
         </Join.Input>
         <Validator.Hint className='mt-0'>{error}</Validator.Hint>
       </div>
-      <Join.Button color='secondary' disabled={isSubmitting} shape='square' size='sm'>
+      <Join.Button color='secondary' disabled={isDisabled || !isValid} shape='square' size='sm' type='submit'>
         <FaPaperPlane />
       </Join.Button>
     </Join>

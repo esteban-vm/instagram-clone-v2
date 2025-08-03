@@ -1,3 +1,3 @@
 export * as Actions from './actions'
 export * as Feedbacks from './feedbacks'
-export * as Inputs from './inputs'
+export * as Forms from './forms'

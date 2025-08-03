@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Avatar, Card, Mask } from 'rsc-daisyui'
 import { PhotoActions } from '@/actions'
-import { Actions, Feedbacks, Inputs } from '@/app/[locale]/dashboard/_components'
+import { Actions, Feedbacks, Forms } from '@/app/[locale]/dashboard/_components'
 import { Timeline as $ } from '@/app/[locale]/dashboard/_styled'
 import { Texts } from '@/lib/texts'
 
@@ -62,7 +62,7 @@ export default async function TimelinePage() {
                     ))}
                 </$.Card.List>
                 <Feedbacks.PhotoDate date={createdAt} />
-                <Inputs.CommentField />
+                <Forms.CommentForm />
               </Card.Body>
             </Card>
           )

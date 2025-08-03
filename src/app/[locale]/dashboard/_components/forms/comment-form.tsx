@@ -1,7 +1,7 @@
 import { FaPaperPlane, FaPen } from 'react-icons/fa6'
 import { Join, Validator } from 'rsc-daisyui'
 
-export function CommentField() {
+export function CommentForm() {
   return (
     <Join as='form' className='flex w-full max-w-2xl gap-1.5' onSubmit={(event) => event.preventDefault()}>
       <div className='grow'>

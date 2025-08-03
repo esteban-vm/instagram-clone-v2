@@ -26,12 +26,8 @@ export const getSuggestedPhotos = authClient.action(async ({ ctx }) => {
       likes: true,
       comments: {
         take: 3,
+        include: { author: true },
         orderBy: { createdAt: 'desc' },
-        select: {
-          id: true,
-          content: true,
-          author: { select: { name: true } },
-        },
       },
     },
   })

@@ -15,11 +15,11 @@ Card.Image = tw.figure`
 Card.Item = tw.li`
   w-full
   truncate
-  text-xs
 `
 
 Card.List = tw.ul`
   w-full
+  text-xs
 `
 
 Card.Name = tw.span`

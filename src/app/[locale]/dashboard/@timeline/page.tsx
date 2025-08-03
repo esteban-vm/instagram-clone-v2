@@ -19,7 +19,7 @@ export default async function TimelinePage() {
           const { id, image, caption, comments, likes, owner, createdAt, _count } = photo
           const { name, avatar } = owner
           return (
-            <Card key={id} className='mx-auto w-full max-w-2xl pt-2.5 shadow-md' border>
+            <Card key={id} className='mx-auto h-fit w-full max-w-2xl pt-2.5 shadow-md' border>
               <Card.Body className='items-start p-2.5'>
                 <Card.Title>
                   <Avatar placeholder={!avatar}>
@@ -55,14 +55,14 @@ export default async function TimelinePage() {
                       </$.Card.Item>
                     )
                   })}
-                  {Array(3 - _count.comments)
+                  {Array(3 - comments.length)
                     .fill(null)
                     .map(() => (
                       <br key={crypto.randomUUID()} />
                     ))}
                 </$.Card.List>
                 <Feedbacks.PhotoDate date={createdAt} />
-                <Forms.CommentForm />
+                <Forms.CommentForm comments={comments} photoId={id} />
               </Card.Body>
             </Card>
           )

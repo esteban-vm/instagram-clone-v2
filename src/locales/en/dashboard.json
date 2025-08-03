@@ -11,6 +11,10 @@
     "photos_alert": {
       "title": "No results",
       "text": "Follow other users to see their photos"
+    },
+    "comment_form": {
+      "placeholder": "Write your comment",
+      "aria_label": "Enter your comment here"
     }
   }
 }

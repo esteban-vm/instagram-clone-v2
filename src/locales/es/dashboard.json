@@ -11,6 +11,10 @@
     "photos_alert": {
       "title": "Sin resultados",
       "text": "Sigue a otros usuarios para ver sus fotos"
+    },
+    "comment_form": {
+      "placeholder": "Escribe tu comentario",
+      "aria_label": "Ingresa tu comentario aquí"
     }
   }
 }

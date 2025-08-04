@@ -8,7 +8,6 @@ import { useCurrentSession } from '@/hooks'
 import { cn } from '@/lib/tw-utils'
 
 export interface LikeButtonProps extends Actions.CommentButtonProps {
-  photoId: string
   likes: Like[]
 }
 

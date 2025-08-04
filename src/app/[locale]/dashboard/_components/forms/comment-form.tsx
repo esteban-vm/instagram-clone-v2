@@ -33,6 +33,7 @@ export function CommentForm({ photoId }: CommentFormProps) {
             aria-label={t('aria_label')}
             autoComplete='off'
             disabled={isDisabled || isSubmitting}
+            id={photoId}
             maxLength={50}
             minLength={4}
             placeholder={t('placeholder')}

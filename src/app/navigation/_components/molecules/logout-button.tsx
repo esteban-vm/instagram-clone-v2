@@ -7,12 +7,9 @@ import { AuthActions } from '@/actions'
 export function LogoutButton() {
   const { t } = useTranslation('navigation')
   const { execute, isExecuting, hasSucceeded } = useAction(AuthActions.logout)
-  const isDisabled = isExecuting || hasSucceeded
 
-  const handleClick = () => {
-    const willLogout = confirm('Proceed?')
-    if (willLogout) execute()
-  }
+  const isDisabled = isExecuting || hasSucceeded
+  const handleClick = () => execute()
 
   return (
     <Tooltip position='bottom' tip={t('logout_button')}>

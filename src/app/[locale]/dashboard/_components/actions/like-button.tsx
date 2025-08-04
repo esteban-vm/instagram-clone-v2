@@ -4,17 +4,15 @@ import { useAction } from 'next-safe-action/hooks'
 import { FaHeart } from 'react-icons/fa'
 import { Button, Indicator } from 'rsc-daisyui'
 import { PhotoActions } from '@/actions'
-import { useCurrentSession } from '@/hooks'
 import { cn } from '@/lib/tw-utils'
 
 export interface LikeButtonProps extends Actions.CommentButtonProps {
+  userId: string
   likes: Like[]
 }
 
-export function LikeButton({ photoId, likes, count }: LikeButtonProps) {
-  const { currentSession } = useCurrentSession()
-  const isLiked = likes.some((like) => like.userId === currentSession?.user.id)
-
+export function LikeButton({ photoId, userId, likes, count }: LikeButtonProps) {
+  const isLiked = likes.some((like) => like.userId === userId)
   const { execute, isExecuting } = useAction(PhotoActions.giveOrRemoveLike)
   const handleClick = () => execute({ id: photoId })
 

@@ -3,13 +3,12 @@ import { Avatar, List, Mask } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
 import { Actions, Feedbacks } from '@/app/[locale]/dashboard/_components'
 import { Sidebar as $ } from '@/app/[locale]/dashboard/_styled'
-import { auth } from '@/auth'
+import { verifySession } from '@/lib/auth-utils'
 import { Texts } from '@/lib/texts'
 
 export default async function SidebarPage() {
-  const session = await auth()
-  if (!session) return null
-  const { avatar, name, email } = session.user
+  const { user } = await verifySession()
+  const { avatar, name, email } = user
 
   const result = await UserActions.getSuggestedUsers()
   const users = result?.data ?? []

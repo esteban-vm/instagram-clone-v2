@@ -14,4 +14,5 @@ export const verifyNoSession = async () => {
 export const verifySession = async () => {
   const session = await auth()
   if (!session?.user) redirect(APP_ROUTES.LOGIN)
+  return session
 }

@@ -3,9 +3,13 @@ import { Avatar, Card, Mask } from 'rsc-daisyui'
 import { PhotoActions } from '@/actions'
 import { Actions, Feedbacks, Forms } from '@/app/[locale]/dashboard/_components'
 import { Timeline as $ } from '@/app/[locale]/dashboard/_styled'
+import { verifySession } from '@/lib/auth-utils'
 import { Texts } from '@/lib/texts'
 
 export default async function TimelinePage() {
+  const { user } = await verifySession()
+  const { id: userId } = user
+
   const result = await PhotoActions.getSuggestedPhotos()
   const photos = result?.data ?? []
   const hasPhotos = photos.length > 0
@@ -43,7 +47,7 @@ export default async function TimelinePage() {
               </$.Card.Image>
               <Card.Body className='h-full items-start justify-around gap-0.5 p-2.5 pb-0'>
                 <Card.Actions className='gap-3.5'>
-                  <Actions.LikeButton count={_count.likes} likes={likes} photoId={id} />
+                  <Actions.LikeButton count={_count.likes} likes={likes} photoId={id} userId={userId} />
                   <Actions.CommentButton count={_count.comments} photoId={id} />
                 </Card.Actions>
                 <$.Card.List>

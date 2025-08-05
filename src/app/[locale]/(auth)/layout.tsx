@@ -4,11 +4,11 @@ import { Card, Hero, PhoneMockup } from 'rsc-daisyui'
 import phoneBg from '@/images/phone_bg.webp'
 import { verifyNoSession } from '@/lib/auth-utils'
 
-interface AuthLayoutProps {
+export interface Props {
   children: ReactNode
 }
 
-export default async function AuthLayout({ children }: AuthLayoutProps) {
+export default async function AuthLayout({ children }: Props) {
   await verifyNoSession()
 
   return (

@@ -4,11 +4,11 @@ import { notFound } from 'next/navigation'
 import { UserActions } from '@/actions'
 import { verifySession } from '@/lib/auth-utils'
 
-interface UserPageProps {
+export interface Props {
   params: Promise<{ locale: Locale; userId: string }>
 }
 
-export async function generateMetadata({ params }: UserPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, userId } = await params
   const result = await UserActions.getUserById({ id: userId })
   const user = result?.data
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: UserPageProps): Promise<Metad
   }
 }
 
-export default async function UserPage({ params }: UserPageProps) {
+export default async function UserPage({ params }: Props) {
   await verifySession()
 
   const { userId } = await params

@@ -2,17 +2,17 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { verifySession } from '@/lib/auth-utils'
 
-export const metadata: Metadata = {
-  title: 'Dashboard',
-}
-
-interface DashboardLayoutProps {
+export interface Props {
   children: ReactNode
   timeline: ReactNode
   sidebar: ReactNode
 }
 
-export default async function DashboardLayout({ children, sidebar, timeline }: DashboardLayoutProps) {
+export const metadata: Metadata = {
+  title: 'Dashboard',
+}
+
+export default async function DashboardLayout({ children, sidebar, timeline }: Props) {
   await verifySession()
 
   return (

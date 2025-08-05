@@ -13,6 +13,11 @@ import { montserrat, playwrite } from '@/lib/fonts'
 import { ThemeProvider, TranslationProvider } from '@/providers'
 import '@/app/globals.css'
 
+export interface Props {
+  children: ReactNode
+  params: Promise<{ locale: Locale }>
+}
+
 export function generateStaticParams() {
   return i18nConfig.locales.map((locale) => ({ locale }))
 }
@@ -29,12 +34,7 @@ export const metadata: Metadata = {
   referrer: 'origin-when-cross-origin',
 }
 
-interface RootLayoutProps {
-  children: ReactNode
-  params: Promise<{ locale: Locale }>
-}
-
-export default async function RootLayout({ children, params }: RootLayoutProps) {
+export default async function RootLayout({ children, params }: Props) {
   const { locale } = await params
   if (!i18nConfig.locales.includes(locale)) notFound()
 

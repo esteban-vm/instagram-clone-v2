@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { Avatar, List, Mask } from 'rsc-daisyui'
+import NextLink from 'next/link'
+import { Avatar, Link, List, Mask } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
 import { Actions, Feedbacks } from '@/app/[locale]/dashboard/_components'
 import { Sidebar as $ } from '@/app/[locale]/dashboard/_styled'
@@ -51,7 +52,11 @@ export default async function SidebarPage() {
                     )}
                   </$.Row.Left>
                   <$.Row.Center>
-                    <$.Row.Name>{name}</$.Row.Name>
+                    <NextLink href={`/${id}`}>
+                      <Link as='span' className='block font-semibold' color='accent' hover>
+                        {name}
+                      </Link>
+                    </NextLink>
                     <$.Row.Email>{email}</$.Row.Email>
                   </$.Row.Center>
                   <Actions.FollowButton userId={id} users={users} />

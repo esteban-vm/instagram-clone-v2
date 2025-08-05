@@ -70,10 +70,6 @@ Row.Left = tw.div`
   rounded-md
 `
 
-Row.Name = tw.div`
-  font-bold
-`
-
 Row.Placeholder = tw.div`
   absolute
   inset-0

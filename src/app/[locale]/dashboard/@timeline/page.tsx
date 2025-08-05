@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { Avatar, Card, Mask } from 'rsc-daisyui'
+import NextLink from 'next/link'
+import { Avatar, Card, Link, Mask } from 'rsc-daisyui'
 import { PhotoActions } from '@/actions'
 import { Actions, Feedbacks, Forms } from '@/app/[locale]/dashboard/_components'
 import { Timeline as $ } from '@/app/[locale]/dashboard/_styled'
@@ -20,10 +21,10 @@ export default async function TimelinePage() {
         <Feedbacks.PhotosAlert />
       ) : (
         photos.map((photo) => {
-          const { id, image, caption, comments, likes, owner, createdAt, _count } = photo
-          const { name, avatar } = owner
+          const { id: photoId, image, caption, comments, likes, owner, createdAt, _count } = photo
+          const { id: ownerId, name, avatar } = owner
           return (
-            <Card key={id} className='mx-auto h-fit w-full max-w-2xl pt-2.5 shadow-md' border>
+            <Card key={photoId} className='mx-auto h-fit w-full max-w-2xl pt-2.5 shadow-md' border>
               <Card.Body className='items-start p-2.5'>
                 <Card.Title>
                   <Avatar placeholder={!avatar}>
@@ -38,7 +39,11 @@ export default async function TimelinePage() {
                     )}
                   </Avatar>
                   <$.Right.Container>
-                    <$.Right.Content>{name}</$.Right.Content>
+                    <NextLink href={`/${ownerId}`}>
+                      <Link as='span' className='text-sm font-bold uppercase' color='accent' hover>
+                        {name}
+                      </Link>
+                    </NextLink>
                   </$.Right.Container>
                 </Card.Title>
               </Card.Body>
@@ -47,8 +52,8 @@ export default async function TimelinePage() {
               </$.Card.Image>
               <Card.Body className='h-full items-start justify-around gap-0.5 p-2.5 pb-0'>
                 <Card.Actions className='gap-3.5'>
-                  <Actions.LikeButton count={_count.likes} likes={likes} photoId={id} userId={userId} />
-                  <Actions.CommentButton count={_count.comments} photoId={id} />
+                  <Actions.LikeButton count={_count.likes} likes={likes} photoId={photoId} userId={userId} />
+                  <Actions.CommentButton count={_count.comments} photoId={photoId} />
                 </Card.Actions>
                 <$.Card.List>
                   {comments.map((comment) => {
@@ -66,7 +71,7 @@ export default async function TimelinePage() {
                     ))}
                 </$.Card.List>
                 <Feedbacks.PhotoDate date={createdAt} />
-                <Forms.CommentForm photoId={id} />
+                <Forms.CommentForm photoId={photoId} />
               </Card.Body>
             </Card>
           )

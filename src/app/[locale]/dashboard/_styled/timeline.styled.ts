@@ -61,8 +61,3 @@ Right.Container = tw.div`
   items-start
   truncate
 `
-
-Right.Content = tw.span`
-  text-sm
-  font-bold
-`

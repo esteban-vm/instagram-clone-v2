@@ -5,5 +5,8 @@
   },
   "language_changer": "Cambiar a versión en inglés",
   "logout_button": "Cerrar sesión",
-  "home_link": "Inicio"
+  "nav_links": {
+    "home": "Inicio",
+    "dashboard": "Panel de control"
+  }
 }

@@ -5,5 +5,8 @@
   },
   "language_changer": "Switch to Spanish version",
   "logout_button": "Logout",
-  "home_link": "Home"
+  "nav_links": {
+    "home": "Home",
+    "dashboard": "Dashboard"
+  }
 }

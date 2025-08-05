@@ -30,7 +30,12 @@ export function Navigation({ session }: NavigationProps) {
         {isClient ? (
           <>
             <Organisms.MobileMenu />
-            <Molecules.HomeLink />
+            {session && (
+              <>
+                <Molecules.HomeLink />
+                <Molecules.DashboardLink />
+              </>
+            )}
           </>
         ) : (
           <Molecules.LoadingStart />

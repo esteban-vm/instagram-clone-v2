@@ -1,3 +1,4 @@
+export * from './dashboard-link'
 export * from './home-link'
 export * from './language-changer'
 export * from './loading'

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import Image from 'next/image'
 import { Card, Hero, PhoneMockup } from 'rsc-daisyui'
-import influencer from '@/images/influencer.webp'
+import phoneBg from '@/images/phone_bg.webp'
 import { verifyNoSession } from '@/lib/auth-utils'
 
 interface AuthLayoutProps {
@@ -21,7 +21,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
               <Image
                 alt='background'
                 className='object-cover object-center saturate-[120%]'
-                src={influencer}
+                src={phoneBg}
                 fill
                 priority
               />

@@ -37,3 +37,9 @@ export const getSuggestedUsers = authClient.action(async ({ ctx }): Promise<User
 
   return suggestedUsers
 })
+
+export const getUserById = authClient.schema(SchemaWithId).action(async ({ parsedInput }): Promise<UserType | null> => {
+  const userId = parsedInput.id
+  const userById = await prisma.user.findUnique({ where: { id: userId } })
+  return userById
+})

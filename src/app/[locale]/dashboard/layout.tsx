@@ -16,7 +16,7 @@ export default async function DashboardLayout({ children, sidebar, timeline }: D
   await verifySession()
 
   return (
-    <div className='mx-auto mt-20 grid max-w-screen-2xl gap-1.5 lg:grid-cols-3'>
+    <div className='mx-auto grid max-w-screen-2xl gap-1.5 lg:grid-cols-3'>
       {children}
       {timeline}
       {sidebar}

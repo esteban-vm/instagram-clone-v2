@@ -16,7 +16,7 @@ export default async function UserIdPage({ params }: UserIdPageProps) {
   if (!user) notFound()
 
   return (
-    <section className='mx-auto mt-20 max-w-screen-2xl border border-primary text-center'>
+    <section className='mx-auto max-w-screen-2xl border border-primary text-center'>
       <span>{user.name}</span>
       <br />
       <span>{user.email}</span>

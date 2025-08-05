@@ -33,7 +33,6 @@ export function RegisterForm() {
         disabled={isSubmitting}
         error={name?.message}
         label={t('labels.name')}
-        placeholder={t('placeholders.name')}
       />
 
       <Molecules.FormInput

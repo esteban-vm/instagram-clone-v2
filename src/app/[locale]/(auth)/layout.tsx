@@ -18,13 +18,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
           <PhoneMockup className='scale-[65%] border-primary shadow-2xl'>
             <PhoneMockup.Camera />
             <PhoneMockup.Display className='relative'>
-              <Image
-                alt='background'
-                className='object-cover object-center saturate-[120%]'
-                src={phoneBg}
-                fill
-                priority
-              />
+              <Image alt='background' className='object-cover object-center saturate-150' src={phoneBg} fill priority />
             </PhoneMockup.Display>
           </PhoneMockup>
         </div>

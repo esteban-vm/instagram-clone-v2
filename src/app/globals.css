@@ -3,7 +3,7 @@
 @plugin "daisyui" {
   themes:
     corporate --default,
-    night --prefersdark;
+    sunset --prefersdark;
 }
 
 @source "../../node_modules/rsc-daisyui/dist";

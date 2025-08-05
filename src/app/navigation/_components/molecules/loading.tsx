@@ -1,4 +1,9 @@
 import { Skeleton } from 'rsc-daisyui'
+import { cn } from '@/lib/tw-utils'
+
+export interface LoadingStartProps {
+  hasSession: boolean
+}
 
 export function LoadingEnd() {
   return (
@@ -10,11 +15,12 @@ export function LoadingEnd() {
   )
 }
 
-export function LoadingStart() {
+export function LoadingStart({ hasSession }: LoadingStartProps) {
   return (
     <>
       <Skeleton className='ml-2 size-12 lg:hidden' />
-      <Skeleton className='ml-2 size-12' />
+      <Skeleton className={cn('ml-2 size-12', !hasSession && 'hidden')} />
+      <Skeleton className={cn('ml-2 size-12', !hasSession && 'hidden')} />
     </>
   )
 }

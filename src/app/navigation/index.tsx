@@ -38,7 +38,7 @@ export function Navigation({ session }: NavigationProps) {
             )}
           </>
         ) : (
-          <Molecules.LoadingStart />
+          <Molecules.LoadingStart hasSession={!!session} />
         )}
       </Navbar.Start>
       <Navbar.End>

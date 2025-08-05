@@ -1,5 +1,3 @@
-'use client'
-
 import type { Resource } from 'i18next'
 import type { ReactNode } from 'react'
 import type { Locale } from '@/i18n.config'

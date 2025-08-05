@@ -29,12 +29,16 @@
 }
 
 @layer base {
-  body {
-    @apply font-montserrat;
+  * {
+    scrollbar-width: none !important;
 
     &::selection {
       @apply bg-primary text-primary-content;
     }
+  }
+
+  body {
+    @apply font-montserrat;
   }
 
   img {

@@ -1,11 +1,15 @@
 import type { Prisma } from '@prisma/client'
 import type { Molecules } from '@/app/[locale]/(auth)/_components'
+import type { Locale } from '@/i18n.config'
 import { FaEnvelope, FaLock, FaUnlock, FaUser } from 'react-icons/fa6'
 
 export const APP_DATA = {
-  APP_NAME: 'Instagram Clone',
+  APP_NAME: {
+    en: 'Instagram Clone',
+    es: 'Clon de Instagram',
+  },
   AUTHOR_NAME: 'Esteban V.M.',
-} as const satisfies Record<Uppercase<string>, string>
+} as const satisfies Record<Uppercase<string>, Record<Locale, string> | string>
 
 export const APP_ROUTES = {
   HOME: '/',

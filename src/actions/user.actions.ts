@@ -43,7 +43,16 @@ export const getUserById = authClient.schema(SchemaWithId).action(async ({ parse
   const user = await prisma.user.findUnique({
     omit: { password: true },
     where: { id: userId, active: true },
-    include: { photos: true },
+    include: {
+      photos: true,
+      _count: {
+        select: {
+          photos: true,
+          followers: true,
+          following: true,
+        },
+      },
+    },
   })
 
   return user

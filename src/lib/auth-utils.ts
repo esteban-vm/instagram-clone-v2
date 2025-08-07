@@ -3,7 +3,9 @@ import { auth } from '@/auth'
 import { APP_ROUTES } from '@/lib/constants'
 
 export const mockDelay = (ms = 5_000) => {
-  return new Promise((resolve) => setTimeout(resolve, ms))
+  if (process.env.NODE_ENV === 'development') {
+    return new Promise((resolve) => setTimeout(resolve, ms))
+  }
 }
 
 export const verifyNoSession = async () => {

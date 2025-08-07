@@ -2,10 +2,10 @@ import Image from 'next/image'
 import NextLink from 'next/link'
 import { Avatar, Card, Link, Mask } from 'rsc-daisyui'
 import { PhotoActions } from '@/actions'
-import { Actions, Feedbacks, Forms } from '@/app/[locale]/dashboard/_components'
-import { Timeline as $ } from '@/app/[locale]/dashboard/_styled'
+import { Buttons, Feedbacks, Forms } from '@/app/[locale]/dashboard/_components'
 import { verifySession } from '@/lib/auth-utils'
 import { Texts } from '@/lib/texts'
+import * as styled from './page.styled'
 
 export default async function TimelinePage() {
   const { user } = await verifySession()
@@ -16,9 +16,12 @@ export default async function TimelinePage() {
   const hasPhotos = photos.length > 0
 
   return (
-    <$.Page.Container>
+    <styled.page.container>
       {!hasPhotos ? (
-        <Feedbacks.PhotosAlert />
+        <Feedbacks.NoResultsAlert
+          className='col-span-2 self-start justify-self-center'
+          prefix='timeline.photos_alert'
+        />
       ) : (
         photos.map((photo) => {
           const { id: photoId, image, caption, comments, likes, owner, createdAt, _count } = photo
@@ -33,35 +36,35 @@ export default async function TimelinePage() {
                         <Image alt={`${name}'s avatar`} src={avatar} fill />
                       </Mask>
                     ) : (
-                      <$.Placeholder.Container>
-                        <$.Placeholder.Content>{Texts.Transformations.truncate(name)}</$.Placeholder.Content>
-                      </$.Placeholder.Container>
+                      <styled.placeholder.container>
+                        <styled.placeholder.content>{Texts.Transformations.truncate(name)}</styled.placeholder.content>
+                      </styled.placeholder.container>
                     )}
                   </Avatar>
-                  <$.Right.Container>
+                  <styled.right.container>
                     <NextLink href={`/${ownerId}`}>
                       <Link as='span' className='text-sm font-bold uppercase' color='accent' hover>
                         {name}
                       </Link>
                     </NextLink>
-                  </$.Right.Container>
+                  </styled.right.container>
                 </Card.Title>
               </Card.Body>
-              <$.Card.Image>
+              <styled.card.image>
                 <Image alt={caption} className='object-cover contrast-125' src={image} fill />
-              </$.Card.Image>
+              </styled.card.image>
               <Card.Body className='h-full items-start justify-around gap-0.5 p-2.5 pb-0'>
                 <Card.Actions className='gap-3.5'>
-                  <Actions.LikeButton count={_count.likes} likes={likes} photoId={photoId} userId={userId} />
-                  <Actions.CommentButton count={_count.comments} photoId={photoId} />
+                  <Buttons.LikeButton count={_count.likes} likes={likes} photoId={photoId} userId={userId} />
+                  <Buttons.CommentButton count={_count.comments} photoId={photoId} />
                 </Card.Actions>
-                <$.Card.List>
+                <styled.card.list>
                   {comments.map((comment) => {
                     const { id, content, author } = comment
                     return (
-                      <$.Card.Item key={id}>
-                        <$.Card.Name>{author.name}:</$.Card.Name> {content}
-                      </$.Card.Item>
+                      <styled.card.item key={id}>
+                        <styled.card.username>{author.name}:</styled.card.username> {content}
+                      </styled.card.item>
                     )
                   })}
                   {Array(3 - comments.length)
@@ -69,14 +72,14 @@ export default async function TimelinePage() {
                     .map(() => (
                       <br key={crypto.randomUUID()} />
                     ))}
-                </$.Card.List>
-                <Feedbacks.PhotoDate date={createdAt} />
+                </styled.card.list>
+                <Feedbacks.PhotoCardDate date={createdAt} />
                 <Forms.CommentForm photoId={photoId} />
               </Card.Body>
             </Card>
           )
         })
       )}
-    </$.Page.Container>
+    </styled.page.container>
   )
 }

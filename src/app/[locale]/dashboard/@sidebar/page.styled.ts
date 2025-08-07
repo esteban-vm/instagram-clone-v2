@@ -1,34 +1,11 @@
 import tw from 'tailwind-styled-components'
 
-export function Loading() {}
-export function Page() {}
-export function Placeholder() {}
-export function Row() {}
-export function Top() {}
+export function page() {}
+export function placeholder() {}
+export function row() {}
+export function top() {}
 
-Loading.Container = tw.div`
-  flex
-  w-full
-  max-w-3xl
-  flex-col
-  self-start
-  justify-self-center
-  p-1.5
-`
-
-Loading.Content = tw.div`
-  flex
-  items-center
-  gap-1.5
-`
-
-Loading.Right = tw.div`
-  flex
-  flex-col
-  gap-4
-`
-
-Page.Container = tw.aside`
+page.container = tw.aside`
   order-first
   w-full
   max-w-2xl
@@ -39,38 +16,38 @@ Page.Container = tw.aside`
   [&_img]:contrast-125
 `
 
-Placeholder.Container = tw.div`
+placeholder.container = tw.div`
   w-20
   rounded-full
   bg-primary
   text-primary-content
 `
 
-Placeholder.Content = tw.span`
+placeholder.content = tw.span`
   text-2xl
   font-bold
   select-none
 `
 
-Row.Center = tw.div`
+row.center = tw.div`
   grow
 `
 
-Row.Email = tw.span`
+row.email = tw.span`
   text-xs
   font-semibold
   uppercase
   opacity-60
 `
 
-Row.Left = tw.div`
+row.left = tw.div`
   relative
   size-12
   overflow-hidden
   rounded-md
 `
 
-Row.Placeholder = tw.div`
+row.placeholder = tw.div`
   absolute
   inset-0
   flex
@@ -83,26 +60,26 @@ Row.Placeholder = tw.div`
   select-none
 `
 
-Top.Container = tw.section`
+top.container = tw.section`
   flex
   items-center
   gap-1.5
   p-1.5
 `
 
-Top.Email = tw.span`
+top.email = tw.span`
   text-sm
   font-semibold
   italic
 `
 
-Top.Name = tw.span`
-  font-bold
-`
-
-Top.Right = tw.div`
+top.right = tw.div`
   flex
   flex-col
   items-start
   truncate
+`
+
+top.username = tw.span`
+  font-bold
 `

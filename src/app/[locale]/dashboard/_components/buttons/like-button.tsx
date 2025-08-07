@@ -1,12 +1,12 @@
 import type { Like } from '@prisma/client'
-import type { Actions } from '@/app/[locale]/dashboard/_components'
+import type { Buttons } from '@/app/[locale]/dashboard/_components'
 import { useAction } from 'next-safe-action/hooks'
 import { FaHeart } from 'react-icons/fa'
 import { Button, Indicator } from 'rsc-daisyui'
 import { PhotoActions } from '@/actions'
 import { cn } from '@/lib/tw-utils'
 
-export interface LikeButtonProps extends Actions.CommentButtonProps {
+export interface LikeButtonProps extends Buttons.CommentButtonProps {
   userId: string
   likes: Like[]
 }

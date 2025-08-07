@@ -1,6 +1,5 @@
 'use client'
 
-export * from './list-title'
-export * from './photo-date'
-export * from './photos-alert'
-export * from './users-alert'
+export * from './no-results-alert'
+export * from './photo-card-date'
+export * from './user-list-title'

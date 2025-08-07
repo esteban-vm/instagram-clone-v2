@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next'
 import { FaRegClock } from 'react-icons/fa'
 import { i18nConfig } from '@/i18n.config'
 
-export interface PhotoDateProps {
+export interface PhotoCardDateProps {
   date: Date
 }
 
-export function PhotoDate({ date }: PhotoDateProps) {
+export function PhotoCardDate({ date }: PhotoCardDateProps) {
   const { i18n } = useTranslation()
   const currentLocale = i18n.language
   const [enLocale, esLocale] = i18nConfig.locales

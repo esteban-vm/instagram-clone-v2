@@ -58,3 +58,26 @@ export const getUserById = authClient.schema(SchemaWithId).action(async ({ parse
 
   return userById
 })
+
+export const unfollowUser = authClient.schema(SchemaWithId).action(async ({ ctx, parsedInput }) => {
+  const loggedInUserId = ctx.user.id
+  const userToUnfollowId = parsedInput.id
+
+  const unfollowedUser = await prisma.user.update({
+    omit: { password: true },
+    where: { id: userToUnfollowId, active: true },
+    data: {
+      followers: {
+        delete: {
+          followerId_followingId: {
+            followerId: userToUnfollowId,
+            followingId: loggedInUserId,
+          },
+        },
+      },
+    },
+  })
+
+  revalidatePath(APP_ROUTES.USER, 'page')
+  return unfollowedUser
+})

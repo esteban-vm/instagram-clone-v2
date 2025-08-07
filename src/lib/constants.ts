@@ -13,11 +13,12 @@ export const APP_DATA = {
 
 export const APP_ROUTES = {
   HOME: '/',
+  USER: '/[userId]',
   SCENE: `/scene`,
   LOGIN: '/login',
   REGISTER: '/register',
   DASHBOARD: '/dashboard',
-} as const satisfies Record<Uppercase<string>, `/${Lowercase<string>}`>
+} as const satisfies Record<Uppercase<string>, `/${string}`>
 
 export const AUTH_INPUT_PROPS = {
   EMAIL: {

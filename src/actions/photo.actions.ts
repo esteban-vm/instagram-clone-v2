@@ -37,10 +37,10 @@ export const getSuggestedPhotos = authClient.action(async ({ ctx }) => {
 
 export const giveOrRemoveLike = authClient.schema(SchemaWithId).action(async ({ ctx, parsedInput }) => {
   const loggedInUserId = ctx.user.id
-  const photoId = parsedInput.id
+  const photoToUpdateId = parsedInput.id
 
   const updatedPhoto = await prisma.photo.findUnique({
-    where: { id: photoId },
+    where: { id: photoToUpdateId },
     include: { likes: true },
   })
 
@@ -50,7 +50,7 @@ export const giveOrRemoveLike = authClient.schema(SchemaWithId).action(async ({ 
     if (!isLiked) {
       await prisma.like.create({
         data: {
-          photoId,
+          photoId: photoToUpdateId,
           userId: loggedInUserId,
         },
       })
@@ -58,7 +58,7 @@ export const giveOrRemoveLike = authClient.schema(SchemaWithId).action(async ({ 
       await prisma.like.delete({
         where: {
           photoId_userId: {
-            photoId,
+            photoId: photoToUpdateId,
             userId: loggedInUserId,
           },
         },

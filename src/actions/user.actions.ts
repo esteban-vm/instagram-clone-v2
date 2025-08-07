@@ -8,22 +8,22 @@ import { prisma } from '@/prisma'
 
 export const followUser = authClient.schema(SchemaWithId).action(async ({ ctx, parsedInput }) => {
   const loggedInUserId = ctx.user.id
-  const userId = parsedInput.id
+  const userToFollowId = parsedInput.id
 
-  const user = await prisma.user.update({
+  const followedUser = await prisma.user.update({
     omit: { password: true },
-    where: { id: userId, active: true },
+    where: { id: userToFollowId, active: true },
     data: { followers: { create: { followingId: loggedInUserId } } },
   })
 
   revalidatePath(APP_ROUTES.DASHBOARD, 'layout')
-  return user
+  return followedUser
 })
 
 export const getSuggestedUsers = authClient.action(async ({ ctx }) => {
   const loggedInUserId = ctx.user.id
 
-  const users = await prisma.user.findMany({
+  const suggestedUsers = await prisma.user.findMany({
     take: 10,
     orderBy: { name: 'asc' },
     omit: { password: true },
@@ -34,17 +34,18 @@ export const getSuggestedUsers = authClient.action(async ({ ctx }) => {
     },
   })
 
-  return users
+  return suggestedUsers
 })
 
 export const getUserById = authClient.schema(SchemaWithId).action(async ({ parsedInput }) => {
   const userId = parsedInput.id
 
-  const user = await prisma.user.findUnique({
+  const userById = await prisma.user.findUnique({
     omit: { password: true },
     where: { id: userId, active: true },
     include: {
       photos: true,
+      followers: true,
       _count: {
         select: {
           photos: true,
@@ -55,5 +56,5 @@ export const getUserById = authClient.schema(SchemaWithId).action(async ({ parse
     },
   })
 
-  return user
+  return userById
 })

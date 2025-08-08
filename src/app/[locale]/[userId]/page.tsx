@@ -1,8 +1,13 @@
 import type { Metadata } from 'next'
 import type { Locale } from '@/i18n.config'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { RiUserFollowLine } from 'react-icons/ri'
+import { Avatar, Badge, Button, Mask } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
 import { verifySession } from '@/lib/auth-utils'
+import { Texts } from '@/lib/texts'
+import * as $ from './page.styled'
 
 export interface Props {
   params: Promise<{ locale: Locale; userId: string }>
@@ -33,11 +38,41 @@ export default async function UserPage({ params }: Props) {
 
   if (!user) notFound()
 
+  const { name, email, avatar, _count } = user
+
   return (
-    <section className='mx-auto mt-20 max-w-screen-2xl border border-primary text-center'>
-      <span>{user.name}</span>
-      <br />
-      <span>{user.email}</span>
-    </section>
+    <$.page.container>
+      <$.top.container>
+        <Avatar placeholder={!avatar}>
+          {avatar ? (
+            <Mask as='div' className='relative w-32' shape='circle'>
+              <Image alt={`${name}'s avatar`} src={avatar} fill />
+            </Mask>
+          ) : (
+            <$.placeholder.container>
+              <$.placeholder.content>{Texts.Transformations.truncate(name)}</$.placeholder.content>
+            </$.placeholder.container>
+          )}
+        </Avatar>
+        <$.top.right>
+          <$.right.top>
+            <$.right.username>{name}</$.right.username>
+            <Button color='info' size='sm' soft>
+              <RiUserFollowLine className='text-base' />
+              Follow
+            </Button>
+          </$.right.top>
+          <$.right.center>
+            {Object.entries(_count).map(([key, value]) => (
+              <Badge key={crypto.randomUUID()} color='success' size='sm' soft>
+                <strong>{value}</strong> {key}
+              </Badge>
+            ))}
+          </$.right.center>
+          <$.right.email>{email}</$.right.email>
+        </$.top.right>
+      </$.top.container>
+      <$.page.separator />
+    </$.page.container>
   )
 }

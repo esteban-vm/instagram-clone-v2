@@ -5,7 +5,7 @@ import { PhotoActions } from '@/actions'
 import { Buttons, Feedbacks, Forms } from '@/app/[locale]/dashboard/_components'
 import { verifySession } from '@/lib/auth-utils'
 import { Texts } from '@/lib/texts'
-import * as styled from './page.styled'
+import * as $ from './page.styled'
 
 export default async function TimelinePage() {
   const { user } = await verifySession()
@@ -16,7 +16,7 @@ export default async function TimelinePage() {
   const hasPhotos = photos.length > 0
 
   return (
-    <styled.page.container>
+    <$.page.container>
       {!hasPhotos ? (
         <Feedbacks.NoResultsAlert
           className='col-span-2 self-start justify-self-center'
@@ -36,35 +36,35 @@ export default async function TimelinePage() {
                         <Image alt={`${name}'s avatar`} src={avatar} fill />
                       </Mask>
                     ) : (
-                      <styled.placeholder.container>
-                        <styled.placeholder.content>{Texts.Transformations.truncate(name)}</styled.placeholder.content>
-                      </styled.placeholder.container>
+                      <$.placeholder.container>
+                        <$.placeholder.content>{Texts.Transformations.truncate(name)}</$.placeholder.content>
+                      </$.placeholder.container>
                     )}
                   </Avatar>
-                  <styled.right.container>
+                  <$.right.container>
                     <NextLink href={`/${ownerId}`}>
                       <Link as='span' className='text-sm font-bold uppercase' color='accent' hover>
                         {name}
                       </Link>
                     </NextLink>
-                  </styled.right.container>
+                  </$.right.container>
                 </Card.Title>
               </Card.Body>
-              <styled.card.image>
+              <$.card.image>
                 <Image alt={caption} className='object-cover contrast-125' src={image} fill />
-              </styled.card.image>
+              </$.card.image>
               <Card.Body className='h-full items-start justify-around gap-0.5 p-2.5 pb-0'>
                 <Card.Actions className='gap-3.5'>
                   <Buttons.LikeButton count={_count.likes} likes={likes} photoId={photoId} userId={userId} />
                   <Buttons.CommentButton count={_count.comments} photoId={photoId} />
                 </Card.Actions>
-                <styled.card.list>
+                <$.card.list>
                   {comments.map((comment) => {
                     const { id, content, author } = comment
                     return (
-                      <styled.card.item key={id}>
-                        <styled.card.username>{author.name}:</styled.card.username> {content}
-                      </styled.card.item>
+                      <$.card.item key={id}>
+                        <$.card.username>{author.name}:</$.card.username> {content}
+                      </$.card.item>
                     )
                   })}
                   {Array(3 - comments.length)
@@ -72,7 +72,7 @@ export default async function TimelinePage() {
                     .map(() => (
                       <br key={crypto.randomUUID()} />
                     ))}
-                </styled.card.list>
+                </$.card.list>
                 <Feedbacks.PhotoCardDate date={createdAt} />
                 <Forms.CommentForm photoId={photoId} />
               </Card.Body>
@@ -80,6 +80,6 @@ export default async function TimelinePage() {
           )
         })
       )}
-    </styled.page.container>
+    </$.page.container>
   )
 }

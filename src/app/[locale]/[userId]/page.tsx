@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import type { Locale } from '@/i18n.config'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { FaCommentAlt, FaHeart } from 'react-icons/fa'
 import { RiUserFollowLine } from 'react-icons/ri'
 import { Avatar, Badge, Button, Mask } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
@@ -38,7 +39,7 @@ export default async function UserPage({ params }: Props) {
 
   if (!user) notFound()
 
-  const { name, email, avatar, _count } = user
+  const { name, email, avatar, photos, _count } = user
 
   return (
     <$.page.container>
@@ -73,6 +74,28 @@ export default async function UserPage({ params }: Props) {
         </$.top.right>
       </$.top.container>
       <$.page.separator />
+      <$.grid.container>
+        {photos.map((photo) => {
+          const { id, caption, image, _count } = photo
+          const { likes, comments } = _count
+
+          return (
+            <$.item.container key={id}>
+              <Image alt={caption} className='object-cover contrast-125' src={image} fill />
+              <$.item.content>
+                <$.item.icon>
+                  <FaHeart />
+                  <span>{likes}</span>
+                </$.item.icon>
+                <$.item.icon>
+                  <FaCommentAlt />
+                  <span>{comments}</span>
+                </$.item.icon>
+              </$.item.content>
+            </$.item.container>
+          )
+        })}
+      </$.grid.container>
     </$.page.container>
   )
 }

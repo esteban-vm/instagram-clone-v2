@@ -1,9 +1,51 @@
 import tw from 'tailwind-styled-components'
 
+export function grid() {}
+export function item() {}
 export function page() {}
 export function placeholder() {}
 export function right() {}
 export function top() {}
+
+grid.container = tw.section`
+  grid
+  gap-8
+  px-1.5
+  py-8
+  md:grid-cols-2
+  lg:grid-cols-3
+  2xl:px-0
+`
+
+item.container = tw.article`
+  group
+  relative
+  aspect-[3/4]
+  overflow-hidden
+  rounded-xl
+`
+
+item.content = tw.div`
+  absolute
+  inset-0
+  hidden
+  items-center
+  justify-around
+  bg-primary/50
+  group-hover:flex
+`
+
+item.icon = tw.div`
+  flex
+  items-center
+  justify-center
+  gap-1.5
+  text-2xl
+  font-bold
+  text-primary-content
+  select-none
+  [&_svg]:inline
+`
 
 page.container = tw.section`
   mx-auto

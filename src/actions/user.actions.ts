@@ -44,8 +44,17 @@ export const getUserById = authClient.schema(SchemaWithId).action(async ({ parse
     omit: { password: true },
     where: { id: userId, active: true },
     include: {
-      photos: true,
       followers: true,
+      photos: {
+        include: {
+          _count: {
+            select: {
+              likes: true,
+              comments: true,
+            },
+          },
+        },
+      },
       _count: {
         select: {
           photos: true,

@@ -12,7 +12,7 @@ export interface ToggleFollowProps {
 export function ToggleFollow({ type, userId }: ToggleFollowProps) {
   const { t } = useTranslation('home', { keyPrefix: 'user_detail' })
 
-  const action = type ? UserActions.followUser : UserActions.unfollowUser
+  const action = type ? UserActions.follow : UserActions.unfollow
   const { execute, isExecuting, hasSucceeded } = useAction(action)
 
   const isDisabled = isExecuting || hasSucceeded

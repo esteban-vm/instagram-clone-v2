@@ -13,7 +13,7 @@ export interface FollowUserProps {
 export function FollowUser({ userId, users }: FollowUserProps) {
   const { t } = useTranslation('dashboard', { keyPrefix: 'sidebar' })
 
-  const { execute, isExecuting, hasSucceeded } = useOptimisticAction(UserActions.followUser, {
+  const { execute, isExecuting, hasSucceeded } = useOptimisticAction(UserActions.follow, {
     currentState: users,
     updateFn: (state) => state.filter((user) => user.id !== userId),
   })

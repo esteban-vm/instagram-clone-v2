@@ -16,7 +16,7 @@ export interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, userId } = await params
-  const result = await UserActions.getUserById({ id: userId })
+  const result = await UserActions.getById({ id: userId })
   const user = result?.data
 
   if (!user) {
@@ -35,7 +35,7 @@ export default async function Page({ params }: Props) {
   const loggedInUserId = loggedInUser.id
 
   const { userId } = await params
-  const result = await UserActions.getUserById({ id: userId })
+  const result = await UserActions.getById({ id: userId })
   const user = result?.data
 
   if (!user) notFound()

@@ -11,8 +11,8 @@ export default async function Page() {
   const { user } = await verifySession()
   const { avatar, name, email } = user
 
-  const result = await UserActions.getSuggestedUsers()
-  const users = result?.data ?? []
+  const results = await UserActions.getSuggestions()
+  const users = results?.data ?? []
   const hasUsers = users.length > 0
 
   return (

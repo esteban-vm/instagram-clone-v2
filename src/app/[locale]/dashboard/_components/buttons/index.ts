@@ -1,5 +1,5 @@
 'use client'
 
-export * from './comment-button'
-export * from './follow-button'
-export * from './like-button'
+export * from './add-comment'
+export * from './follow-user'
+export * from './toggle-like'

@@ -5,12 +5,12 @@ import { RiUserFollowLine } from 'react-icons/ri'
 import { Button, Tooltip } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
 
-export interface FollowButtonProps {
+export interface FollowUserProps {
   userId: string
   users: UserType[]
 }
 
-export function FollowButton({ userId, users }: FollowButtonProps) {
+export function FollowUser({ userId, users }: FollowUserProps) {
   const { t } = useTranslation('dashboard', { keyPrefix: 'sidebar' })
 
   const { execute, isExecuting, hasSucceeded } = useOptimisticAction(UserActions.followUser, {

@@ -1,17 +1,17 @@
 import type { Like } from '@prisma/client'
-import type { Buttons } from '@/app/[locale]/dashboard/_components'
+import type { AddCommentProps } from '.'
 import { useAction } from 'next-safe-action/hooks'
 import { FaHeart } from 'react-icons/fa'
 import { Button, Indicator } from 'rsc-daisyui'
 import { PhotoActions } from '@/actions'
 import { cn } from '@/lib/tw-utils'
 
-export interface LikeButtonProps extends Buttons.CommentButtonProps {
+export interface ToggleLikeProps extends AddCommentProps {
   userId: string
   likes: Like[]
 }
 
-export function LikeButton({ photoId, userId, likes, count }: LikeButtonProps) {
+export function ToggleLike({ photoId, userId, likes, count }: ToggleLikeProps) {
   const isLiked = likes.some((like) => like.userId === userId)
   const { execute, isExecuting } = useAction(PhotoActions.giveOrRemoveLike)
   const handleClick = () => execute({ id: photoId })

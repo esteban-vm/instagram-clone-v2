@@ -2,12 +2,12 @@ import Image from 'next/image'
 import NextLink from 'next/link'
 import { Avatar, Card, Link, Mask } from 'rsc-daisyui'
 import { PhotoActions } from '@/actions'
-import { Buttons, Feedbacks, Forms } from '@/app/[locale]/dashboard/_components'
 import { verifySession } from '@/lib/auth-utils'
 import { Texts } from '@/lib/texts'
+import { Buttons, Feedbacks, Forms } from '../_components'
 import * as $ from './page.styled'
 
-export default async function TimelinePage() {
+export default async function Page() {
   const { user } = await verifySession()
   const { id: userId } = user
 
@@ -55,8 +55,8 @@ export default async function TimelinePage() {
               </$.card.image>
               <Card.Body className='h-full items-start justify-around gap-0.5 p-2.5 pb-0'>
                 <Card.Actions className='gap-3.5'>
-                  <Buttons.LikeButton count={_count.likes} likes={likes} photoId={photoId} userId={userId} />
-                  <Buttons.CommentButton count={_count.comments} photoId={photoId} />
+                  <Buttons.ToggleLike count={_count.likes} likes={likes} photoId={photoId} userId={userId} />
+                  <Buttons.AddComment count={_count.comments} photoId={photoId} />
                 </Card.Actions>
                 <$.card.list>
                   {comments.map((comment) => {

@@ -1,12 +1,12 @@
-import type { Forms } from '@/app/[locale]/dashboard/_components'
+import type { CommentFormProps } from '../forms'
 import { FaCommentAlt } from 'react-icons/fa'
 import { Button, Indicator } from 'rsc-daisyui'
 
-export interface CommentButtonProps extends Forms.CommentFormProps {
+export interface AddCommentProps extends CommentFormProps {
   count: number
 }
 
-export function CommentButton({ photoId, count }: CommentButtonProps) {
+export function AddComment({ photoId, count }: AddCommentProps) {
   const handleClick = () => {
     const formField = document.getElementById(photoId)
     formField?.focus()

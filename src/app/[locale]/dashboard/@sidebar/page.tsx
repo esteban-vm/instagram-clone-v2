@@ -2,12 +2,12 @@ import Image from 'next/image'
 import NextLink from 'next/link'
 import { Avatar, Link, List, Mask } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
-import { Buttons, Feedbacks } from '@/app/[locale]/dashboard/_components'
 import { verifySession } from '@/lib/auth-utils'
 import { Texts } from '@/lib/texts'
+import { Buttons, Feedbacks } from '../_components'
 import * as $ from './page.styled'
 
-export default async function SidebarPage() {
+export default async function Page() {
   const { user } = await verifySession()
   const { avatar, name, email } = user
 
@@ -59,7 +59,7 @@ export default async function SidebarPage() {
                     </NextLink>
                     <$.row.email>{email}</$.row.email>
                   </$.row.center>
-                  <Buttons.FollowButton userId={id} users={users} />
+                  <Buttons.FollowUser userId={id} users={users} />
                 </List.Row>
               )
             })}

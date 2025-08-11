@@ -8,7 +8,7 @@ export interface Props {
   children: ReactNode
 }
 
-export default async function AuthLayout({ children }: Props) {
+export default async function Layout({ children }: Props) {
   await verifyNoSession()
 
   return (

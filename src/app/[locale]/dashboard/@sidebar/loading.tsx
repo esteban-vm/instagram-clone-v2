@@ -1,7 +1,7 @@
 import { Skeleton } from 'rsc-daisyui'
 import * as $ from './loading.styled'
 
-export default function SidebarLoading() {
+export default function Loading() {
   return (
     <$.loading.container>
       <$.loading.content>

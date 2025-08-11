@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import type { Locale } from '@/i18n.config'
-import { Organisms } from '@/app/[locale]/(auth)/_components'
+import { Organisms } from '../_components'
 
 export interface Props {
   params: Promise<{ locale: Locale }>
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default function RegisterPage() {
+export default function Page() {
   return (
     <>
       <Organisms.RegisterForm />

@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function UserDetailsPage({ params }: Props) {
+export default async function Page({ params }: Props) {
   const { user: loggedInUser } = await verifySession()
   const loggedInUserId = loggedInUser.id
 
@@ -77,7 +77,6 @@ export default async function UserDetailsPage({ params }: Props) {
         {photos.map((photo) => {
           const { id, caption, image, _count } = photo
           const { likes, comments } = _count
-
           return (
             <$.item.container key={id}>
               <Image alt={caption} className='object-cover contrast-125' src={image} fill />

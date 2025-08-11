@@ -1,6 +1,6 @@
 import { verifySession } from '@/lib/auth-utils'
 
-export default async function HomePage() {
+export default async function Page() {
   const { user } = await verifySession()
 
   return (

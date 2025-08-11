@@ -1,7 +1,7 @@
 import { Skeleton } from 'rsc-daisyui'
 import * as $ from './loading.styled'
 
-export default function TimelineLoading() {
+export default function Loading() {
   return (
     <$.loading.container>
       <Skeleton className='h-40 w-full md:w-1/2' />

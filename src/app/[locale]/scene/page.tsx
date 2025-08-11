@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Scene',
 }
 
-export default async function ScenePage() {
+export default async function Page() {
   await verifySession()
 
   return (

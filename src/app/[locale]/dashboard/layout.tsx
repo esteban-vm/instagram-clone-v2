@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function DashboardLayout({ children, sidebar, timeline }: Props) {
+export default async function Layout({ children, sidebar, timeline }: Props) {
   await verifySession()
 
   return (

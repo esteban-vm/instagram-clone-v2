@@ -3,11 +3,11 @@ import type { Locale } from '@/i18n.config'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { FaCommentAlt, FaHeart } from 'react-icons/fa'
-import { RiUserFollowLine } from 'react-icons/ri'
-import { Avatar, Badge, Button, Mask } from 'rsc-daisyui'
+import { Avatar, Badge, Mask } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
 import { verifySession } from '@/lib/auth-utils'
 import { Texts } from '@/lib/texts'
+import { Buttons } from './_components'
 import * as $ from './page.styled'
 
 export interface Props {
@@ -30,8 +30,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function UserPage({ params }: Props) {
-  await verifySession()
+export default async function UserDetailsPage({ params }: Props) {
+  const { user: loggedInUser } = await verifySession()
+  const loggedInUserId = loggedInUser.id
 
   const { userId } = await params
   const result = await UserActions.getUserById({ id: userId })
@@ -39,7 +40,8 @@ export default async function UserPage({ params }: Props) {
 
   if (!user) notFound()
 
-  const { name, email, avatar, photos, _count } = user
+  const { id, name, email, avatar, photos, followers, _count } = user
+  const isFollowing = followers.some((follower) => follower.followingId === loggedInUserId)
 
   return (
     <$.page.container>
@@ -58,10 +60,7 @@ export default async function UserPage({ params }: Props) {
         <$.top.right>
           <$.right.top>
             <$.right.username>{name}</$.right.username>
-            <Button color='info' size='sm' soft>
-              <RiUserFollowLine className='text-base' />
-              Follow
-            </Button>
+            <Buttons.ToggleFollow type={isFollowing ? 'unfollow' : 'follow'} userId={id} />
           </$.right.top>
           <$.right.center>
             {Object.entries(_count).map(([key, value]) => (

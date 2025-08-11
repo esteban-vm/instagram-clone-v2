@@ -6,7 +6,7 @@ import { authClient } from '@/lib/safe-action'
 import { SchemaWithId } from '@/lib/validations'
 import { prisma } from '@/prisma'
 
-export const getSuggestedPhotos = authClient.action(async ({ ctx }) => {
+export const getSuggestions = authClient.action(async ({ ctx }) => {
   const loggedInUserId = ctx.user.id
 
   const loggedInUser = await prisma.user.findUnique({
@@ -35,7 +35,7 @@ export const getSuggestedPhotos = authClient.action(async ({ ctx }) => {
   return suggestedPhotos
 })
 
-export const giveOrRemoveLike = authClient.schema(SchemaWithId).action(async ({ ctx, parsedInput }) => {
+export const toggleLike = authClient.schema(SchemaWithId).action(async ({ ctx, parsedInput }) => {
   const loggedInUserId = ctx.user.id
   const photoToUpdateId = parsedInput.id
 

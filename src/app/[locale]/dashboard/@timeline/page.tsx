@@ -11,8 +11,8 @@ export default async function Page() {
   const { user } = await verifySession()
   const { id: userId } = user
 
-  const result = await PhotoActions.getSuggestedPhotos()
-  const photos = result?.data ?? []
+  const results = await PhotoActions.getSuggestions()
+  const photos = results?.data ?? []
   const hasPhotos = photos.length > 0
 
   return (

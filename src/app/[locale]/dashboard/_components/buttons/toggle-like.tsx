@@ -13,7 +13,7 @@ export interface ToggleLikeProps extends AddCommentProps {
 
 export function ToggleLike({ photoId, userId, likes, count }: ToggleLikeProps) {
   const isLiked = likes.some((like) => like.userId === userId)
-  const { execute, isExecuting } = useAction(PhotoActions.giveOrRemoveLike)
+  const { execute, isExecuting } = useAction(PhotoActions.toggleLike)
   const handleClick = () => execute({ id: photoId })
 
   return (

@@ -9,7 +9,7 @@ export const useCommentForm = (photoId: string) => {
   const { t } = useTranslation('common', { keyPrefix: 'validations' })
   mapAuthErrors(t)
 
-  const methods = useHookFormAction(CommentActions.leaveAComment, zodResolver(CommentSchema), {
+  const methods = useHookFormAction(CommentActions.createOne, zodResolver(CommentSchema), {
     formProps: {
       mode: 'onChange',
       delayError: 1_000,

@@ -6,7 +6,7 @@ import { authClient } from '@/lib/safe-action'
 import { CommentSchema } from '@/lib/validations'
 import { prisma } from '@/prisma'
 
-export const leaveAComment = authClient.schema(CommentSchema).action(async ({ ctx, parsedInput }) => {
+export const createOne = authClient.schema(CommentSchema).action(async ({ ctx, parsedInput }) => {
   const loggedInUserId = ctx.user.id
   const { content, photoId } = parsedInput
 

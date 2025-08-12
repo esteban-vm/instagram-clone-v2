@@ -8,9 +8,11 @@ export function LoginForm() {
 
   const { handleSubmitWithAction, form } = useLoginForm()
   const { register, formState } = form
-  const { isSubmitting, errors } = formState
+  const { isSubmitting, isSubmitSuccessful, errors } = formState
   const { email, password } = errors
   const { EMAIL, PASSWORD_SIGNIN } = AUTH_INPUT_PROPS
+
+  const isDisabled = isSubmitting || isSubmitSuccessful
 
   return (
     <Atoms.FormWrapper onSubmit={handleSubmitWithAction}>
@@ -20,7 +22,7 @@ export function LoginForm() {
         {...EMAIL}
         {...register('email')}
         aria-label={t('aria_labels.email')}
-        disabled={isSubmitting}
+        disabled={isDisabled}
         error={email?.message}
         label={t('labels.email')}
         placeholder={t('placeholders.email')}
@@ -30,13 +32,13 @@ export function LoginForm() {
         {...PASSWORD_SIGNIN}
         {...register('password')}
         aria-label={t('aria_labels.password')}
-        disabled={isSubmitting}
+        disabled={isDisabled}
         error={password?.message}
         label={t('labels.password')}
       />
 
-      <Atoms.FormButton isDisabled={isSubmitting} text={t('login.button')} />
-      <Atoms.FormLink isDisabled={isSubmitting} route='/register' text={t('login.link')} />
+      <Atoms.FormButton isDisabled={isDisabled} text={t('login.button')} />
+      <Atoms.FormLink isDisabled={isDisabled} route='/register' text={t('login.link')} />
     </Atoms.FormWrapper>
   )
 }

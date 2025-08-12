@@ -8,9 +8,11 @@ export function RegisterForm() {
 
   const { handleSubmitWithAction, form } = useRegisterForm()
   const { register, formState } = form
-  const { isSubmitting, errors } = formState
+  const { isSubmitting, isSubmitSuccessful, errors } = formState
   const { email, name, password, confirmPassword } = errors
   const { EMAIL, NAME, PASSWORD_SIGNUP } = AUTH_INPUT_PROPS
+
+  const isDisabled = isSubmitting || isSubmitSuccessful
 
   return (
     <Atoms.FormWrapper onSubmit={handleSubmitWithAction}>
@@ -20,7 +22,7 @@ export function RegisterForm() {
         {...EMAIL}
         {...register('email')}
         aria-label={t('aria_labels.email')}
-        disabled={isSubmitting}
+        disabled={isDisabled}
         error={email?.message}
         label={t('labels.email')}
         placeholder={t('placeholders.email')}
@@ -30,7 +32,7 @@ export function RegisterForm() {
         {...NAME}
         {...register('name')}
         aria-label={t('aria_labels.name')}
-        disabled={isSubmitting}
+        disabled={isDisabled}
         error={name?.message}
         label={t('labels.name')}
       />
@@ -39,7 +41,7 @@ export function RegisterForm() {
         {...PASSWORD_SIGNUP}
         {...register('password')}
         aria-label={t('aria_labels.password')}
-        disabled={isSubmitting}
+        disabled={isDisabled}
         error={password?.message}
         label={t('labels.password')}
       />
@@ -48,13 +50,13 @@ export function RegisterForm() {
         {...PASSWORD_SIGNUP}
         {...register('confirmPassword')}
         aria-label={t('aria_labels.password_confirmation')}
-        disabled={isSubmitting}
+        disabled={isDisabled}
         error={confirmPassword?.message}
         label={t('labels.password_confirmation')}
       />
 
-      <Atoms.FormButton isDisabled={isSubmitting} text={t('register.button')} />
-      <Atoms.FormLink isDisabled={isSubmitting} route='/login' text={t('register.link')} />
+      <Atoms.FormButton isDisabled={isDisabled} text={t('register.button')} />
+      <Atoms.FormLink isDisabled={isDisabled} route='/login' text={t('register.link')} />
     </Atoms.FormWrapper>
   )
 }

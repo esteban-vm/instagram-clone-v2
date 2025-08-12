@@ -16,7 +16,7 @@ card.item = tw.li`
   truncate
 `
 
-card.list = tw.ul`
+card.list = tw.menu`
   w-full
   text-xs
 `

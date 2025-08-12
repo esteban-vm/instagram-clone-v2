@@ -5,11 +5,24 @@ import { Alert } from 'rsc-daisyui'
 import { cn } from '@/lib/tw-utils'
 
 export interface NoResultsAlertProps {
-  prefix: KeyPrefix<'dashboard'>
-  className: string
+  type: 'users' | 'photos'
 }
 
-export function NoResultsAlert({ prefix, className }: NoResultsAlertProps) {
+export function NoResultsAlert({ type }: NoResultsAlertProps) {
+  let className: string
+  let prefix: KeyPrefix<'dashboard'>
+
+  switch (type) {
+    case 'photos':
+      prefix = 'timeline.photos_alert'
+      className = 'col-span-2 self-start justify-self-center'
+      break
+
+    case 'users':
+      prefix = 'sidebar.users_alert'
+      className = 'mx-auto w-full max-w-fit'
+  }
+
   const { t } = useTranslation('dashboard', { keyPrefix: prefix })
 
   return (

@@ -18,10 +18,7 @@ export default async function Page() {
   return (
     <$.page.container>
       {!hasPhotos ? (
-        <Feedbacks.NoResultsAlert
-          className='col-span-2 self-start justify-self-center'
-          prefix='timeline.photos_alert'
-        />
+        <Feedbacks.NoResultsAlert type='photos' />
       ) : (
         photos.map((photo) => {
           const { id: photoId, image, caption, comments, likes, owner, createdAt, _count } = photo

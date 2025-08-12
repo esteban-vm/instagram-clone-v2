@@ -36,7 +36,7 @@ export default async function Page() {
       </$.top.container>
       <section>
         {!hasUsers ? (
-          <Feedbacks.NoResultsAlert className='mx-auto w-full max-w-fit' prefix='sidebar.users_alert' />
+          <Feedbacks.NoResultsAlert type='users' />
         ) : (
           <List>
             <Feedbacks.UserListTitle />

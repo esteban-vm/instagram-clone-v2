@@ -1,7 +1,7 @@
 {
   "title": "test title",
   "user_detail": {
-    "follow_button": "Follow user",
-    "unfollow_button": "Unfollow user"
+    "follow_button": "Follow",
+    "unfollow_button": "Unfollow"
   }
 }

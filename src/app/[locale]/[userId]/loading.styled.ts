@@ -6,8 +6,6 @@ loading.container = tw.div`
   mx-auto
   mt-20
   max-w-screen-2xl
-  border
-  border-primary
 `
 
 loading.content = tw.div`

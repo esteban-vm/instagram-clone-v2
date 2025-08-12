@@ -4,6 +4,11 @@
     "buttons": {
       "follow": "Follow",
       "unfollow": "Unfollow"
+    },
+    "feedbacks": {
+      "photos": "photos",
+      "followers": "followers",
+      "following": "following"
     }
   }
 }

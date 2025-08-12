@@ -17,7 +17,7 @@ export const login = actionClient.schema(LoginSchema).action(async ({ parsedInpu
 })
 
 export const logout = authClient.action(async () => {
-  await mockDelay()
+  await mockDelay(1_000)
   await signOut({ redirectTo: APP_ROUTES.LOGIN })
 })
 

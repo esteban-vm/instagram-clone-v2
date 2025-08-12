@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation'
 import { auth } from '@/auth'
 import { APP_ROUTES } from '@/lib/constants'
 
-export const mockDelay = (ms = 5_000) => {
+export const mockDelay = (ms = 2_000) => {
   if (process.env.NODE_ENV === 'development') {
     return new Promise((resolve) => setTimeout(resolve, ms))
   }

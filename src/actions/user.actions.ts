@@ -13,7 +13,11 @@ export const follow = authClient.schema(SchemaWithId).action(async ({ ctx, parse
   const followedUser = await prisma.user.update({
     omit: { password: true },
     where: { id: userToFollowId, active: true },
-    data: { followers: { create: { followingId: loggedInUserId } } },
+    data: {
+      followers: {
+        create: { followingId: loggedInUserId },
+      },
+    },
   })
 
   revalidatePath(APP_ROUTES.DASHBOARD, 'layout')
@@ -61,32 +65,46 @@ export const getSuggestions = authClient.action(async ({ ctx }) => {
     where: {
       active: true,
       id: { not: loggedInUserId },
-      followers: { none: { followingId: loggedInUserId } },
+      followers: {
+        none: { followingId: loggedInUserId },
+      },
     },
   })
 
   return suggestedUsers
 })
 
-export const unfollow = authClient.schema(SchemaWithId).action(async ({ ctx, parsedInput }) => {
+export const toggleFollow = authClient.schema(SchemaWithId).action(async ({ ctx, parsedInput }) => {
   const loggedInUserId = ctx.user.id
-  const userToUnfollowId = parsedInput.id
+  const userToUpdateId = parsedInput.id
 
-  const unfollowedUser = await prisma.user.update({
-    omit: { password: true },
-    where: { id: userToUnfollowId, active: true },
-    data: {
-      followers: {
-        delete: {
+  const updatedUser = await prisma.user.findUnique({
+    where: { id: userToUpdateId },
+    include: { followers: true },
+  })
+
+  if (updatedUser) {
+    const isFollowed = updatedUser.followers.some((f) => f.followingId === loggedInUserId)
+
+    if (!isFollowed) {
+      await prisma.follow.create({
+        data: {
+          followerId: userToUpdateId,
+          followingId: loggedInUserId,
+        },
+      })
+    } else {
+      await prisma.follow.delete({
+        where: {
           followerId_followingId: {
-            followerId: userToUnfollowId,
+            followerId: userToUpdateId,
             followingId: loggedInUserId,
           },
         },
-      },
-    },
-  })
+      })
+    }
+  }
 
   revalidatePath(APP_ROUTES.USER, 'page')
-  return unfollowedUser
+  return updatedUser
 })

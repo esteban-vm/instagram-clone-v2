@@ -31,8 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Page({ params }: Props) {
-  const { user: loggedInUser } = await verifySession()
-  const loggedInUserId = loggedInUser.id
+  await verifySession()
 
   const { userId } = await params
   const result = await UserActions.getById({ id: userId })
@@ -41,7 +40,6 @@ export default async function Page({ params }: Props) {
   if (!user) notFound()
 
   const { id, name, email, avatar, photos, followers, _count } = user
-  const isFollowing = followers.some((follower) => follower.followingId === loggedInUserId)
 
   return (
     <$.page.container>
@@ -60,7 +58,7 @@ export default async function Page({ params }: Props) {
         <$.top.right>
           <$.right.top>
             <$.right.username>{name}</$.right.username>
-            <Buttons.ToggleFollow type={isFollowing ? 'unfollow' : 'follow'} userId={id} />
+            <Buttons.ToggleFollow followers={followers} userId={id} />
           </$.right.top>
           <$.right.center>
             {Object.entries(_count).map(([key, value]) => (

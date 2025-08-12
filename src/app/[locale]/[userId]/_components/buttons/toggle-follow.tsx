@@ -1,27 +1,29 @@
+import type { Follow } from '@prisma/client'
 import { useAction } from 'next-safe-action/hooks'
 import { useTranslation } from 'react-i18next'
 import { RiUserFollowLine } from 'react-icons/ri'
 import { Button } from 'rsc-daisyui'
 import { UserActions } from '@/actions'
+import { useCurrentSession } from '@/hooks'
 
 export interface ToggleFollowProps {
-  type: 'follow' | 'unfollow'
   userId: string
+  followers: Follow[]
 }
 
-export function ToggleFollow({ type, userId }: ToggleFollowProps) {
+export function ToggleFollow({ userId, followers }: ToggleFollowProps) {
+  const { currentSession } = useCurrentSession()
   const { t } = useTranslation('home', { keyPrefix: 'user_detail' })
-
-  const action = type ? UserActions.follow : UserActions.unfollow
-  const { execute, isExecuting, hasSucceeded } = useAction(action)
+  const { execute, isExecuting, hasSucceeded } = useAction(UserActions.toggleFollow)
 
   const isDisabled = isExecuting || hasSucceeded
   const handleClick = () => execute({ id: userId })
+  const isFollowing = followers.some((f) => f.followingId === currentSession?.user.id)
 
   return (
     <Button color='info' disabled={isDisabled} size='sm' soft onClick={handleClick}>
       <RiUserFollowLine className='text-base' />
-      {type === 'follow' ? t('follow_button') : t('unfollow_button')}
+      {!isFollowing ? t('follow_button') : t('unfollow_button')}
     </Button>
   )
 }

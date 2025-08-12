@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useHookFormAction } from '@next-safe-action/adapter-react-hook-form/hooks'
 import { useTranslation } from 'react-i18next'
 import { AuthActions } from '@/actions'
+import { getMockUser } from '@/lib/auth-utils'
 import { CUSTOM_AUTH_ERRORS } from '@/lib/constants'
 import { mapAuthErrors } from '@/lib/errors'
 import { Toasts } from '@/lib/toasts'
@@ -13,15 +14,14 @@ export const useLoginForm = () => {
 
   mapAuthErrors(tValidations)
 
+  const { email, password } = getMockUser()
+
   const methods = useHookFormAction(AuthActions.login, zodResolver(LoginSchema), {
     formProps: {
       mode: 'onChange',
       delayError: 500,
       shouldUseNativeValidation: true,
-      defaultValues: {
-        email: '',
-        password: '',
-      },
+      defaultValues: { email, password },
     },
     actionProps: {
       onSettled() {

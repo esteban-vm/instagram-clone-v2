@@ -1,7 +1,9 @@
 {
   "title": "título de prueba",
   "user_detail": {
-    "follow_button": "Seguir",
-    "unfollow_button": "Dejar de seguir"
+    "buttons": {
+      "follow": "Seguir",
+      "unfollow": "Dejar de seguir"
+    }
   }
 }

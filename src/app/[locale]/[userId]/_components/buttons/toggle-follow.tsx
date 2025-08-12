@@ -13,17 +13,17 @@ export interface ToggleFollowProps {
 
 export function ToggleFollow({ userId, followers }: ToggleFollowProps) {
   const { currentSession } = useCurrentSession()
-  const { t } = useTranslation('home', { keyPrefix: 'user_detail' })
+  const { t } = useTranslation('home', { keyPrefix: 'user_detail.buttons' })
   const { execute, isExecuting, hasSucceeded } = useAction(UserActions.toggleFollow)
 
   const isDisabled = isExecuting || hasSucceeded
   const handleClick = () => execute({ id: userId })
-  const isFollowing = followers.some((f) => f.followingId === currentSession?.user.id)
+  const isFollowed = followers.some((f) => f.followingId === currentSession?.user.id)
 
   return (
     <Button color='info' disabled={isDisabled} size='sm' soft onClick={handleClick}>
       <RiUserFollowLine className='text-base' />
-      {!isFollowing ? t('follow_button') : t('unfollow_button')}
+      {!isFollowed ? t('follow') : t('unfollow')}
     </Button>
   )
 }

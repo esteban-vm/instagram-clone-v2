@@ -74,7 +74,7 @@ export default async function Page({ params }: Props) {
           const { id, caption, image, _count } = photo
           return (
             <$.item.container key={id}>
-              <Image alt={caption} className='object-cover contrast-125' src={image} fill />
+              <Image alt={caption} src={image} fill />
               <$.item.content>
                 <$.item.icon>
                   <FaHeart />

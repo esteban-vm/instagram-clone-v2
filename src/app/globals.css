@@ -42,7 +42,11 @@
   }
 
   img {
-    @apply select-none;
+    @apply contrast-125 select-none;
+
+    &[data-nimg='fill'] {
+      @apply object-cover object-center;
+    }
   }
 }
 

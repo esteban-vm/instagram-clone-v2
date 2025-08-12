@@ -51,7 +51,7 @@ export default async function Page() {
                 </Card.Title>
               </Card.Body>
               <$.card.image>
-                <Image alt={caption} className='object-cover contrast-125' src={image} fill />
+                <Image alt={caption} src={image} fill />
               </$.card.image>
               <Card.Body className='h-full items-start justify-around gap-0.5 p-2.5 pb-0'>
                 <Card.Actions className='gap-3.5'>

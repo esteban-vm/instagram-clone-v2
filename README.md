@@ -79,6 +79,6 @@
 <strong>Click to view diagram</strong>
 </summary>
 
-![UML Diagram]()
+![UML Diagram](./prisma-uml.png)
 
 </details>

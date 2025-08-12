@@ -14,9 +14,9 @@ export interface ToggleFollowProps {
 export function ToggleFollow({ userId, followers }: ToggleFollowProps) {
   const { currentSession } = useCurrentSession()
   const { t } = useTranslation('home', { keyPrefix: 'user_detail.buttons' })
-  const { execute, isExecuting, hasSucceeded } = useAction(UserActions.toggleFollow)
+  const { execute, isExecuting, isTransitioning } = useAction(UserActions.toggleFollow)
 
-  const isDisabled = isExecuting || hasSucceeded
+  const isDisabled = isExecuting || isTransitioning
   const handleClick = () => execute({ id: userId })
   const isFollowed = followers.some((f) => f.followingId === currentSession?.user.id)
 

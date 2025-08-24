@@ -1,6 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
+import { cache } from 'react'
 import { APP_ROUTES } from '@/lib/constants'
 import { authClient } from '@/lib/safe-action'
 import { SchemaWithId } from '@/lib/validations'
@@ -24,55 +25,59 @@ export const follow = authClient.schema(SchemaWithId).action(async ({ ctx, parse
   return followedUser
 })
 
-export const getById = authClient.schema(SchemaWithId).action(async ({ parsedInput }) => {
-  const userId = parsedInput.id
+export const getById = authClient.schema(SchemaWithId).action(
+  cache(async ({ parsedInput }) => {
+    const userId = parsedInput.id
 
-  const userById = await prisma.user.findUnique({
-    omit: { password: true },
-    where: { id: userId, active: true },
-    include: {
-      followers: true,
-      photos: {
-        include: {
-          _count: {
-            select: {
-              likes: true,
-              comments: true,
+    const userById = await prisma.user.findUnique({
+      omit: { password: true },
+      where: { id: userId, active: true },
+      include: {
+        followers: true,
+        photos: {
+          include: {
+            _count: {
+              select: {
+                likes: true,
+                comments: true,
+              },
             },
           },
         },
-      },
-      _count: {
-        select: {
-          photos: true,
-          followers: true,
-          following: true,
+        _count: {
+          select: {
+            photos: true,
+            followers: true,
+            following: true,
+          },
         },
       },
-    },
+    })
+
+    return userById
   })
+)
 
-  return userById
-})
+export const getSuggestions = authClient.action(
+  cache(async ({ ctx }) => {
+    const loggedInUserId = ctx.user.id
 
-export const getSuggestions = authClient.action(async ({ ctx }) => {
-  const loggedInUserId = ctx.user.id
-
-  const suggestedUsers = await prisma.user.findMany({
-    take: 10,
-    orderBy: { name: 'asc' },
-    omit: { password: true },
-    where: {
-      active: true,
-      id: { not: loggedInUserId },
-      followers: {
-        none: { followingId: loggedInUserId },
+    const suggestedUsers = await prisma.user.findMany({
+      take: 10,
+      orderBy: { name: 'asc' },
+      omit: { password: true },
+      where: {
+        active: true,
+        id: { not: loggedInUserId },
+        followers: {
+          none: { followingId: loggedInUserId },
+        },
       },
-    },
-  })
+    })
 
-  return suggestedUsers
-})
+    return suggestedUsers
+  })
+)
 
 export const toggleFollow = authClient.schema(SchemaWithId).action(async ({ ctx, parsedInput }) => {
   const loggedInUserId = ctx.user.id
